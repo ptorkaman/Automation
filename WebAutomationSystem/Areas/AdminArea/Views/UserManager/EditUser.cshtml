@@ -1,0 +1,309 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.UserViewModel
+@using WebAutomationSystem.CommonLayer.PublicClass
+@{
+    ViewData["Title"] = "EditUser";
+}
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-edit"></i>
+            فرم ویرایش کاربر
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+        <form asp-controller="UserManager" asp-action="EditUser" method="post" enctype="multipart/form-data">
+
+            <div class="col-md-6 col-xs-12">
+
+                <input asp-for="Id" class="hidden" />
+
+                <!--firstName-->
+                <div>
+                    <label asp-for="FirstName" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="FirstName" type="text" class="form-control custominput" placeholder="نام کوچک ..." autocomplete="off" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--family-->
+                <div>
+                    <label asp-for="Family" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Family" type="text" class="form-control custominput" placeholder="فامیلی ..." autocomplete="off" />
+                        <span asp-validation-for="Family" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--personalcode-->
+                <div>
+                    <label asp-for="PersonalCode" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="PersonalCode" type="text" class="form-control custominput" placeholder=" کد پرسنلی ..." autocomplete="off" />
+                        <span asp-validation-for="PersonalCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--mellicode-->
+                <div>
+                    <label asp-for="MelliCode" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="MelliCode" type="text" class="form-control custominput" placeholder="کد ملی ..." autocomplete="off" />
+                        <span asp-validation-for="MelliCode" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--mobile-->
+                <div>
+                    <label asp-for="PhoneNumber" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="PhoneNumber" type="text" class="form-control custominput" placeholder="شماره موبایل ..." autocomplete="off" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--username-->
+                <div>
+                    <label asp-for="UserName" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="UserName" type="text" readonly class="form-control custominput" placeholder="نام کاربری ..." autocomplete="off" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--email-->
+                <div>
+                    <label asp-for="Email" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Email" type="text" class="form-control custominput" placeholder="ایمیل ..." autocomplete="off" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--birthdayDate-->
+                <div style="margin-bottom:15px;">
+                    <label asp-for="BirthDayDateMilladi" class="control-label col-md-3 col-xs-12" for="BirthdayDate"></label>
+                    <div class="input-group col-md-9 col-xs-12" style="padding-left:9px; padding-right:9px;">
+                        <div class="input-group-addon"
+                             style="border:1px solid gray; padding:6px">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                        <input asp-for="BirthDayDateMilladi" value="@ConvertDateTime.ConvertMiladiToShamsi(@Model.BirthDayDateMilladi,"yyyy/MM/dd")" id="birthdayDateuser" name="birthdayDateuser" type="text" class="form-control custominput" data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+
+                    </div>
+                    <span asp-validation-for="BirthDayDateMilladi" style="margin-top:10px;" class="text-danger col-md-offset-3 col-md-9 col-xs-12"></span>
+                </div>
+
+                <!--gender-->
+                <div>
+                    <label asp-for="Gender" class="control-label col-md-3 col-xs-12"></label>
+                    <label class="col-md-3 col-xs-6">
+                        مرد
+                        <input asp-for="Gender" type="radio" name="Gender" value="1" checked />
+                    </label>
+                    <label class="col-md-3 col-xs-6">
+                        زن
+                        <input asp-for="Gender" type="radio" name="Gender" value="2" />
+                    </label>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-6 col-xs-12">
+
+                <!--Address-->
+                <div>
+                    <label asp-for="Address" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <textarea asp-for="Address" type="text" class="form-control custominput" placeholder="آدرس ..." autocomplete="off">
+                        </textarea>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--userImage-->
+                <div>
+                    <label asp-for="ImagePath" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <div class="col-md-6">
+                            <div class="form-horizontal">
+
+                                <label for="ImagePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
+                                        border:1px solid gray;">
+                                    انتخاب تصویر
+                                    <i class="icon-file-picture"></i>
+                                </label>
+                                <input asp-for="ImagePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnimageuser" style="color:black; font-size:12px;"></span>
+
+                                <!--نام جدید تصویر-->
+                                <input id="newImagePathName" name="newImagePathName" value="@Model.ImagePath" hidden />
+
+                                <input type="button" value="آپلود و نمایش تصویر" id="btnupload" onclick="UploadImage()" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid gray; width:145px; margin-bottom:10px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <img id="imguserimage" src="~/upload/userimage/@Model.ImagePath"
+                                 style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
+
+                            <div id="divmessage" class="text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--signature-->
+                <div>
+                    <label asp-for="SignaturePath" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <div class="col-md-6">
+                            <div class="form-horizontal">
+
+                                <label for="SignaturePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
+                                        border:1px solid gray;">
+                                    انتخاب امضا
+                                    <i class="icon-file-picture"></i>
+                                </label>
+                                <input asp-for="SignaturePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnsignatureuser" style="color:black;"></span>
+                                <!--نام جدید تصویر-->
+                                <input id="newSignaturePathName" name="newSignaturePathName" value="@Model.SignaturePath" hidden />
+                                <input type="button" value="آپلود و نمایش امضا" onclick="UploadSignature()" id="btnuploadsignature" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid gray; width:145px; margin-bottom:10px;" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <img id="imgusersignature" src="~/upload/signatureimage/@Model.SignaturePath"
+                                 style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
+
+                            <div id="divmessage1" class="text-center hidden"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ویرایش اطلاعات" class="btn pull-right" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+
+</div>
+
+
+@section AdminScripts{
+    <script>
+        $("#ImagePath").change(function () {
+            var filename = this.files[0].name;
+            $("#spnimageuser").html(filename);
+        });
+    </script>
+
+    <script>
+        $("#SignaturePath").change(function () {
+            var filename = this.files[0].name;
+            $("#spnsignatureuser").html(filename);
+        });
+    </script>
+
+
+    <script>
+        var UploadImage = function () {
+            var data = new FormData;
+            var file = $("#ImagePath").get(0);
+            var files = file.files;
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('filearray',files[i]);
+            }
+            data.append('path', "upload\\userimage\\");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadImageFile","UserManager", new { area = "AdminArea"})',
+                data: data,
+                contentType: false,
+                processData: false
+
+            }).done(function (result) {
+                if (result.status == "success") {
+                    $("#imguserimage").attr('src', "\\upload\\userimage\\" + result.imagename);
+                    $("#divmessage").text("آپلود موفقیت آمیز بود.");
+                    $("#divmessage").css("color", "green");
+                    $("#divmessage").removeClass("hidden");
+
+
+                    $("#newImagePathName").val(result.imagename);
+                }
+
+            }).fail(function (result) {
+                   if (result.status != "success") {
+                    $("#divmessage").css("color", "red");
+                    $("#divmessage").redmoveClass("hidden");
+                    $("#divmessage").text("در حین آپلود اشکالی بوجود آمد.");
+                }
+            });
+
+        }
+    </script>
+
+    <script>
+        var UploadSignature = function () {
+            var data = new FormData;
+            var file = $("#SignaturePath").get(0);
+            var files = file.files;
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('filearray',files[i]);
+            }
+
+            data.append('path', "upload\\signatureimage\\");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadImageFile","UserManager", new { area = "AdminArea"})',
+                data:  data,
+                contentType: false,
+                processData: false
+
+            }).done(function (result) {
+                if (result.status == "success") {
+                    $("#imgusersignature").attr('src', "\\upload\\signatureimage\\" + result.imagename);
+                    $("#divmessage1").text("آپلود موفقیت آمیز بود.");
+                    $("#divmessage1").css("color", "green");
+                    $("#divmessage1").removeClass("hidden");
+
+
+                    $("#newSignaturePathName").val(result.imagename);
+                }
+
+            }).fail(function (result) {
+                   if (result.status != "success") {
+                    $("#divmessage1").css("color", "red");
+                    $("#divmessage1").redmoveClass("hidden");
+                    $("#divmessage1").text("در حین آپلود اشکالی بوجود آمد.");
+                }
+            });
+
+        }
+    </script>
+
+    <script>
+    $("#UserName").on('keyup', function (event) {
+        var pattern = /^[a-zA-Z0-9]*$/;
+        if (!pattern.test(event.key)) {
+            $('#UserName').val("");
+        }
+    });
+
+    </script>
+}

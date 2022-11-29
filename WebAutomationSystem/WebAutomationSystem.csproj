@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebAutomationsystem.CommonLayer\WebAutomationsystem.CommonLayer.csproj" />
+    <ProjectReference Include="..\WebAutomationSystem.DataModelLayer\WebAutomationSystem.DataModelLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\AdminArea\Data\" />
+    <Folder Include="Areas\AdminArea\Models\" />
+    <Folder Include="Areas\UserArea\Data\" />
+    <Folder Include="Areas\UserArea\Models\" />
+    <Folder Include="wwwroot\Panel\assets\js\charts\google\bars\" />
+    <Folder Include="wwwroot\Panel\assets\js\charts\google\bubbles\" />
+    <Folder Include="wwwroot\Panel\assets\js\charts\google\lines\" />
+    <Folder Include="wwwroot\Panel\assets\js\charts\google\New folder\" />
+    <Folder Include="wwwroot\Panel\assets\js\charts\google\other\" />
+    <Folder Include="wwwroot\Panel\assets\js\maps\vector\" />
+    <Folder Include="wwwroot\Panel\assets\js\plugins\buttons\" />
+  </ItemGroup>
+
+
+
+</Project>

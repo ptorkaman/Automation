@@ -1,0 +1,50 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.JobsChartViewModel
+@{
+    ViewData["Title"] = "فرم ویرایش شغل";
+}
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-office"></i>
+            فرم ویرایش شغل
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="JobsChart" asp-action="EditJobsChart" method="post">
+            <div class="col-md-6 col-md-offset-3">
+                <!--JobsChartName-->
+                <div>
+                    <label asp-for="JobsChartName" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="JobsChartName" type="text" class="form-control custominput" placeholder="نام شغل ..." autocomplete="off" />
+                        <span asp-validation-for="JobsChartName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <input asp-for="JobsChartLevel"  class="hidden" />
+                <input asp-for="JobsChartId"  class="hidden" />
+
+                <!--JobsChartDescription-->
+                <div>
+                    <label asp-for="JobsChartDescription" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <textarea asp-for="JobsChartDescription" type="text" class="form-control custominput" placeholder="توضیحات  ..." autocomplete="off"></textarea>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ویرایش شغل" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

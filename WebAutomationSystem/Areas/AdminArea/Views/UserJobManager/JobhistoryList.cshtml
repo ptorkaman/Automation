@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.UserJob>
+@inject WebAutomationSystem.DataModelLayer.Services.IUnitOfWork _context;
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "تاریخچه مشاغل";
+    int counter = 1;
+
+    var getuser = _context.userManagerUW.GetById(ViewBag.userId);
+}
+
+<style>
+    tr:hover td {
+        background-color: #dcd6d6;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-user"></i>
+            تاریخچه مشاغل <span style="color:darkgreen;">@getuser.FirstName @getuser.Family</span>
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+
+        @if (ViewBag.CheckJob == null && getuser.IsActive == 1)
+        {
+            <div style="margin-bottom:5px;">
+                <a asp-controller="UserJobManager" asp-action="AddJobToUser"
+                   asp-route-FirstName="@getuser.FirstName" asp-route-Family="@getuser.Family" asp-route-userId="@ViewBag.userId"
+                   class="btn customGreen1">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    انتساب شغل
+                </a>
+            </div>
+        }
+
+
+
+
+        <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td>ردیف</td>
+                        <td>نام شغل</td>
+                        <td>تاریخ انتساب</td>
+                        <td>تاریخ عزل از شغل</td>
+                        <td>وضعیت</td>
+                        <td>عملیات</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:13px; background-color:@(item.IaHaveJob == false ? "#f8cece" : "lightgreen");">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.Jobs.JobsChartName</td>
+                            <td>
+                                @ConvertDateTime.ConvertMiladiToShamsi(@item.StartJobDate, "yyyy/MM/dd")
+                            </td>
+
+                            @if (item.IaHaveJob == false)
+                            {
+                                <td>
+                                    @ConvertDateTime.ConvertMiladiToShamsi(@item.EndJobDate, "yyyy/MM/dd")
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                </td>
+                            }
+
+
+                            <td>
+                                @if (item.IaHaveJob == true)
+                                {
+                                    <span>دارد</span>
+                                }
+                                else
+                                {
+                                    <span>ندارد</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (item.IaHaveJob == true)
+                                {
+                                    <a asp-controller="UserJobManager" asp-action="DelJobFromUser"
+                                       asp-route-UserJobId="@item.UserJobID"
+                                       asp-route-userId="@getuser.Id"
+                                       style="width:100px; font-size:10px; padding:5px;"
+                                       data-toggle="modal" data-target="#modal-action"
+                                       class="btn customRed1">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                        گرفتن شغل
+                                    </a>
+                                }
+
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section AdminScripts{
+    <script src="~/js/modal/modal.js"></script>
+}

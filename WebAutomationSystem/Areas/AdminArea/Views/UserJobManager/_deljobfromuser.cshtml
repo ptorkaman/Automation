@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<form asp-controller="UserJobManager" asp-action="DelJobFromUserPost" method="post">
+    <div class="modal-header" style="background-color:darkred; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">گرفتن شغل از کاربر</h4>
+    </div>
+
+    <div class="modal-body form-horizontal">
+        آیا از گرفتن این شغل از کاربر مطمئن هستید ؟
+    </div>
+
+    <input id="UserJobId" name="UserJobId" value="@ViewBag.UserJobId" class="hidden"/>
+    <input id="userId" name="userId" value="@ViewBag.userId" class="hidden"/>
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px;" data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn" style="width:80px; color:white; background-color:darkred;">
+            گرفتن شغل
+        </button>
+    </div>
+
+</form>

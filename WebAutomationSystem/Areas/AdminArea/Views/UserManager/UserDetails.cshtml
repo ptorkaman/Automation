@@ -1,0 +1,135 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+
+@{
+    ViewData["Title"] = "UserDetails";
+}
+
+
+<div class="content">
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-user"></i>
+            مشخصات کاربر
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+        <div style="margin-bottom:10px;">
+            <div class="col-md-6 col-xs-12">
+
+
+                <div>
+                    <span style="font-weight:bold">نام : </span>
+                    <span style="color:darkgreen;">@Model.FirstName</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">فامیلی : </span>
+                    <span style="color:darkgreen;">@Model.Family</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">نام کاربری : </span>
+                    <span style="color:darkgreen;">@Model.UserName</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">کدملی : </span>
+                    <span style="color:darkgreen;">@Model.MelliCode</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">کدپرسنلی : </span>
+                    <span style="color:darkgreen;">@Model.PersonalCode</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">ایمیل : </span>
+                    <span style="color:darkgreen;">@Model.Email</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">موبایل : </span>
+                    <span style="color:darkgreen;">@Model.PhoneNumber</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">تاریخ تولد : </span>
+                    <span style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(Model.BirthDayDateMilladi,"yyyy/MM/dd")</span>
+                </div>
+                <br />
+                <div>
+                    <span style="font-weight:bold">وضعیت : </span>
+                    @if (Model.IsActive == 1)
+                    {
+
+                        <span style="color:darkgreen;">فعال</span>
+                    }
+                    else
+                    {
+                        <span style="color:red;">غیرفعال</span>
+                    }
+                </div>
+
+                <br />
+                <div>
+                    <span style="font-weight:bold">جنسیت : </span>
+                    @if (Model.Gender == 1)
+                    {
+                        <span style="color:darkgreen;">مرد </span>
+                    }
+                    else
+                    {
+                        <span style="color:darkgreen;">زن</span>
+                    }
+                </div>
+                <br />
+
+                <div>
+                    <span style="font-weight:bold">آدرس : </span>
+                    <span style="color:darkgreen;">@Model.Address</span>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-md-6 col-xs-12">
+                <div>
+                    <span style="font-weight:bold;" class="col-md-4">تصویر : </span>
+                    <div class="col-md-8" style="margin-bottom:15px;">
+                        <img src="~/upload/userimage/@Model.ImagePath" style="width:175px; height:200px;
+                                border:1px solid gray; border-radius:3px;" />
+
+                    </div>
+                </div>
+
+                <div>
+                    <span style="font-weight:bold;" class="col-md-4">امضا : </span>
+                    <div class="col-md-8" style="margin-bottom:15px;">
+                        <img src="~/upload/signatureimage/@Model.SignaturePath" style="width:175px; height:200px;
+                                border:1px solid gray; border-radius:3px;" />
+
+                    </div>
+                </div>
+            </div>
+
+            <hr style="height:1px; background-color:gray; margin-top:10px;" class="col-md-12 col-xs-12 row"/>
+
+
+            <div class="col-xs-12 form-group" style="margin-top:15px;">
+
+                <a asp-controller="UserManager" asp-action="Index" class="btn pull-right"
+                   style="border:1px solid gray; border-radius:3px; color:black; margin-left:10px; width:70px;">بازگشت</a>
+
+                <a href="#" style="border:1px solid gray; border-radius:3px; color:black; margin-left:10px; width:70px;" class="btn pull-right">چاپ</a>
+            </div>
+        </div>
+
+    </div>
+</div>

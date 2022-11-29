@@ -1,0 +1,29 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.Reminder
+
+@{
+    Layout = null;
+}
+
+<form asp-controller="Reminder" asp-action="DeleteReminderPost" method="post">
+    <div class="modal-header" style="background-color:darkred; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">حذف یادآوری</h4>
+    </div>
+
+    <div class="modal-body form-horizontal">
+        آیا از حذف یادآوری
+        <span style="font-weight:bold;">@Model.ReminderTtile</span>
+        مطمئن هستید؟
+    </div>
+
+    <input type="hidden" asp-for="ReminderID" />
+
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px;" data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn" style="width:80px; color:white; background-color:darkred;">
+            تایید
+        </button>
+    </div>
+
+</form>

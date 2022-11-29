@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.Reminder>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "Index";
+    int counter = 1;
+}
+
+<style>
+
+    tbody > tr > td{
+        padding:5px 18px !important;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-dashboard"></i>
+            پیشخوان
+        </span>
+
+        <span style="float:left; font-weight:bold;">
+            تاریخ : <span style="color:darkred;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now,"yyyy/MM/dd")</span>
+        </span>
+    </div>
+
+    
+  
+    <div class="panel panel-body container-fluid col-md-6 col-xs-12" 
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2; height:250px; overflow:auto;">
+
+        <div style="text-align:center; font-weight:bold; margin-bottom:8px;">
+            یادآوری های امروز
+        </div>
+
+
+        <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td>ردیف</td>
+                        <td>عنوان یادآوری</td>
+                        <td>وضعیت</td>
+                        <td>عملیات</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:13px; height:35px; background-color:@(item.IsRead == false ? "#f8cece" : "White");">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.ReminderTtile</td>
+                           
+
+                            <td>
+                                @if (item.IsRead == true)
+                                {
+                                    <span style="color:darkgreen;">خوانده شده</span>
+                                }
+                                else
+                                {
+                                    <span style="color:darkred;">خوانده نشده</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <a asp-controller="Dashboard" asp-action="DeleteRemider" asp-route-ReminderID="@item.ReminderID"
+                                       style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
+                                       data-toggle="modal" data-target="#modal-action"
+                                       class="btn customGreen1">
+                                        <i class="glyphicon glyphicon-book"></i>
+                                        خواندن
+                                    </a>
+                                </div>
+
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section AdminScripts{
+    <script src="~/js/modal/modal.js"></script>
+}
