@@ -34,5 +34,28 @@ namespace WebAutomationSystem.CommonLayer.PublicClass
             return filename;
         }
 
+
+        public string UploadAttachamentFunc(IEnumerable<IFormFile> files, string uploadPath, string username)
+        {
+            var upload = Path.Combine(_appEnvironment.WebRootPath, uploadPath);
+
+            if (!Directory.Exists(upload + username))
+            {
+                Directory.CreateDirectory(upload + username);
+            }
+            upload = upload + username;
+
+            var filename = "";
+            foreach (var item in files)
+            {
+                filename = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(item.FileName);
+                using (var fs = new FileStream(Path.Combine(upload, filename), FileMode.Create))
+                {
+                    item.CopyTo(fs);
+                }
+
+            }
+            return filename;
+        }
     }
 }

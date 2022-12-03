@@ -17,6 +17,10 @@ namespace WebAutomationSystem.DataModelLayer
         public DbSet<JobsChart> JobsCharts { get; set; }
         public DbSet<UserJob> UserJobs { get; set; }
         public DbSet<Reminder>  Reminders { get; set; }
+        public DbSet<RolePattern> RolePatterns { get; set; }
+        public DbSet<RolePatternDetails> RolePatternDetails { get; set; }
+        public DbSet<Letters> Letters { get; set; }
+        public DbSet<AdministrativeForm> AdministrativeForms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -24,7 +28,7 @@ namespace WebAutomationSystem.DataModelLayer
             builder.Entity<ApplicationUsers>(entity =>
             {
                 entity.ToTable(name: "Users");
-                entity.Property(e => e.Id).HasColumnName("UserID");
+                entity.Property(e => e.Id).HasColumnName("Id");
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 
             });

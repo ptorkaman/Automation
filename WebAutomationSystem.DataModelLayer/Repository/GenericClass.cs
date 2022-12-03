@@ -49,6 +49,16 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             Delete(entity);
         }
 
+        public virtual void DeleteByRange(Expression<Func<Tentity, bool>> whereVariable = null)
+        {
+            IQueryable<Tentity> query = _table;
+            if (whereVariable != null)
+            {
+                query = query.Where(whereVariable);
+            }
+            _table.RemoveRange(query);
+        }
+
         public virtual IEnumerable<Tentity> Get(Expression<Func<Tentity, bool>> whereVariable = null,
            Func<IQueryable<Tentity>, IOrderedQueryable<Tentity>> orderbyVariable = null,
             string joinString = "")

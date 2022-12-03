@@ -26,8 +26,15 @@ using WebAutomationSystem.DataModelLayer;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a558166426d67561e27efdc34b25c343c7e2ebb6", @"/Areas/AdminArea/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

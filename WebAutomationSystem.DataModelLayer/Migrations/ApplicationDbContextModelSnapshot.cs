@@ -123,6 +123,32 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.AdministrativeForm", b =>
+                {
+                    b.Property<int>("AdministrativeFormID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdministrativeFormContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdministrativeFormTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AdministrativeFormType")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("AdministrativeFormID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("AdministrativeForm");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ApplicationRoles", b =>
                 {
                     b.Property<string>("Id")
@@ -132,6 +158,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -139,6 +168,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<string>("NormalizedName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("RoleLevel")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -153,6 +185,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("UserID")
                         .HasColumnType("nvarchar(450)");
 
@@ -270,6 +303,50 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.ToTable("JobsChart");
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Letters", b =>
+                {
+                    b.Property<int>("LetterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("AttachmentStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<byte>("ClassificationStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("ImmediatellyStatus")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("LetterAttachamentFile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LetterContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LetterCreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LetterSubject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReplyDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("ReplyStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LetterID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Letters");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Reminder", b =>
                 {
                     b.Property<int>("ReminderID")
@@ -300,6 +377,46 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Reminder");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.RolePattern", b =>
+                {
+                    b.Property<int>("RolePatternID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RolePatternDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RolePatternName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RolePatternID");
+
+                    b.ToTable("RolePattern");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.RolePatternDetails", b =>
+                {
+                    b.Property<int>("RolePatternDetailsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("RolePatternID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RolePatternDetailsID");
+
+                    b.HasIndex("RoleID");
+
+                    b.HasIndex("RolePatternID");
+
+                    b.ToTable("RolePatternDetails");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.UserJob", b =>
@@ -384,11 +501,38 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.AdministrativeForm", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Letters", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Reminder", b =>
                 {
                     b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users")
                         .WithMany()
                         .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.RolePatternDetails", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationRoles", "Roles")
+                        .WithMany()
+                        .HasForeignKey("RoleID");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.RolePattern", "RP")
+                        .WithMany()
+                        .HasForeignKey("RolePatternID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.UserJob", b =>

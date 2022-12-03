@@ -247,7 +247,7 @@
             }).fail(function (result) {
                    if (result.status != "success") {
                     $("#divmessage").css("color", "red");
-                    $("#divmessage").redmoveClass("hidden");
+                    $("#divmessage").removeClass("hidden");
                     $("#divmessage").text("در حین آپلود اشکالی بوجود آمد.");
                 }
             });

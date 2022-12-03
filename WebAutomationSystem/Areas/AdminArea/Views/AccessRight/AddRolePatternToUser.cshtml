@@ -1,0 +1,51 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.RolePattern
+@{
+    ViewData["Title"] = "انتساب نقش به کاربر";
+    List<RolePattern> RoleList = ViewBag.patternlist;
+}
+
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-accessibility2"></i>
+               فرم ثبت نقش کاربری به <span style="color:darkgreen;">@ViewBag.FullName</span>
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="AccessRight" asp-action="AddRolePatternToUser" method="post">
+
+            @if (ViewBag.msg != null)
+            {
+                <div style="text-align:center;" class="alert @ViewBag.alert">
+                    @ViewBag.msg
+                </div>
+            }
+            <div class="col-md-8 col-md-offset-2">
+
+                <!--RolePatternID-->
+                <div>
+                    <label class="control-label col-md-3 col-xs-12">لیست نقش های کاربری :</label>
+                    <div class="col-md-9 col-xs-12">
+                        <select asp-for="Id" style="height:40px;"
+                                class="form-control custominput" asp-items="@(new SelectList(RoleList,"Id","RolePatternName"))"></select>
+
+                    </div>
+                </div>
+                <input name="userId" id="userId" class="hidden" value="@ViewBag.userId" />
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ثبت نقش کاربری" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

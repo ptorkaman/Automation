@@ -73,7 +73,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                     userMapped.ImagePath = newImagePathName;
                     userMapped.SignaturePath = newSignaturePathName;
                     userMapped.IsActive = 1;
-                    IdentityResult result = await _userManager.CreateAsync(userMapped, userMapped.MelliCode);
+                    IdentityResult result = await _userManager.CreateAsync(userMapped, "123@d_F");
 
                     if (result.Succeeded)
                     {

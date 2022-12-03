@@ -46,6 +46,7 @@ namespace WebAutomationSystem
             services.AddScoped<IUploadFiles, UploadFiles>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserJobRepository, UserJobRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

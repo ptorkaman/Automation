@@ -15,6 +15,10 @@ namespace WebAutomationSystem.AutoMapper
             CreateMap<ApplicationUsers, UserViewModel>().ReverseMap();
             CreateMap<JobsChart, JobsChartViewModel>().ReverseMap();
             CreateMap<Reminder, ReminderViewModel>().ReverseMap();
+            CreateMap<ApplicationRoles, RoleViewModel>().ReverseMap();
+            CreateMap<RolePattern, RolePatternViewModel>().ReverseMap();
+            CreateMap<AdministrativeForm, AdministrativeFormViewModel>().ReverseMap();
+            CreateMap<Letters, LettersViewModel>().ReverseMap();
         }
     }
 }

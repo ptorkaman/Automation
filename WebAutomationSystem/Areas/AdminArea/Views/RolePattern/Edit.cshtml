@@ -1,0 +1,50 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.RolePatternViewModel
+@{
+    ViewData["Title"] = "ثبت نقش کاربری";
+}
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-accessibility2"></i>
+            فرم ویرایش نقش کاربری
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="RolePattern" asp-action="Edit" method="post">
+            <div class="col-md-6 col-md-offset-3">
+                <!--RolePatternName-->
+                <div>
+                    <label asp-for="RolePatternName" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="RolePatternName" type="text" class="form-control custominput" placeholder="عنوان نقش کاربری..." autocomplete="off" />
+                        <span asp-validation-for="RolePatternName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <input asp-for="Id" class="hidden" />
+
+                <!--RolePatternDescription-->
+                <div>
+                    <label asp-for="RolePatternDescription" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="RolePatternDescription" type="text" class="form-control custominput" placeholder="توضیحات..." autocomplete="off" />
+
+                    </div>
+                </div>
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ویرایش نقش کاربری" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

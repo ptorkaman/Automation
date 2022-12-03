@@ -13,7 +13,11 @@ namespace WebAutomationSystem.DataModelLayer.Services
         GenericClass<JobsChart> jobsChartUW { get; }
         GenericClass<UserJob> userJobUW { get; }
         GenericClass<Reminder> reminderUW { get; }
-
+        GenericClass<RolePattern> rolePatternUW { get; }
+        GenericClass<RolePatternDetails> rolePatternDetailsUW { get; }
+        GenericClass<Letters> lettersUW { get; }
+        GenericClass<AdministrativeForm> administrativeFormUW { get; }
+        IEntityDataBaseTransaction BeginTransaction();
         void save();
         void Dispose();
     }

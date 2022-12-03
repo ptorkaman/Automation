@@ -25,9 +25,37 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
         public IActionResult Index()
         {
-            var model = _context.reminderUW.Get(r=>r.UserID == _userManager.GetUserId(HttpContext.User) &&
-                                                r.ReminderDate == DateTime.Now.Date);
-            return View(model);
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ReadReminder(int ReminderID)
+        {
+            if (ReminderID == 0)
+            {
+                return RedirectToAction("ErrorView","Home");
+            }
+            var model = _context.reminderUW.GetById(ReminderID);
+            return PartialView("_readReminder", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ReadReminderPost(int ReminderID)
+        {
+            try
+            {
+                var model = _context.reminderUW.GetById(ReminderID);
+                model.IsRead = true;
+                _context.reminderUW.Update(model);
+                _context.save();
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
         }
     }
 }

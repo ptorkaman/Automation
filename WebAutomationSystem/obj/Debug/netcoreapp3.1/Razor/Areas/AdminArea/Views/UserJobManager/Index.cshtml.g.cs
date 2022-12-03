@@ -26,8 +26,15 @@ using WebAutomationSystem.DataModelLayer;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"45a5b5a006de8f3369c2f2a2ce1d2cd16e686252", @"/Areas/AdminArea/Views/UserJobManager/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views_UserJobManager_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers>>
     #nullable disable
@@ -171,7 +178,7 @@ WriteAttributeValue("", 1778, item.IsActive == 0 ? "#f8cece" : "White", 1778, 43
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                <td>\r\n                                    <div class=\"row\">\r\n                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "45a5b5a006de8f3369c2f2a2ce1d2cd16e6862529957", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "45a5b5a006de8f3369c2f2a2ce1d2cd16e68625210236", async() => {
                 WriteLiteral("\r\n                                            <i class=\"icon-office\"></i>\r\n                                            تاریخچه مشاغل\r\n                                        ");
             }
             );

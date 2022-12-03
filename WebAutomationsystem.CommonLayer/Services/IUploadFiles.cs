@@ -8,5 +8,6 @@ namespace WebAutomationSystem.CommonLayer.Services
     public interface IUploadFiles
     {
         string UploadFileFunc(IEnumerable<IFormFile> files, string uploadPath);
+        string UploadAttachamentFunc(IEnumerable<IFormFile> files, string uploadPath, string username);
     }
 }

@@ -27,6 +27,13 @@ using WebAutomationSystem.DataModelLayer;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\UserJobManager\JobhistoryList.cshtml"
 using WebAutomationSystem.CommonLayer.PublicClass;
 
@@ -34,7 +41,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bb1012c6d574ec83f37245979aa7b813d3094c31", @"/Areas/AdminArea/Views/UserJobManager/JobhistoryList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views_UserJobManager_JobhistoryList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<WebAutomationSystem.DataModelLayer.Entities.UserJob>>
     #nullable disable
@@ -123,7 +130,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 #line hidden
 #nullable disable
             WriteLiteral("            <div style=\"margin-bottom:5px;\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c319239", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c319518", async() => {
                 WriteLiteral("\r\n                    <i class=\"glyphicon glyphicon-plus\"></i>\r\n                    انتساب شغل\r\n                ");
             }
             );
@@ -321,7 +328,7 @@ WriteAttributeValue("", 2251, item.IaHaveJob == false ? "#f8cece" : "lightgreen"
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c3120388", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c3120667", async() => {
                 WriteLiteral("\r\n                                        <i class=\"glyphicon glyphicon-remove\"></i>\r\n                                        گرفتن شغل\r\n                                    ");
             }
             );
@@ -396,7 +403,7 @@ Write(Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = Bo
             WriteLiteral("\r\n\r\n");
             DefineSection("AdminScripts", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c3125524", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bb1012c6d574ec83f37245979aa7b813d3094c3125803", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

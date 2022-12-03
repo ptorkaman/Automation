@@ -1,0 +1,50 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.RoleViewModel
+@{
+    ViewData["Title"] = "افزودن اجزای جدید";
+}
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-accessibility"></i>
+            فرم تعریف جز جدید زیرمجموعه <span style="color:darkgreen;">@ViewBag.parentname</span>
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="SystemPart" asp-action="AddSystemPart" method="post">
+            <div class="col-md-8 col-md-offset-2">
+                <!--Description-->
+                <div>
+                    <label asp-for="Description" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Description" type="text" class="form-control custominput" placeholder="نام فارسی دسترسی ..." autocomplete="off" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <input asp-for="RoleLevel" value="@ViewBag.id" class="hidden" />
+
+                <!--Name-->
+                <div>
+                    <label asp-for="Name" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Name" type="text" class="form-control custominput" placeholder="نام انگلیسی دسترسی ..." autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ثبت بخش جدید" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

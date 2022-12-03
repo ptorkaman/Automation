@@ -1,0 +1,50 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.AdministrativeFormViewModel
+@{
+    ViewData["Title"] = "ثبت نامه پیش فرض جدید";
+}
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-package"></i>
+            فرم ثبت نامه ادبیات        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="AdministrativeForm" asp-action="AddNewDefaultForm" method="post">
+            <div class="col-md-8 col-md-offset-2">
+                <!--AdministrativeFormTitle-->
+                <div>
+                    <label asp-for="AdministrativeFormTitle" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="AdministrativeFormTitle" type="text" class="form-control custominput" placeholder="عنوان نامه..." autocomplete="off" />
+                        <span asp-validation-for="AdministrativeFormTitle" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <!--AdministrativeFormContent-->
+                <div>
+                    <label asp-for="AdministrativeFormContent" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <textarea asp-for="AdministrativeFormContent" rows="8" type="text" class="form-control custominput" placeholder="متن نامه..." autocomplete="off"></textarea>
+                        <span asp-validation-for="AdministrativeFormContent" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ثبت اطلاعات" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

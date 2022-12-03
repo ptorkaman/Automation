@@ -9,60 +9,60 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "Address",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "BirthDayDate",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Family",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "FirstName",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<byte>(
                 name: "Gender",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: false,
                 defaultValue: (byte)0);
 
             migrationBuilder.AddColumn<byte>(
                 name: "IaActive",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: false,
                 defaultValue: (byte)0);
 
             migrationBuilder.AddColumn<string>(
                 name: "ImagePath",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "MelliCode",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "PersonalCode",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "RegisterDate",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<string>(
                 name: "SignaturePath",
-                table: "Users",
+                table: "Users_Tbl",
                 nullable: true);
         }
 
@@ -70,47 +70,47 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Address",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "BirthDayDate",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "Family",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "FirstName",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "Gender",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "IaActive",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "ImagePath",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "MelliCode",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "PersonalCode",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "RegisterDate",
-                table: "Users");
+                table: "Users_Tbl");
 
             migrationBuilder.DropColumn(
                 name: "SignaturePath",
-                table: "Users");
+                table: "Users_Tbl");
         }
     }
 }

@@ -20,7 +20,66 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<JobsChart> _jobsChart;
         private GenericClass<UserJob> _userJob;
         private GenericClass<Reminder> _reminder;
+        private GenericClass<RolePattern> _rolePattern;
+        private GenericClass<RolePatternDetails> _rolePatterDetails;
+        private GenericClass<Letters> _letters;
+        private GenericClass<AdministrativeForm> _administrativeForm;
 
+        //نامه های پیش فرض
+        public GenericClass<AdministrativeForm> administrativeFormUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_administrativeForm == null)
+                {
+                    _administrativeForm = new GenericClass<AdministrativeForm>(_context);
+                }
+                return _administrativeForm;
+            }
+        }
+
+        //نامه ها
+        public GenericClass<Letters> lettersUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_letters == null)
+                {
+                    _letters = new GenericClass<Letters>(_context);
+                }
+                return _letters;
+            }
+        }
+
+        //جزییات نقش های کاربری
+        public GenericClass<RolePatternDetails> rolePatternDetailsUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_rolePatterDetails == null)
+                {
+                    _rolePatterDetails = new GenericClass<RolePatternDetails>(_context);
+                }
+                return _rolePatterDetails;
+            }
+        }
+
+        //نقش های کاربری
+        public GenericClass<RolePattern> rolePatternUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_rolePattern == null)
+                {
+                    _rolePattern = new GenericClass<RolePattern>(_context);
+                }
+                return _rolePattern;
+            }
+        }
 
         //یادآوری
         public GenericClass<Reminder> reminderUW
@@ -92,6 +151,10 @@ namespace WebAutomationSystem.DataModelLayer.Services
             }
         }
 
+        public IEntityDataBaseTransaction BeginTransaction()
+        {
+            return new EntityDataBaseTransaction(_context);
+        }
 
         public void save()
         {

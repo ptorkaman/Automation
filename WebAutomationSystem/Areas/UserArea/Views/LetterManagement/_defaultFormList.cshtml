@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.AdministrativeForm>
+
+
+@{
+    Layout = null;
+    int counter = 1;
+}
+
+<style>
+    .selected {
+        background-color: gray;
+        color: white;
+    }
+</style>
+
+<div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+    <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">فرم های پیش فرض</h4>
+</div>
+
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-package"></i>
+            لیست نامه های پیش فرض
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; height:250px; overflow:auto; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+        <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td style="width:60px;">ردیف</td>
+                        <td style="width:200px;">موضوع نامه</td>
+                        <td>محتوای نامه</td>
+
+                    </tr>
+                </thead>
+                <tbody id="tbladministrativeform">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:13px; cursor:pointer;">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.AdministrativeFormTitle</td>
+
+                            <td style="text-align:right;">
+                                @item.AdministrativeFormContent
+                            </td>
+
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="modal-footer" style="text-align:left;">
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+</div>
+
+
+<script>
+    $("#tbladministrativeform tr").click(function () {
+        $(this).addClass('selected').siblings().removeClass('selected');
+        CKEDITOR.instances["LetterContent"].setData($(this).find('td').eq(2).html());
+    });
+</script>

@@ -15,6 +15,14 @@
     <link href="~/Panel/assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="~/Panel/assets/css/components.css" rel="stylesheet" type="text/css">
 
+    <!--PersianDateTimePicker-->
+    <link href="~/lib/MdPersiandatetimepicker/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+
+    <link href="~/css/customStyle.css" rel="stylesheet" />
+    <!--autoComplete-->
+    <link href="~/lib/autocomplete/css/jquery-ui.css" rel="stylesheet" />
+    <!--CkEditor Style-->
+    <link href="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.css" rel="stylesheet" />
 </head>
 <body class="navbar-top">
     <!-- START - Main Navibar -->
@@ -51,7 +59,7 @@
 
                 <div class="breadcrumb-line" style="background-color:#e0dbdb; border-top:1px solid gray; text-align:center; bottom:1px !important; position:fixed; width:100%;">
                     <div class="col-md-offset-2 col-md-6">
-                        <span style="color: black;"> سیستم اتوماسیون اداری تحت وب - کلیه حقوق مادی و معنوی این نرم افزار محفوظ می باشد </span>
+                        <span style="color: black;"> سیستم اتوماسیون اداری تحت وب - کلیه حقوق مادی و معنوی این نرم افزار محفوظ و متعلق به شرکت ژوبین می باشد </span>
                     </div>
                 </div>
 
@@ -70,8 +78,16 @@
     <script type="text/javascript" src="~/Panel/assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Panel/assets/js/plugins/ui/nicescroll.min.js"></script>
     <script type="text/javascript" src="~/Panel/assets/js/core/app.js"></script>
+
+    <!--PersianDateTimePicker-->
+    <script src="~/lib/MdPersiandatetimepicker/js/calendar.js"></script>
+    <script src="~/lib/MdPersiandatetimepicker/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+    <!--CkEditor Jquery-->
+    <script src="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.js"></script>
+    <!--autoComplete-->
+    <script src="~/lib/autocomplete/jquery/jquery-ui.js"></script>
     <!-- END - theme JS files -->
-    @RenderSection("UserScripts",required:false)
+    @RenderSection("UserScripts", required: false)
 
 </body>
 

@@ -26,8 +26,15 @@ using WebAutomationSystem.DataModelLayer;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"11ab0310fd3a64df1667d01cb9aed566111c99d4", @"/Areas/AdminArea/Views/UserJobManager/_deljobfromuser.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views_UserJobManager__deljobfromuser : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -69,7 +76,7 @@ using WebAutomationSystem.DataModelLayer;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11ab0310fd3a64df1667d01cb9aed566111c99d44854", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "11ab0310fd3a64df1667d01cb9aed566111c99d45133", async() => {
                 WriteLiteral(@"
     <div class=""modal-header"" style=""background-color:darkred; color:white; border-radius:5px 5px 0 0;"">
         <button type=""button"" class=""close pull-left"" data-dismiss=""modal"" aria-hidden=""true"">&times;</button>

@@ -27,6 +27,13 @@ using WebAutomationSystem.DataModelLayer;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\UserManager\Index.cshtml"
 using WebAutomationSystem.CommonLayer.PublicClass;
 
@@ -34,7 +41,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e2d0241a42f36231822360cb1d5cfea87240c18f", @"/Areas/AdminArea/Views/UserManager/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views_UserManager_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers>>
     #nullable disable
@@ -100,7 +107,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 
     <div style=""margin-bottom:5px;"">
         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f9415", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f9694", async() => {
                 WriteLiteral("\r\n            <i class=\"glyphicon glyphicon-plus\"></i>\r\n            افزودن کاربر جدید\r\n        ");
             }
             );
@@ -197,7 +204,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                            <td style=\"padding:2px; text-align:center;\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e2d0241a42f36231822360cb1d5cfea87240c18f14469", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e2d0241a42f36231822360cb1d5cfea87240c18f14748", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -221,7 +228,7 @@ AddHtmlAttributeValue("", 2092, item.ImagePath, 2092, 15, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </td>\r\n                            <td style=\"padding:2px; text-align:center;\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e2d0241a42f36231822360cb1d5cfea87240c18f16266", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e2d0241a42f36231822360cb1d5cfea87240c18f16545", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -282,7 +289,7 @@ AddHtmlAttributeValue("", 2321, item.SignaturePath, 2321, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("                            <td>\r\n\r\n                                <div class=\"row\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f19743", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f20022", async() => {
                 WriteLiteral("\r\n                                        <i class=\"glyphicon glyphicon-book\"></i>\r\n                                        جزییات\r\n                                    ");
             }
             );
@@ -317,7 +324,7 @@ AddHtmlAttributeValue("", 2321, item.SignaturePath, 2321, 19, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f22623", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f22902", async() => {
                 WriteLiteral("\r\n                                        <i class=\"glyphicon glyphicon-edit\"></i>\r\n                                        ویرایش\r\n                                    ");
             }
             );
@@ -361,7 +368,7 @@ AddHtmlAttributeValue("", 2321, item.SignaturePath, 2321, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f25869", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f26148", async() => {
                 WriteLiteral("\r\n                                            <i class=\"glyphicon glyphicon-remove\"></i>\r\n                                            غیرفعال\r\n                                        ");
             }
             );
@@ -419,7 +426,7 @@ AddHtmlAttributeValue("", 2321, item.SignaturePath, 2321, 19, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f30136", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f30415", async() => {
                 WriteLiteral("\r\n                                            <i class=\"glyphicon glyphicon-ok\"></i>\r\n                                            فعال\r\n                                        ");
             }
             );
@@ -494,7 +501,7 @@ Write(Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = Bo
             WriteLiteral("\r\n\r\n");
             DefineSection("AdminScripts", async() => {
                 WriteLiteral(" \r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f35318", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e2d0241a42f36231822360cb1d5cfea87240c18f35597", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

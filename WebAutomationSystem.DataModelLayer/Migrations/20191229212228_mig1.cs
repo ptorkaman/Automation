@@ -8,7 +8,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Roles",
+                name: "Roles_Tbl",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -18,11 +18,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
+                    table.PrimaryKey("PK_Roles_Tbl", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Users_Tbl",
                 columns: table => new
                 {
                     UserID = table.Column<string>(nullable: false),
@@ -43,7 +43,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserID);
+                    table.PrimaryKey("PK_Users_Tbl", x => x.UserID);
                 });
 
             migrationBuilder.CreateTable(
@@ -60,9 +60,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 {
                     table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_Roles_RoleId",
+                        name: "FK_AspNetRoleClaims_Roles_Tbl_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Roles",
+                        principalTable: "Roles_Tbl",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -81,9 +81,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_Users_UserId",
+                        name: "FK_AspNetUserClaims_Users_Tbl_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Users_Tbl",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -101,9 +101,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_Users_UserId",
+                        name: "FK_AspNetUserLogins_Users_Tbl_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Users_Tbl",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -119,15 +119,15 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_Roles_RoleId",
+                        name: "FK_AspNetUserRoles_Roles_Tbl_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Roles",
+                        principalTable: "Roles_Tbl",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_Users_UserId",
+                        name: "FK_AspNetUserRoles_Users_Tbl_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Users_Tbl",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -145,9 +145,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_Users_UserId",
+                        name: "FK_AspNetUserTokens_Users_Tbl_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
+                        principalTable: "Users_Tbl",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -174,19 +174,19 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
-                table: "Roles",
+                table: "Roles_Tbl",
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "Users",
+                table: "Users_Tbl",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
-                table: "Users",
+                table: "Users_Tbl",
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
@@ -210,10 +210,10 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Roles_Tbl");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users_Tbl");
         }
     }
 }

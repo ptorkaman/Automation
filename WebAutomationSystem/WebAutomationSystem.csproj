@@ -31,6 +31,8 @@
     <Folder Include="wwwroot\Panel\assets\js\charts\google\other\" />
     <Folder Include="wwwroot\Panel\assets\js\maps\vector\" />
     <Folder Include="wwwroot\Panel\assets\js\plugins\buttons\" />
+    <Folder Include="wwwroot\upload\attachfile\" />
+    <Folder Include="wwwroot\upload\attachfile\hasan\" />
   </ItemGroup>
 
 

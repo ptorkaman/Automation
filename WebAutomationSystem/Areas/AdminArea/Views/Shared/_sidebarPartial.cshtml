@@ -8,7 +8,7 @@
                     <a href="#" class="media-left">
                     </a>
                     <div class="media-body">
-                        <span class="media-heading text-semibold">پروین ترکمان</span>
+                        <span class="media-heading text-semibold">پروین ترکمان  </span>
                         <div class="text-size-mini text-muted">
                             <i class="icon-pin text-size-small"></i> &nbsp; پنل ادمین
                         </div>
@@ -53,15 +53,20 @@
                     <li>
                         <a href="#"><i class="icon-forward3"></i><span>ارسال پیام به کاربران</span></a>
                     </li>
-
+                    <li>
+                        <a asp-controller="AdministrativeForm" asp-action="Index"><i class="icon-package"></i><span>فرم های اداری</span></a>
+                    </li>
                     <li>
                         <a asp-controller="Reminder" asp-action="Index"><i class="icon-reminder"></i><span>ثبت یادآوری</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-sync"></i><span>اجزای سیستم</span></a>
+                        <a asp-controller="SystemPart" asp-action="Index"><i class="icon-sync"></i><span>اجزای سیستم</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-accessibility"></i><span>کنترل دسترسی ها</span></a>
+                        <a asp-controller="AccessRight" asp-action="Index"><i class="icon-accessibility"></i><span>کنترل دسترسی ها</span></a>
+                    </li>
+                    <li>
+                        <a asp-controller="RolePattern" asp-action="Index"><i class="icon-accessibility2"></i><span>نقش های کاربری</span></a>
                     </li>
                 </ul>
                 <!-- END - Item Navigation -->

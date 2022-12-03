@@ -15,7 +15,7 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         [RegularExpression(@"^[^\\/:*;\.\)\(]+$", ErrorMessage = "از کاراکترهای غیرمجاز استفاده نکنید.")]
         public string FirstName { get; set; }
 
-        [Display(Name = "نام خانوادگی")]
+        [Display(Name = "فامیلی")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} وارد نشده است.")]
         [StringLength(maximumLength: 250, MinimumLength = 2, ErrorMessage = "{0} باید حداقل 2 و حداکثر 250 کاراکتر باشد.")]
         [RegularExpression(@"^[^\\/:*;\.\)\(]+$", ErrorMessage = "از کاراکترهای غیرمجاز استفاده نکنید.")]

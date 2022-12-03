@@ -1,0 +1,337 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.LettersViewModel
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "CreateLetter";
+}
+<style>
+    .LabelClass {
+        font-weight: bold;
+    }
+
+    .cke_button__defaultform_icon {
+        display: none !important; /*without icon*/
+    }
+
+    .cke_button__automationform_icon {
+        display: none !important; /*without icon*/
+    }
+
+    .cke_button__automationform_label {
+        display: inline !important; /*show the text label*/
+        border: 1px solid gray;
+        cursor: pointer;
+        border-radius: 2px;
+        width: 100px;
+        height: 23px;
+        font-size: 12px;
+        text-align: center;
+        background-color: #e4dddd;
+        margin-right: 10px;
+    }
+
+    .cke_button__defaultform_label {
+        display: inline !important; /*show the text label*/
+        border: 1px solid gray;
+        cursor: pointer;
+        border-radius: 2px;
+        width: 100px;
+        height: 23px;
+        font-size: 12px;
+        text-align: center;
+        background-color: #e4dddd;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-plus"></i>
+            فرم ایجاد نامه
+        </span>
+    </div>
+
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+        <form asp-controller="LetterManagement" asp-action="CreateLetter" method="post" enctype="multipart/form-data">
+            <div class="col-md-8 col-xs-12 col-md-offset-2">
+
+                <!--LetterCreateDate-->
+                <div class="row" style="height:45px;">
+                    <label asp-for="LetterCreateDate" class="col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <div style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</div>
+                    </div>
+                </div>
+
+                <!--LetterSubject-->
+                <div>
+                    <label asp-for="LetterSubject" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="LetterSubject" type="text" class="form-control custominput" placeholder="موضوع نامه ..." />
+                        <span asp-validation-for="LetterSubject" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--ImmediatellyStatus-->
+                <div>
+                    <label asp-for="ImmediatellyStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12" style="height:45px;">
+                        <label class="col-md-3 col-xs-4">
+                            عادی
+                            <input asp-for="ImmediatellyStatus" type="radio" value="1" checked />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            فوری
+                            <input asp-for="ImmediatellyStatus" type="radio" value="2" />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            آنی
+                            <input asp-for="ImmediatellyStatus" type="radio" value="3" />
+                        </label>
+                    </div>
+                </div>
+
+                <!--ClassificationStatus-->
+                <div>
+                    <label asp-for="ClassificationStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12" style="height:45px;">
+                        <label class="col-md-3 col-xs-4">
+                            عادی
+                            <input asp-for="ClassificationStatus" type="radio" value="1" checked />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            محرمانه
+                            <input asp-for="ClassificationStatus" type="radio" value="2" />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            فوق محرمانه
+                            <input asp-for="ClassificationStatus" type="radio" value="3" />
+                        </label>
+                    </div>
+                </div>
+
+                <!--ReplyStatus-->
+                <div>
+                    <label asp-for="ReplyStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12" style="height:45px;">
+                        <label class="col-md-3 col-xs-4">
+                            دارد
+                            <input asp-for="ReplyStatus" id="yesreply" class="checkreply" type="radio" value="1" checked />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            ندارد
+                            <input asp-for="ReplyStatus" id="noreply" class="checkreply" type="radio" value="0" />
+                        </label>
+                    </div>
+                </div>
+
+                <!--ReplyDate-->
+                <div style="margin-bottom:15px;">
+                    <label asp-for="ReplyDate" class="control-label col-md-3 col-xs-12 LabelClass" for="BirthdayDate"></label>
+                    <div class="input-group col-md-4 col-xs-12" style="padding-left:9px; padding-right:9px;">
+                        <div class="input-group-addon"
+                             style="border:1px solid gray; padding:6px">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                        <input asp-for="ReplyDate" type="text" class="form-control custominput" data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+
+                    </div>
+                    <span asp-validation-for="ReplyDate" style="margin-top:10px;" class="text-danger col-md-offset-3 col-md-9 col-xs-12"></span>
+                </div>
+
+                <!--AttachmentStatus-->
+                <div>
+                    <label asp-for="AttachmentStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12" style="height:45px;">
+                        <label class="col-md-3 col-xs-4">
+                            دارد
+                            <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1" checked />
+                        </label>
+                        <label class="col-md-3 col-xs-4">
+                            ندارد
+                            <input asp-for="AttachmentStatus" id="noattach" class="attachclass" type="radio" value="0" />
+                        </label>
+                    </div>
+                </div>
+
+                <!--AttachedFile-->
+                <div>
+                    <label class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-5 col-xs-12">
+                        <div class="col-md-12">
+                            <div class="form-horizontal">
+
+                                <label for="LetterAttachamentFile" class="btn"
+                                       style="width:100px; height:30px; font-size:11px; background-color:white; border-radius:3px; border:1px solid gray;">
+                                    انتخاب فایل
+                                    <i class="icon-file-picture"></i>
+                                </label>
+
+                                <input type="button" value="الصاق کن" id="btnupload" onclick="UploadFile()" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid gray; background-color:white; width:100px; font-size:11px;" />
+
+                                <span id="spnfilename" style="color:black; font-size:12px;"></span>
+                                <!--نام جدید فایل-->
+                                <input id="newfilePathName" name="newfilePathName" hidden />
+                                <input asp-for="LetterAttachamentFile" type="file" style="visibility:hidden" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-12" style="text-align:left; color:green;">
+                        <span id="spnmessage" class="hidden"></span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div style="text-align:center; width:100%; background-color:gray; height:1px; margin-bottom:15px;" class="col-xs-12"></div>
+
+            <!--Editor-->
+            <div class="col-md-12 col-xs-12">
+                <div class="col-md-12 col-xs-12">
+                    <textarea asp-for="LetterContent" id="LetterContent" class="form-control">متن نامه ...</textarea>
+                </div>
+
+                <script src="~/lib/ckeditor/ckeditor.js"></script>
+                <script>
+                    CKEDITOR.replace("LetterContent");
+
+                    //وقتی ادیتور کامل لود شد
+                    CKEDITOR.on("instanceReady", function () {
+                        $("#cke_70").removeClass("cke_button");
+                        $("#cke_69").removeClass("cke_button");
+
+                        $("#cke_70").attr('data-toggle', 'modal');
+                        $("#cke_70").attr('data-target', '#modal-action');
+                        $("#cke_69").attr('data-toggle', 'modal');
+                        $("#cke_69").attr('data-target', '#modal-action');
+
+                        $("#cke_69").attr('href', '/UserArea/LetterManagement/DefaultFormList');
+                        $("#cke_70").attr('href', '/UserArea/LetterManagement/AutomationFormList');
+                    });
+
+                </script>
+            </div>
+
+            <div class="col-xs-12 form-group" style="margin-top:15px;">
+                <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                       value="ایجاد نامه" class="btn pull-right" />
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+
+    @* کنترل وضعیت پاسخ *@
+    <script>
+        $(".checkreply").on('change', function () {
+            if (document.getElementById('noreply').checked) {
+                $("#ReplyDate").prop('disabled', true);
+                $("#ReplyDate").val('');
+            } else if (document.getElementById('yesreply').checked) {
+                $("#ReplyDate").prop('disabled', false);
+            }
+        });
+    </script>
+
+    @* کنترل وضعیت فایل الصاقی *@
+    <script>
+        $(".attachclass").on('change', function () {
+            if (document.getElementById('noattach').checked) {
+                $("#btnupload").prop('disabled', true);
+
+            } else if (document.getElementById('yesattach').checked) {
+                $("#btnupload").prop('disabled', false);
+            }
+        });
+    </script>
+
+    @* الصاق فایل پیوست *@
+    <script>
+        var UploadFile = function () {
+            var data = new FormData;
+            var file = $("#LetterAttachamentFile").get(0);
+            var files = file.files;
+
+            //کنترل سایز فایل
+            if (files[0].size >= 512000) {
+                $("#spnmessage").removeClass('hidden');
+                $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                $("#spnmessage").css("color", "red");
+                return false;
+            }
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('filearray', files[i]);
+                data.append('filesize', files[i].size);
+            }
+            data.append('path', "upload\\attachfile\\");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadAttachFile","LetterManagement", new { area = "UserArea"})',
+                data: data,
+                contentType: false,
+                processData: false
+
+            }).done(function (result) {
+                if (result.status == "success") {
+                    $("#spnmessage").text("پیوست انجام شد");
+                    $("#spnmessage").css("color", "green");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#newfilePathName").val(result.imagename);
+                }
+
+                else if (result.status == 'badsize') {
+                       $("#spnmessage").removeClass('hidden');
+                       $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                       $("#spnmessage").css("color", "red");
+                }
+
+            }).fail(function (result) {
+                   if (result.status != "success") {
+                    $("#spnmessage").css("color", "red");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#spnmessage").text("در حین آپلود اشکالی بوجود آمد.");
+                }
+            });
+
+        }
+    </script>
+
+@* نمایش نام فایل انتخاب شده *@
+<script>
+    $("#LetterAttachamentFile").change(function () {
+        filename = this.files[0].name;
+        $("#spnfilename").html(filename);
+    });
+    
+</script>
+
+@* کدهای مربوط به اتوکامپلیت *@
+<script>
+    $(document).ready(function () {
+        $("#LetterSubject").autocomplete({
+            source: function (request, response) {
+                $.getJSON("/UserArea/LetterManagement/SearchInSubject", {
+                    term: $("#LetterSubject").val().trim()
+                },
+                    response)
+            },
+            minLength:3,
+        });
+    });
+</script>
+}

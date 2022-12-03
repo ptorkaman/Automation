@@ -27,6 +27,13 @@ using WebAutomationSystem.DataModelLayer;
 #line hidden
 #nullable disable
 #nullable restore
+#line 3 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\_ViewImports.cshtml"
+using WebAutomationSystem.DataModelLayer.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\3934738036\Downloads\Part36_source\Part36_source\source\WebAutomationSystem\WebAutomationSystem\Areas\AdminArea\Views\UserManager\UserDetails.cshtml"
 using WebAutomationSystem.CommonLayer.PublicClass;
 
@@ -34,7 +41,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ce1cd16e21b4ff050a9b58e0b3feda45d8cde632", @"/Areas/AdminArea/Views/UserManager/UserDetails.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"eda1738a11bc56161bea741cda9509af21b3b30d", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d61d985f03a5801b25e72250f70bb9112086302b", @"/Areas/AdminArea/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Areas_AdminArea_Views_UserManager_UserDetails : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers>
     #nullable disable
@@ -237,7 +244,7 @@ using WebAutomationSystem.CommonLayer.PublicClass;
                     <span style=""font-weight:bold;"" class=""col-md-4"">تصویر : </span>
                     <div class=""col-md-8"" style=""margin-bottom:15px;"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63214517", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63214796", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -269,7 +276,7 @@ AddHtmlAttributeValue("", 3859, Model.ImagePath, 3859, 16, false);
                     <span style=""font-weight:bold;"" class=""col-md-4"">امضا : </span>
                     <div class=""col-md-8"" style=""margin-bottom:15px;"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63216442", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63216721", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -304,7 +311,7 @@ AddHtmlAttributeValue("", 4285, Model.SignaturePath, 4285, 20, false);
             <div class=""col-xs-12 form-group"" style=""margin-top:15px;"">
 
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63218398", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ce1cd16e21b4ff050a9b58e0b3feda45d8cde63218677", async() => {
                 WriteLiteral("بازگشت");
             }
             );

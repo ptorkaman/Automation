@@ -8,7 +8,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserJob",
+                name: "UserJob_Tbl",
                 columns: table => new
                 {
                     UserJobID = table.Column<int>(nullable: false)
@@ -21,36 +21,36 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserJob", x => x.UserJobID);
+                    table.PrimaryKey("PK_UserJob_Tbl", x => x.UserJobID);
                     table.ForeignKey(
-                        name: "FK_UserJob_JobsChart_JobID",
+                        name: "FK_UserJob_Tbl_JobsChart_Tbl_JobID",
                         column: x => x.JobID,
-                        principalTable: "JobsChart",
+                        principalTable: "JobsChart_Tbl",
                         principalColumn: "JobsChartID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserJob_Users_UserID",
+                        name: "FK_UserJob_Tbl_Users_Tbl_UserID",
                         column: x => x.UserID,
-                        principalTable: "Users",
+                        principalTable: "Users_Tbl",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserJob_JobID",
-                table: "UserJob",
+                name: "IX_UserJob_Tbl_JobID",
+                table: "UserJob_Tbl",
                 column: "JobID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserJob_UserID",
-                table: "UserJob",
+                name: "IX_UserJob_Tbl_UserID",
+                table: "UserJob_Tbl",
                 column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserJob");
+                name: "UserJob_Tbl");
         }
     }
 }
