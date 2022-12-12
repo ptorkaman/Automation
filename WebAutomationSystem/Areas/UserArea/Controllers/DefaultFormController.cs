@@ -13,7 +13,7 @@ using WebAutomationSystem.DataModelLayer.ViewModels;
 namespace WebAutomationSystem.Areas.UserArea.Controllers
 {
     [Area("UserArea")]
-    [Authorize]
+    [Authorize(Roles = "UserAreaPanel")]
     public class DefaultFormController : Controller
     {
         private readonly IUnitOfWork _context;

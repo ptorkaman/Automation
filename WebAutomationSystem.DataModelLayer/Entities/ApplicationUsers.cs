@@ -19,5 +19,13 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public string SignaturePath { get; set; }
         public byte IsActive { get; set; }
         public DateTime RegisterDate { get; set; }
+
+        //1 = Admin    2 = User
+        public byte IsAdmin { get; set; }
+        public long? BlobDescriptionId { get; set; }
+        public BlobDescription BlobDescription { get; set; }
+
+        public long? BlobDescriptionSignatureId { get; set; }
+        public BlobDescription BlobDescriptionSignature { get; set; }
     }
 }

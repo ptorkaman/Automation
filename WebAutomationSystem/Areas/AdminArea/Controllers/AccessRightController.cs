@@ -13,7 +13,7 @@ using WebAutomationSystem.DataModelLayer.ViewModels;
 namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class AccessRightController : Controller
     {
         //دارای یک نکته مهم
@@ -171,7 +171,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             List<RolePattern> ListRolePattern = _context.rolePatternUW.Get().ToList();
             RolePattern RP = new RolePattern
             {
-                Id = -1,
+                RolePatternID = -1,
                 RolePatternName = "لطفا یک نقش کاربری را انتخاب نمایید..."
             };
 

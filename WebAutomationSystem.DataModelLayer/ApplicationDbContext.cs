@@ -13,6 +13,10 @@ namespace WebAutomationSystem.DataModelLayer
         {
               
         }
+        public DbSet<BlobDescription> BlobDescriptions { get; set; }
+        public DbSet<Blob> Blobs { get; set; }
+        public DbSet<BlobStream> BlobStreams { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<JobsChart> JobsCharts { get; set; }
         public DbSet<UserJob> UserJobs { get; set; }
@@ -21,14 +25,19 @@ namespace WebAutomationSystem.DataModelLayer
         public DbSet<RolePatternDetails> RolePatternDetails { get; set; }
         public DbSet<Letters> Letters { get; set; }
         public DbSet<AdministrativeForm> AdministrativeForms { get; set; }
-
+        public DbSet<SentLetters> SentLetters { get; set; }
+        public DbSet<ReferralLetters> ReferralLetters { get; set; }
+        public DbSet<Notation> Notations { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
+        public DbSet<ForeignDocument> ForeignDocuments { get; set; }
+        public DbSet<News> News { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<ApplicationUsers>(entity =>
             {
                 entity.ToTable(name: "Users");
-                entity.Property(e => e.Id).HasColumnName("Id");
+                entity.Property(e => e.Id).HasColumnName("UserID");
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 
             });

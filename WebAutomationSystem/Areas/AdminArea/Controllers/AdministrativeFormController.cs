@@ -13,7 +13,7 @@ using WebAutomationSystem.DataModelLayer.ViewModels;
 namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class AdministrativeFormController : Controller
     {
         private readonly IUnitOfWork _context;

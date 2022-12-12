@@ -2,20 +2,7 @@
     <div class="sidebar-content">
 
         <!-- START - User menu -->
-        <div class="sidebar-user">
-            <div class="category-content">
-                <div class="media">
-                    <a href="#" class="media-left">
-                    </a>
-                    <div class="media-body">
-                        <span class="media-heading text-semibold">پروین ترکمان  </span>
-                        <div class="text-size-mini text-muted">
-                            <i class="icon-pin text-size-small"></i> &nbsp; پنل ادمین
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("AdminInfoInDashborad", Model)
         <!-- END - User menu -->
         <!-- START - Main navigation -->
         <div class="sidebar-category sidebar-category-visible">
@@ -51,7 +38,7 @@
                         <a asp-controller="UserJobManager" asp-action="Index"><i class="icon-office"></i><span>انتساب شغل</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="icon-forward3"></i><span>ارسال پیام به کاربران</span></a>
+                        <a asp-controller="News" asp-action="Index"><i class="icon-newspaper2"></i><span>اخبار و اطلاعیه ها</span></a>
                     </li>
                     <li>
                         <a asp-controller="AdministrativeForm" asp-action="Index"><i class="icon-package"></i><span>فرم های اداری</span></a>

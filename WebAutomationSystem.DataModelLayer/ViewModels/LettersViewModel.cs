@@ -37,5 +37,217 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         public string UserID { get; set; }
         [Display(Name = "تاریخ نامه")]
         public DateTime LetterCreateDate { get; set; }
+
+        public byte LetterType { get; set; }
+        public int MainLetterID { get; set; }
+    }
+
+    public class LettersListViewModel
+    {
+        public int LetterID { get; set; }
+        public string LetterContent { get; set; }
+        public string LetterSubject { get; set; }
+        //فوریت نامه
+        //1 عادی
+        //2 فوری
+        //3 آنی
+        public byte ImmediatellyStatus { get; set; }
+        public string ImmediatellyStatusText { get; set; }
+        //طبقه بندی نامه
+        //1 عادی
+        //2 محرمانه
+        //3 فوق محرمانه
+        public byte ClassificationStatus { get; set; }
+        public string ClassificationStatusText { get; set; }
+        //پیوست
+        //1 دارد
+        //0 ندارد
+        public bool AttachmentStatus { get; set; }
+        public string AttachmentStatusText { get; set; }
+        //درخواست پاسخ
+        //1 دارد
+        //0 ندارد
+        public bool ReplyStatus { get; set; }
+        public string ReplyStatusText { get; set; }
+        //آدرس فایل پیوست
+        public string LetterAttachamentFile { get; set; }
+        public DateTime? ReplyDate { get; set; }
+        public string UserID { get; set; }
+        public DateTime LetterCreateDate { get; set; }
+
+        public byte LetterType { get; set; }
+        public int MainLetterID { get; set; }
+    }
+
+    public class MyLetterViewModel
+    {
+        public int LetterID { get; set; }
+        public string LetterContent { get; set; }
+        public string LetterSubject { get; set; }
+        //فوریت نامه
+        //1 عادی
+        //2 فوری
+        //3 آنی
+        public byte ImmediatellyStatus { get; set; }
+        public string ImmediatellyStatusText { get; set; }
+        //طبقه بندی نامه
+        //1 عادی
+        //2 محرمانه
+        //3 فوق محرمانه
+        public byte ClassificationStatus { get; set; }
+        public string ClassificationStatusText { get; set; }
+        //پیوست
+        //1 دارد
+        //0 ندارد
+        public bool AttachmentStatus { get; set; }
+        public string AttachmentStatusText { get; set; }
+        //درخواست پاسخ
+        //1 دارد
+        //0 ندارد
+        public bool ReplyStatus { get; set; }
+        public string ReplyStatusText { get; set; }
+        //آدرس فایل پیوست
+        public string LetterAttachamentFile { get; set; }
+        public DateTime? ReplyDate { get; set; }
+
+        //آیدی ارسال کننده نامه
+        public string UserID_Sender { get; set; }
+        public string UserID_Reciever { get; set; }
+        //تاریخ ارسال نامه
+        public DateTime LetterSentDate { get; set; }
+        public string FirstName_Sender { get; set; }
+        public string Family_sender { get; set; }
+        public string FullName_sender { get; set; }
+        public string UserName_sender { get; set; }
+        public bool ReadType { get; set; }
+        public string ReadTypeText { get; set; }
+        public string LetterNumber { get; set; }
+
+        public byte LetterType { get; set; }
+        public int MainLetterID { get; set; }
+    }
+
+    public class SentLetterViewModel
+    {
+        public int LetterID { get; set; }
+        public string LetterContent { get; set; }
+        public string LetterSubject { get; set; }
+        //فوریت نامه
+        //1 عادی
+        //2 فوری
+        //3 آنی
+        public byte ImmediatellyStatus { get; set; }
+        public string ImmediatellyStatusText { get; set; }
+        //طبقه بندی نامه
+        //1 عادی
+        //2 محرمانه
+        //3 فوق محرمانه
+        public byte ClassificationStatus { get; set; }
+        public string ClassificationStatusText { get; set; }
+        //پیوست
+        //1 دارد
+        //0 ندارد
+        public bool AttachmentStatus { get; set; }
+        public string AttachmentStatusText { get; set; }
+        //درخواست پاسخ
+        //1 دارد
+        //0 ندارد
+        public bool ReplyStatus { get; set; }
+        public string ReplyStatusText { get; set; }
+        //آدرس فایل پیوست
+        public string LetterAttachamentFile { get; set; }
+        public DateTime? ReplyDate { get; set; }
+
+        //آیدی ارسال کننده نامه
+        public string UserID_Sender { get; set; }
+        //تاریخ ارسال نامه
+        public DateTime LetterSentDate { get; set; }
+        public string FirstName_Reciever { get; set; }
+        public string Family_Reciever { get; set; }
+        public string FullName_Reciever { get; set; }
+        public string UserName_Reciever { get; set; }
+        public string LetterNumber { get; set; }
+
+        public byte LetterType { get; set; }
+        public int MainLetterID { get; set; }
+    }
+
+    public class ReferLetterViewModel
+    {
+        public int LetterID { get; set; }
+        public string LetterContent { get; set; }
+        public string LetterSubject { get; set; }
+        //فوریت نامه
+        //1 عادی
+        //2 فوری
+        //3 آنی
+        public byte ImmediatellyStatus { get; set; }
+        public string ImmediatellyStatusText { get; set; }
+        //طبقه بندی نامه
+        //1 عادی
+        //2 محرمانه
+        //3 فوق محرمانه
+        public byte ClassificationStatus { get; set; }
+        public string ClassificationStatusText { get; set; }
+        //پیوست
+        //1 دارد
+        //0 ندارد
+        public bool AttachmentStatus { get; set; }
+        public string AttachmentStatusText { get; set; }
+
+        //آدرس فایل پیوست
+        public string LetterAttachamentFile { get; set; }
+
+        //تاریخ ارسال نامه
+        public DateTime LetterReferDate { get; set; }
+        public string LetterNumber { get; set; }
+
+        //مشخصات دریافت کننده ارجاع
+        public ReferLetterUserInfo UserInfo_RecievedRefer { get; set; }
+        //مشخصات ایجاد کننده نامه
+        public ReferLetterUserInfo UserInfo_Creator { get; set; }
+    }
+
+    public class RecievedReferLetterViewModel
+    {
+        public int LetterID { get; set; }
+        public string LetterContent { get; set; }
+        public string LetterSubject { get; set; }
+        //فوریت نامه
+        //1 عادی
+        //2 فوری
+        //3 آنی
+        public byte ImmediatellyStatus { get; set; }
+        public string ImmediatellyStatusText { get; set; }
+        //طبقه بندی نامه
+        //1 عادی
+        //2 محرمانه
+        //3 فوق محرمانه
+        public byte ClassificationStatus { get; set; }
+        public string ClassificationStatusText { get; set; }
+        //پیوست
+        //1 دارد
+        //0 ندارد
+        public bool AttachmentStatus { get; set; }
+        public string AttachmentStatusText { get; set; }
+
+        //آدرس فایل پیوست
+        public string LetterAttachamentFile { get; set; }
+
+        //تاریخ دریافت ارجاع
+        public DateTime LetterrecievedReferDate { get; set; }
+        public string LetterNumber { get; set; }
+
+        //مشخصات ارسال کننده ارجاع
+        public ReferLetterUserInfo UserInfo_Refer { get; set; }
+        //مشخصات ایجاد کننده نامه
+        public ReferLetterUserInfo UserInfo_Creator { get; set; }
+    }
+
+    public class ReferLetterUserInfo
+    {
+        public string UserID { get; set; }
+        public string FullName { get; set; }
+        public string UserName { get; set; }
     }
 }

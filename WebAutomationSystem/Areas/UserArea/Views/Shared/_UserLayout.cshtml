@@ -23,6 +23,12 @@
     <link href="~/lib/autocomplete/css/jquery-ui.css" rel="stylesheet" />
     <!--CkEditor Style-->
     <link href="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.css" rel="stylesheet" />
+    <!--JsTree Css-->
+    <link href="~/lib/jstree/dist/themes/default/style.css" rel="stylesheet" />
+    <!--Sweet Alert-->
+    <link href="~/lib/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <!--LightBox Plugin-->
+    <link href="~/lib/LightBox/css/lightbox.css" rel="stylesheet" />
 </head>
 <body class="navbar-top">
     <!-- START - Main Navibar -->
@@ -59,7 +65,7 @@
 
                 <div class="breadcrumb-line" style="background-color:#e0dbdb; border-top:1px solid gray; text-align:center; bottom:1px !important; position:fixed; width:100%;">
                     <div class="col-md-offset-2 col-md-6">
-                        <span style="color: black;"> سیستم اتوماسیون اداری تحت وب - کلیه حقوق مادی و معنوی این نرم افزار محفوظ و متعلق به شرکت ژوبین می باشد </span>
+                        <span style="color: black;"> سیستم اتوماسیون اداری تحت وب - کلیه حقوق مادی و معنوی این نرم افزار محفوظ می باشد </span>
                     </div>
                 </div>
 
@@ -73,7 +79,7 @@
     </div>
     <!-- END - Main Content -->
     <!--Top Loading-->
-    <script type="text/javascript" src="~/Panel/assets/js/plugins/loaders/pace.min.js"></script>
+    @*<script type="text/javascript" src="~/Panel/assets/js/plugins/loaders/pace.min.js"></script>*@
     <script type="text/javascript" src="~/Panel/assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="~/Panel/assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Panel/assets/js/plugins/ui/nicescroll.min.js"></script>
@@ -86,6 +92,37 @@
     <script src="~/lib/ckeditor/prism_1.0.1/prism/lib/prism/prism_patched.min.js"></script>
     <!--autoComplete-->
     <script src="~/lib/autocomplete/jquery/jquery-ui.js"></script>
+    <!--JsTree Jquery-->
+    <script src="~/lib/jstree/dist/jstree.js"></script>
+    <!--sweet Alert-->
+    <script src="~/lib/sweetalert/sweetalert2.min.js"></script>
+    <!--LightBox Plugin-->
+    <script src="~/lib/LightBox/js/modernizr.custom.js"></script>
+    <script src="~/lib/LightBox/js/lightbox-2.6.min.js"></script>
+
+    <!--SignalR Script-->
+    <script src="~/lib/SignalR/dist/browser/signalr.min.js"></script>
+    <script src="~/lib/SignalR/SignalRConnection.js"></script>
+
+    <script>
+        connection.on("RecievedLetter", function () {
+             swal({
+                    title: "دریافت نامه",
+                    text: "شما یک نامه جدید دارید!",
+                    type: 'success',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "green",
+                    confirmButtonText: "باشه"
+                }).then(function () {
+                    window.open("/UserArea/LetterList/Index");
+                });
+        });
+        connection.start().catch(function (err) {
+            return console.error(err.tostring());
+        });
+    </script>
+
     <!-- END - theme JS files -->
     @RenderSection("UserScripts", required: false)
 

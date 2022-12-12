@@ -1,0 +1,23 @@
+﻿
+<form asp-controller="News" asp-action="DeleteNewsPost" method="post">
+    <div class="modal-header" style="background-color:darkred; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">غیرفعال کردن اطلاعیه</h4>
+    </div>
+
+
+        <div class="modal-body form-horizontal">
+            آیا از حذف اطلاعیه اطمینان دارید؟
+        </div>
+
+
+    <input type="hidden" id="NewsID" name="NewsID" value="@ViewBag.NewsID" />
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn" style="width:80px; border-radius:2px; color:white; background-color:darkred;">
+            حذف
+        </button>
+    </div>
+
+</form>

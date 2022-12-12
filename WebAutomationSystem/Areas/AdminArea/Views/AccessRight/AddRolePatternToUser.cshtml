@@ -33,8 +33,8 @@
                 <div>
                     <label class="control-label col-md-3 col-xs-12">لیست نقش های کاربری :</label>
                     <div class="col-md-9 col-xs-12">
-                        <select asp-for="Id" style="height:40px;"
-                                class="form-control custominput" asp-items="@(new SelectList(RoleList,"Id","RolePatternName"))"></select>
+                        <select asp-for="RolePatternID" style="height:40px;"
+                                class="form-control custominput" asp-items="@(new SelectList(RoleList,"RolePatternID","RolePatternName"))"></select>
 
                     </div>
                 </div>

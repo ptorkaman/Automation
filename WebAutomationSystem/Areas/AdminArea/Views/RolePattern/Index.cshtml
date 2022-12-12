@@ -51,7 +51,7 @@
 
                             <td style="width:400px;">
                                 <div class="row">
-                                    <a asp-controller="RolePattern" asp-action="DeleteRemider" asp-route-RolePattern="@item.Id"
+                                    <a asp-controller="RolePattern" asp-action="DeleteRemider" asp-route-RolePattern="@item.RolePatternID"
                                        style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
                                        data-toggle="modal" data-target="#modal-action"
                                        class="btn customRed1">
@@ -59,7 +59,7 @@
                                         حذف
                                     </a>
 
-                                    <a asp-controller="RolePattern" asp-action="Edit" asp-route-RolePatternID="@item.Id"
+                                    <a asp-controller="RolePattern" asp-action="Edit" asp-route-RolePatternID="@item.RolePatternID"
                                        style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
                                        class="btn customYellow1">
                                         <i class="glyphicon glyphicon-edit"></i>
@@ -67,7 +67,7 @@
                                     </a>
 
                                     <a asp-controller="RolePattern" asp-action="SetAccessToRolePattern" 
-                                       asp-route-RolePatternID="@item.Id"
+                                       asp-route-RolePatternID="@item.RolePatternID"
                                        asp-route-RolePatternName ="@item.RolePatternName"
                                        style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
                                        class="btn customBlue1">

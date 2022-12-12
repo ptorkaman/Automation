@@ -23,7 +23,7 @@
                 <div>
                     <label asp-for="FirstName" class="control-label col-md-3 col-xs-12"></label>
                     <div class="col-md-9 col-xs-12">
-                        <input asp-for="FirstName" type="text" class="form-control custominput" placeholder="نام کوچک ..." autocomplete="off" />
+                        <input asp-for="FirstName" type="text" class="form-control custominput" placeholder="نام  ..." autocomplete="off" />
                         <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div>
                     <label asp-for="Family" class="control-label col-md-3 col-xs-12"></label>
                     <div class="col-md-9 col-xs-12">
-                        <input asp-for="Family" type="text" class="form-control custominput" placeholder="فامیلی ..." autocomplete="off" />
+                        <input asp-for="Family" type="text" class="form-control custominput" placeholder="نام خانوادگی ..." autocomplete="off" />
                         <span asp-validation-for="Family" class="text-danger"></span>
                     </div>
                 </div>
@@ -148,6 +148,7 @@
                         </div>
 
                         <div class="col-md-6">
+                            <input type="hidden" id="BlobDescriptionSaveId"  asp-for="BlobDescriptionSaveId" value="" />
                             <img id="imguserimage" src="~/upload/userimage/defaultuserImage1.jpg"
                                  style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
 
@@ -241,7 +242,9 @@
                     $("#divmessage").removeClass("hidden");
 
 
-                    $("#newImagePathName").val(result.imagename);
+                    $("#newImagePathName").val(result.imagename);debugger
+                    document.getElementById("BlobDescriptionSaveId").value=result.imagename;
+                    
                 }
 
             }).fail(function (result) {

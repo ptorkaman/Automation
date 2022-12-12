@@ -1,0 +1,23 @@
+﻿@model WebAutomationSystem.Areas.UserArea.Controllers.Component.UserInfoWithJobViewModel
+
+<div class="sidebar-user">
+    <div class="category-content" style="padding-left:0px !important; padding-right:0px !important;">
+        <div class="media">
+            <div class="media-body">
+
+                <div class="col-md-12">
+                    <div class="col-md-7 col-xs-12" style="text-align:center; vertical-align:central;">
+                        <span class="media-heading text-semibold">@Model.FirstName @Model.Family</span>
+                        <div class="text-size-mini text-muted">
+                            <i class="icon-pin text-size-small"></i> &nbsp;@Model.JobName
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-xs-12" style="text-align:center;">
+                        <img src="~/upload/userimage/@Model.ImagePath"
+                             style="height:70px; width:70px; box-shadow:2px 1px 1px 0px gray; border-radius:90px; border:1px solid black;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ using WebAutomationSystem.DataModelLayer.Services;
 namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class DashboardController : Controller
     {
         private readonly IUnitOfWork _context;

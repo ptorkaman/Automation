@@ -1,37 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using WebAutomationSystem.CommonLayer.PublicClass;
 using WebAutomationSystem.CommonLayer.Services;
 using WebAutomationSystem.DataModelLayer.Entities;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
+using static System.Net.WebRequestMethods;
 
 
 namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class UserManagerController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IUploadFiles _upload;
         private readonly IUnitOfWork _context;
+        private readonly IBlobRepository _blobRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
         //یکی از کلاسهای آیدنتیتی جهت کار با کاربران سیستم می باشد
         private readonly UserManager<ApplicationUsers> _userManager;
 
-        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper)
+        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper, IBlobRepository blobRepository, IWebHostEnvironment webHostEnvironment)
         {
+            _webHostEnvironment = webHostEnvironment;
             _upload = upload;
             _context = uow;
             _userManager = userManager;
             _mapper = mapper;
+            _blobRepository = blobRepository;
         }
 
         public IActionResult Index()
@@ -48,8 +58,23 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUser(UserViewModel model,string birthdayDateuser, byte r1, string newImagePathName, string newSignaturePathName)
+        public async Task<IActionResult> AddUser(UserViewModel model, string birthdayDateuser, byte r1, string newImagePathName, string newSignaturePathName)
         {
+            string MyFileName = Path.GetFileName(model.BlobDescriptionSaveId.ToString());
+
+
+            string webRootPath = _webHostEnvironment.WebRootPath;
+            bool folderExists = Directory.Exists(Path.Combine(webRootPath, "upload/userimage"));
+
+            string fullPath = Path.Combine(Path.Combine(webRootPath, "upload/userimage"), MyFileName);
+            FileInfo filee = new FileInfo(fullPath);
+            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
+            byte[] file;
+            using (var reader = new BinaryReader(stream))
+            {
+                file = reader.ReadBytes((int)stream.Length);
+            }
+
             if (birthdayDateuser == null)
             {
                 ModelState.AddModelError("BirthDayDateMilladi", "لطفا تاریخ تولد را وارد نمایید");
@@ -67,6 +92,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                         ModelState.AddModelError("UserName", "نام کاربری تکراری می باشد.");
                         return View(model);
                     }
+
                     model.BirthDayDateMilladi = ConvertDateTime.ConvertShamsiToMiladi(birthdayDateuser);
                     var userMapped = _mapper.Map<ApplicationUsers>(model);
                     userMapped.Gender = r1;
@@ -77,6 +103,16 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
                     if (result.Succeeded)
                     {
+                        if (model.IsAdmin == 1)
+                        {
+                            //admin
+                            await _userManager.AddToRoleAsync(userMapped, "AdminAreaPanel");
+                        }
+                        else if (model.IsAdmin == 2)
+                        {
+                            //user
+                            await _userManager.AddToRoleAsync(userMapped, "UserAreaPanel");
+                        }
                         return RedirectToAction("Index");
                     }
                 }
@@ -88,11 +124,37 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             }
             return View(model);
         }
-
+        
         public IActionResult UploadImageFile(IEnumerable<IFormFile> filearray, string path)
         {
             string filename = _upload.UploadFileFunc(filearray, path);
+            SaveImageFile(filearray, path);
             return Json(new { status = "success", imagename = filename });
+        }
+        public IActionResult SaveImageFile(IEnumerable<IFormFile> filearray, string path)
+        {
+            #region save blob
+            CancellationToken cancellationToken = new CancellationToken();
+            var upload = filearray;
+            if (upload != null && upload.Any())
+            {
+                var check = _blobRepository.CheckFileExtension(upload, cancellationToken);
+                if (check)
+                {
+                    var user = _userManager.GetUserAsync(HttpContext.User);
+                    var result = _blobRepository.SaveFile(upload.ToList(), user.Id, cancellationToken);
+                    ViewBag.BlobDescriptionId = result;
+                    return Json(new { status = "success", imagename = result.Blob.BlobStream.File });
+                }
+                else
+                {
+                    TempData["Error"] = "فرمت فایل وارد شده صحیح نمیباشد ";
+                    return Json(new { status = "error", imagename = "" });
+                }
+            }
+            return null;
+
+            #endregion
         }
 
         [HttpGet]
@@ -205,6 +267,34 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
             }
 
+        }
+
+        [HttpGet]
+        public IActionResult ChangePasswordByAdmin(string userId, string FullName)
+        {
+            if (userId == null)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+            ViewBag.userId = userId;
+            ViewBag.FullName = FullName;
+            return PartialView("_ChangePasswordByAdmin");
+        }
+
+        [HttpPost]
+        public IActionResult ChangePassByAdmin(ChangePasswordByAdminViewModel model)
+        {
+            try
+            {
+                var user = _context.userManagerUW.Get(u => u.Id == model.userId).FirstOrDefault();
+                user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.NewPassword);
+                _context.save();
+                return Json(new { status = "ok" });
+            }
+            catch
+            {
+                return Json(new { status = "error" });
+            }
         }
     }
 }

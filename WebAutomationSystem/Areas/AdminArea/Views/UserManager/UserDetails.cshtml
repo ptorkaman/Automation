@@ -48,6 +48,11 @@
                 </div>
                 <br />
                 <div>
+                    <span style="font-weight:bold;">نوع کاربر :</span>
+                    <span style="color:darkgreen;">@(Model.IsAdmin == 1 ? "ادمین" : "کاربر")</span>
+                </div>
+                <br />
+                <div>
                     <span style="font-weight:bold">ایمیل : </span>
                     <span style="color:darkgreen;">@Model.Email</span>
                 </div>

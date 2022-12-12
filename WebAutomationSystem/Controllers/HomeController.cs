@@ -33,5 +33,17 @@ namespace WebAutomationSystem.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult ErrPartial()
+        {
+            return PartialView("_ErrPartial");
+        }
+
+        [HttpGet]
+        public IActionResult Err404()
+        {
+            return View();
+        }
     }
 }

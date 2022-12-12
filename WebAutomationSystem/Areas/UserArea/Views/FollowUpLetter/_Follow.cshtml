@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.ReferralLetters>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    Layout = null;
+}
+
+<div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+    <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">پیگیری نامه</h4>
+</div>
+
+<div class="modal-body form-horizontal">
+    <div class="alert col-md-12 col-xs-12"
+         style="text-align:right; font-size:15px; font-weight:bold; margin-bottom:0px !important;">
+        مشخصات نامه
+    </div>
+
+    <div class="col-md-12 col-xs-12" style="border-top:1px solid gray;">
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            عنوان : <span style="color:darkgreen;">@ViewBag.LetterSubject</span>
+        </span>
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            گیرنده : <span style="color:darkgreen;">@ViewBag.RecieverFullName</span>
+        </span>
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            شماره نامه : <span style="color:darkgreen;">@ViewBag.LetterNumber</span>
+        </span>
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            تاریخ نامه : <span style="color:darkgreen;">@ViewBag.LetterDate</span>
+        </span>
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            فوریت : <span style="color:darkgreen;">@ViewBag.ImmediatellyStatusText</span>
+        </span>
+        <span class="col-md-6 col-xs-12" style="margin-top:15px;">
+            طبقه بندی : <span style="color:darkgreen;">@ViewBag.ClassificationStatusText</span>
+        </span>
+    </div>
+
+</div>
+
+<div class="modal-body form-horizontal">
+    <div class="alert col-md-12 col-xs-12"
+         style="text-align:right; font-size:15px; font-weight:bold; margin-bottom:0px !important;">
+        وضعیت نامه
+    </div>
+
+    @* https://www.w3schools.com/charsets/ref_utf_dingbats.asp *@
+    <div class="col-md-12 col-xs-12" style="border-top:1px solid gray; margin-top:10px;">
+        @if (ViewBag.refercount == 0)
+        {
+            <span>&#10070;<span>نامه در تاریخ <span style="color:darkgreen; font-weight:bold;">@ViewBag.LetterDate</span> ارسال شده است و توسط <span style="color:darkgreen; font-weight:bold;">@ViewBag.RecieverFullName</span> دریافت گردیده است.</span></span>
+        }
+        else if (ViewBag.refercount == 1)
+        {
+            <span>&#10070;<span>نامه در تاریخ <span style="color:darkgreen; font-weight:bold;">@ViewBag.LetterDate</span> ارسال شده است و توسط <span style="color:darkgreen; font-weight:bold;">@ViewBag.RecieverFullName</span> دریافت گردیده است.</span></span>
+            <br />
+            @foreach (var item in Model)
+            {
+                <span>&#10070;<span>نامه در تاریخ <span style="font-weight:bold; color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(item.ReferDate,"yyyy/MM/dd")</span> توسط <span style="font-weight:bold; color:darkgreen;">@item.Users_ReferUserId.FirstName @item.Users_ReferUserId.Family</span> به <span style="font-weight:bold; color:darkgreen;">@item.Users_RecieveUserId.FirstName @item.Users_RecieveUserId.Family</span> ارجاع داده شده است. پانوشت نامه <span style="font-weight:bold; color:darkgreen;">@item.Description</span></span></span>
+                <br />
+            }
+        }
+    </div>
+</div>
+
+<div class="modal-footer" style="text-align:left;">
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+</div>

@@ -1,0 +1,174 @@
+﻿@model WebAutomationSystem.DataModelLayer.CqrsCommands.NewsCommand.Models.NewsUpdateCommandModel
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "";
+}
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-newspaper2"></i>
+            فرم ثبت اطلاعیه جدید
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray;
+                background-color:#e6e2e2;">
+
+        <form asp-controller="News" asp-action="EditNews" method="post">
+            <div class="col-md-8 col-md-offset-2">
+
+                <!--NewsDate-->
+                <div class="row" style="height:45px;">
+                    <label asp-for="NewsDate" class="col-md-3 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <div style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</div>
+                    </div>
+                </div>
+                <!--NewsTitle-->
+                <div>
+                    <label asp-for="NewsTitle" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="NewsTitle" type="text" class="form-control custominput" placeholder="عنوان اطلاعیه..." autocomplete="off" />
+                        <span asp-validation-for="NewsTitle" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--NewsContent-->
+                <div>
+                    <label asp-for="NewsContent" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <textarea asp-for="NewsContent" rows="8" type="text" class="form-control custominput" placeholder="متن اطلاعیه..." autocomplete="off"></textarea>
+                        <span asp-validation-for="NewsContent" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--NewsID-->
+                <input asp-for="NewsID" hidden />
+                <input id="OldAttachmentName" name="OldAttachmentName" value="@Model.NewsAttachment" hidden />
+
+                <div class="row">
+                    <label class="control-label col-md-3 col-xs-12">نام فایل الصاق شده :</label>
+                    <div class="col-md-9 col-xs-12">
+                        <div style="display:block;">@Model.NewsAttachment</div>
+                    </div>
+                </div>
+
+
+                <!--NewsAttachFile-->
+                <div>
+                    <label class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-5 col-xs-12">
+                        <div class="col-md-12">
+                            <div class="form-horizontal">
+
+                                <label for="NewsAttachment" class="btn"
+                                       style="width:100px; height:30px; font-size:11px; background-color:white; border-radius:3px; border:1px solid gray;">
+                                    انتخاب فایل
+                                    <i class="icon-file-picture"></i>
+                                </label>
+
+                                <input type="button" value="الصاق کن" id="btnupload" onclick="UploadFile()" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid gray; background-color:white; width:100px; font-size:11px;" />
+
+                                <span id="spnfilename" style="color:black; font-size:12px;"></span>
+                                <!--نام جدید فایل-->
+                                <input id="newfilePathName" name="newfilePathName" hidden />
+                                <input asp-for="NewsAttachment" type="file" style="visibility:hidden" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xs-12" style="text-align:left; color:green;">
+                        <span id="spnmessage" class="hidden"></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" style="border:1px solid gray; border-radius:3px;"
+                           value="ثبت اطلاعات" class="btn pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section AdminScripts{
+    <script src="~/js/modal/modal.js"></script>
+
+    @* کنترل وضعیت فایل الصاقی *@
+    <script>
+        $(".attachclass").on('change', function () {
+            if (document.getElementById('noattach').checked) {
+                $("#btnupload").prop('disabled', true);
+
+            } else if (document.getElementById('yesattach').checked) {
+                $("#btnupload").prop('disabled', false);
+            }
+        });
+    </script>
+
+    @* الصاق فایل پیوست *@
+    <script>
+        var UploadFile = function () {
+            var data = new FormData;
+            var file = $("#NewsAttachment").get(0);
+            var files = file.files;
+
+            //کنترل سایز فایل
+            if (files[0].size >= 512000) {
+                $("#spnmessage").removeClass('hidden');
+                $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                $("#spnmessage").css("color", "red");
+                return false;
+            }
+
+            for (var i = 0; i < files.length; i++) {
+                data.append('filearray', files[i]);
+                data.append('filesize', files[i].size);
+            }
+            data.append('path', "upload\\newsattach\\");
+
+            $.ajax({
+                type: "post",
+                url: '@Url.Action("UploadAttachFile","News", new { area = "AdminArea"})',
+                data: data,
+                contentType: false,
+                processData: false
+
+            }).done(function (result) {
+                if (result.status == "success") {
+                    $("#spnmessage").text("پیوست انجام شد");
+                    $("#spnmessage").css("color", "green");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#newfilePathName").val(result.imagename);
+                }
+
+                else if (result.status == 'badsize') {
+                       $("#spnmessage").removeClass('hidden');
+                       $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                       $("#spnmessage").css("color", "red");
+                }
+
+            }).fail(function (result) {
+                   if (result.status != "success") {
+                    $("#spnmessage").css("color", "red");
+                    $("#spnmessage").removeClass("hidden");
+                    $("#spnmessage").text("در حین آپلود اشکالی بوجود آمد.");
+                }
+            });
+
+        }
+    </script>
+
+    @* نمایش نام فایل انتخاب شده *@
+    <script>
+        $("#NewsAttachment").change(function () {
+            filename = this.files[0].name;
+            $("#spnfilename").html(filename);
+        });
+
+    </script>
+
+}

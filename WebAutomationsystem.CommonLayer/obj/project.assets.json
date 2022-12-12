@@ -439,11 +439,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
+      "projectUniqueName": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
       "projectName": "WebAutomationSystem.CommonLayer",
-      "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
+      "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
       "packagesPath": "C:\\Users\\3934738036\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\obj\\",
+      "outputPath": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\3934738036\\AppData\\Roaming\\NuGet\\NuGet.Config",

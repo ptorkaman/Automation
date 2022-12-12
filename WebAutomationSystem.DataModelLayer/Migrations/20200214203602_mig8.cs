@@ -9,11 +9,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "BirthDayDate",
-                table: "Users_Tbl");
+                table: "Users");
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "BirthDayDateMilladi",
-                table: "Users_Tbl",
+                table: "Users",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
@@ -22,11 +22,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "BirthDayDateMilladi",
-                table: "Users_Tbl");
+                table: "Users");
 
             migrationBuilder.AddColumn<string>(
                 name: "BirthDayDate",
-                table: "Users_Tbl",
+                table: "Users",
                 type: "nvarchar(max)",
                 nullable: true);
         }

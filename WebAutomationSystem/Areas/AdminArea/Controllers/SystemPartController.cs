@@ -14,7 +14,7 @@ using WebAutomationSystem.DataModelLayer.ViewModels;
 namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class SystemPartController : Controller
     {
         private readonly IUnitOfWork _context;

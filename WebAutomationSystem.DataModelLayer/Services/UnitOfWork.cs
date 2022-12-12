@@ -24,6 +24,143 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<RolePatternDetails> _rolePatterDetails;
         private GenericClass<Letters> _letters;
         private GenericClass<AdministrativeForm> _administrativeForm;
+        private GenericClass<SentLetters> _sentLetters;
+        private GenericClass<ReferralLetters> _referralLetters;
+        private GenericClass<Notation> _notation;
+        private GenericClass<Leave> _leave;
+        private GenericClass<ForeignDocument> _foreignDocument;
+
+        private GenericClass<Category> _category;
+        private GenericClass<Blob> _blob;
+        private GenericClass<BlobDescription> _blobDescription;
+        private GenericClass<BlobStream> _blobStream;
+
+        //ثبت توضیحات  فایل
+        public GenericClass<BlobStream> blobStreamUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_blobStream == null)
+                {
+                    _blobStream = new GenericClass<BlobStream>(_context);
+                }
+                return _blobStream;
+            }
+        }
+
+        //ثبت توضیحات  فایل
+        public GenericClass<BlobDescription> blobDescriptionUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_blobDescription == null)
+                {
+                    _blobDescription = new GenericClass<BlobDescription>(_context);
+                }
+                return _blobDescription;
+            }
+        }
+
+        //ثبت فایل
+        public GenericClass<Blob> blobUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_blob == null)
+                {
+                    _blob = new GenericClass<Blob>(_context);
+                }
+                return _blob;
+            }
+        }
+
+        //ثبت انواع کتگوری
+        public GenericClass<Category> categoryUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_category == null)
+                {
+                    _category = new GenericClass<Category>(_context);
+                }
+                return _category;
+            }
+        }
+
+        //ثبت اسناد وارده به سازمان
+        public GenericClass<ForeignDocument> foreignDocumentUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_foreignDocument == null)
+                {
+                    _foreignDocument = new GenericClass<ForeignDocument>(_context);
+                }
+                return _foreignDocument;
+            }
+        }
+
+        //مرخصی
+        public GenericClass<Leave> leaveUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_leave == null)
+                {
+                    _leave = new GenericClass<Leave>(_context);
+                }
+                return _leave;
+            }
+        }
+
+
+        //یادداشت
+        public GenericClass<Notation> notationUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_notation == null)
+                {
+                    _notation = new GenericClass<Notation>(_context);
+                }
+                return _notation;
+            }
+        }
+
+        //ارجاع نامه
+        public GenericClass<ReferralLetters> referralLettersUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_referralLetters == null)
+                {
+                    _referralLetters = new GenericClass<ReferralLetters>(_context);
+                }
+                return _referralLetters;
+            }
+        }
+
+        //نامه های ارسال شده
+        public GenericClass<SentLetters> sentLettersUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_sentLetters == null)
+                {
+                    _sentLetters = new GenericClass<SentLetters>(_context);
+                }
+                return _sentLetters;
+            }
+        }
 
         //نامه های پیش فرض
         public GenericClass<AdministrativeForm> administrativeFormUW

@@ -224,6 +224,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<byte>("IsActive")
                         .HasColumnType("tinyint");
 
+                    b.Property<byte>("IsAdmin")
+                        .HasColumnType("tinyint");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -282,6 +285,57 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ForeignDocument", b =>
+                {
+                    b.Property<int>("ForeignDocumentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DocumentContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DocumentEnterDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullNameDelivery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JobsChartID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OrgnizationDocumentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumberDelivery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID_RecieveDocument")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID_SaveDocument")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ForeignDocumentID");
+
+                    b.HasIndex("JobsChartID");
+
+                    b.HasIndex("UserID_RecieveDocument");
+
+                    b.HasIndex("UserID_SaveDocument");
+
+                    b.ToTable("ForeignDocuments");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.JobsChart", b =>
                 {
                     b.Property<int>("JobsChartID")
@@ -303,6 +357,52 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.ToTable("JobsChart");
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Leave", b =>
+                {
+                    b.Property<int>("LeaveID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("FromDate_Day")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FromTime_Saati")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("LeaveAccept")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime>("LeaveRequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("LeaveType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<DateTime?>("ToDate_Day")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ToTime_Saati")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserID_Confirm")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID_Request")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LeaveID");
+
+                    b.HasIndex("UserID_Confirm");
+
+                    b.HasIndex("UserID_Request");
+
+                    b.ToTable("Leave");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Letters", b =>
                 {
                     b.Property<int>("LetterID")
@@ -319,6 +419,9 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<byte>("ImmediatellyStatus")
                         .HasColumnType("tinyint");
 
+                    b.Property<bool>("IsInDraft")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LetterAttachamentFile")
                         .HasColumnType("nvarchar(max)");
 
@@ -328,8 +431,17 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<DateTime>("LetterCreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("LetterNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LetterSubject")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("LetterType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("MainLetterID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ReplyDate")
                         .HasColumnType("datetime2");
@@ -345,6 +457,110 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Letters");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.News", b =>
+                {
+                    b.Property<int>("NewsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NewsAttachment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewsContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NewsDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NewsTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("flag")
+                        .HasColumnType("bit");
+
+                    b.HasKey("NewsID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("News");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Notation", b =>
+                {
+                    b.Property<int>("NotationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NotationContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NotationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NotationTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID_Creator")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserID_Reciever")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("NotationID");
+
+                    b.HasIndex("UserID_Creator");
+
+                    b.HasIndex("UserID_Reciever");
+
+                    b.ToTable("Notation");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ReferralLetters", b =>
+                {
+                    b.Property<int>("ReferralLettersID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LetterID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ReadType")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RecieveReferUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("ReferDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReferUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("mainUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ReferralLettersID");
+
+                    b.HasIndex("LetterID");
+
+                    b.HasIndex("RecieveReferUserID");
+
+                    b.HasIndex("ReferUserID");
+
+                    b.HasIndex("mainUserID");
+
+                    b.ToTable("ReferralLetters");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Reminder", b =>
@@ -417,6 +633,37 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.HasIndex("RolePatternID");
 
                     b.ToTable("RolePatternDetails");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.SentLetters", b =>
+                {
+                    b.Property<int>("SentLetterdID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LetterID")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ReadType")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("SentLetterDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("userId_reciever")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("userId_sender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SentLetterdID");
+
+                    b.HasIndex("LetterID");
+
+                    b.HasIndex("userId_reciever");
+
+                    b.ToTable("SentLetters");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.UserJob", b =>
@@ -508,11 +755,78 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .HasForeignKey("UserID");
                 });
 
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ForeignDocument", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.JobsChart", "JobsChart")
+                        .WithMany()
+                        .HasForeignKey("JobsChartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_RecieveDocument")
+                        .WithMany()
+                        .HasForeignKey("UserID_RecieveDocument");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_SaveDocument")
+                        .WithMany()
+                        .HasForeignKey("UserID_SaveDocument");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Leave", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_Confirm")
+                        .WithMany()
+                        .HasForeignKey("UserID_Confirm");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_Request")
+                        .WithMany()
+                        .HasForeignKey("UserID_Request");
+                });
+
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Letters", b =>
                 {
                     b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users")
                         .WithMany()
                         .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.News", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Notation", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_Creator")
+                        .WithMany()
+                        .HasForeignKey("UserID_Creator");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "User_Reciever")
+                        .WithMany()
+                        .HasForeignKey("UserID_Reciever");
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ReferralLetters", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.Letters", "Letters")
+                        .WithMany()
+                        .HasForeignKey("LetterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users_RecieveUserId")
+                        .WithMany()
+                        .HasForeignKey("RecieveReferUserID");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users_ReferUserId")
+                        .WithMany()
+                        .HasForeignKey("ReferUserID");
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users_main")
+                        .WithMany()
+                        .HasForeignKey("mainUserID");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.Reminder", b =>
@@ -533,6 +847,19 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .HasForeignKey("RolePatternID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.SentLetters", b =>
+                {
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.Letters", "Letter")
+                        .WithMany()
+                        .HasForeignKey("LetterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", "Users_Reciever")
+                        .WithMany()
+                        .HasForeignKey("userId_reciever");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.UserJob", b =>

@@ -1,0 +1,333 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.ViewModels.LettersListViewModel>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "پیش نویس";
+    int counter = 1;
+}
+
+<style>
+    .selected {
+        background-color: gray;
+        color: white;
+    }
+
+    .swal2-modal {
+        width: 280px !important;
+        padding: 10px !important;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-bubble7"></i>
+            پیش نویس نامه ها
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+
+        <div style="text-align:center; font-weight:bold; margin-bottom:15px;">
+            جهت ارسال نامه ابتدا یک ردیف را انتخاب نمایید.
+        </div>
+
+        <div class="table-responsive"
+             style="height:250px; overflow:auto; border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td style="width:60px;">ردیف</td>
+                        <td style="width:250px;">موضوع</td>
+                        <td>تاریخ</td>
+                        <td>فوریت</td>
+                        <td>طبقه بندی</td>
+                        <td>پیوست</td>
+                        <td>پاسخ</td>
+                        <td>تاریخ پاسخ</td>
+                        <td class="hidden">آیدی</td>
+                        <td>نوع نامه</td>
+                        <td class="hidden">LetterType</td>
+                        <td class="hidden">MainLetterID</td>
+                        <td style="width:120px;">عملیات</td>
+                    </tr>
+                </thead>
+                <tbody id="tabledraftlist">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:13px; cursor:pointer;">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.LetterSubject</td>
+                            <td style="text-align:right;">@ConvertDateTime.ConvertMiladiToShamsi(item.LetterCreateDate, "yyyy/MM/dd")</td>
+                            <td style="text-align:right; background-color:@(item.ImmediatellyStatus == 2 ? "#f7f4b9" : item.ImmediatellyStatus == 3 ? "#f89797" : "")">
+                                @item.ImmediatellyStatusText
+                            </td>
+                            <td style="text-align:right; background-color:@(item.ClassificationStatus == 2 ? "#f7f4b9" : item.ClassificationStatus == 3 ? "#f89797" : "")">
+                                @item.ClassificationStatusText
+                            </td>
+                            <td style="text-align:right; background-color:@(item.AttachmentStatus == true ? "lightgreen" : "")">
+                                @item.AttachmentStatusText
+                            </td>
+                            <td style="text-align:right; background-color:@(item.ReplyStatus == true ? "lightgreen" : "")">
+                                @item.ReplyStatusText
+                            </td>
+
+                            @if (item.ReplyStatus == true)
+                            {
+                                <td style="text-align:right;">
+                                    @ConvertDateTime.ConvertMiladiToShamsi(item.ReplyDate, "yyyy/MM/dd")
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td class="hidden">
+                                @item.LetterID
+                            </td>
+                            @if (item.LetterType == 1)
+                            {
+                                <td>
+                                    نامه
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="background-color:#f69494;">
+                                    پاسخ نامه
+                                </td>
+                            }
+
+                            <td class="hidden">
+                                @item.LetterType
+                            </td>
+                            <td class="hidden">
+                                @item.MainLetterID
+                            </td>
+
+                            <td>
+                                <div class="row">
+                                    <a asp-controller="Draft" asp-action="Delete"
+                                       asp-route-LetterID="@item.LetterID"
+                                       data-toggle="modal" data-target="#modal-action"
+                                       style="height:30px; width:65px; font-size:10px; margin-bottom:3px;"
+                                       class="btn customRed1">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                        حذف
+                                    </a>
+                                </div>
+
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div id="divtreeview" class="col-md-6 col-xs-12" style="height:500px; margin-top:20px;">
+            <div class="panel panel-body overflow-auto"
+                 style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                <div id="jstreejobs"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12" style="height:500px; margin-top:20px;">
+            <div class="panel panel-body overflow-auto"
+                 style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                <div style="text-align:center; font-weight:bold; margin-bottom:10px;">
+                    مشخصات نامه انتخاب شده
+                </div>
+                <div id="letterid" class="hidden">
+                    0
+                </div>
+
+                موضوع : <span style="color:darkgreen;" id="spnsubject">---</span>
+
+                <br />
+                <br />
+                <br />
+
+
+                تاریخ نامه : <span style="color:darkgreen;" id="spnletterdate">---</span>
+
+                <br />
+                <br />
+                <br />
+
+                فوریت : <span style="color:darkgreen;" id="spnforiat">---</span>
+                <br />
+                <br />
+                <br />
+
+                طبقه بندی : <span style="color:darkgreen;" id="spntabaghe">---</span>
+                <br />
+                <br />
+                <br />
+
+                پیوست : <span style="color:darkgreen;" id="spnattach">---</span>
+                <br />
+                <br />
+                <br />
+
+                پاسخ : <span style="color:darkgreen;" id="spnreply">---</span>
+                <br />
+                <br />
+                <br />
+
+                تاریخ پاسخ : <span style="color:darkgreen;" id="spnreplydate">---</span>
+                <br />
+                <br />
+                <br />
+
+            </div>
+        </div>
+    </div>
+
+    <input id="SelectedUserToSent" name="SelectedUserToSent" type="text" class="hidden" />
+    <div class="col-xs-12 form-group" style="margin-top:15px;">
+        <button id="btnsentLetter" style="border:1px solid gray; border-radius:2px;" class="btn pull-right">
+            ارسال نامه
+        </button>
+    </div>
+
+    <div id="divmsg" style="text-align:center; border:1px solid gray; border-radius:2px;" class="alert col-md-12 hidden">
+
+    </div>
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+
+    <script>
+
+        var LetterType;
+        var MainLetterID;
+        $("#tabledraftlist tr").click(function () {
+            $(this).addClass('selected').siblings().removeClass('selected');
+
+            $("#spnsubject").html($(this).find('td').eq(1).html());
+            $("#spnletterdate").html($(this).find('td').eq(2).html());
+            $("#spnforiat").html($(this).find('td').eq(3).html());
+            $("#spntabaghe").html($(this).find('td').eq(4).html());
+            $("#spnattach").html($(this).find('td').eq(5).html());
+            $("#spnreply").html($(this).find('td').eq(6).html());
+            $("#spnreplydate").html($(this).find('td').eq(7).html());
+            $("#letterid").html($(this).find('td').eq(8).html());
+
+            ///
+            LetterType = $(this).find('td').eq(10).html().trim();
+            MainLetterID = $(this).find('td').eq(11).html().trim();
+
+            if (LetterType == 2) {
+                $("#divtreeview").css('opacity', '0.5');
+                $("#divtreeview").css('pointer-events', 'none');
+            }
+            else {
+                   $("#divtreeview").css('opacity', '1');
+                $("#divtreeview").css('pointer-events', 'auto');
+            }
+        });
+
+        $(function () {
+            $("#jstreejobs").on("changed.jstree", function (e, data) {
+
+                var i, j;
+                var postedItems = [];
+
+                j = data.selected.length;
+                for (var i = 0; i < j; i++) {
+                    postedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.selected[i],
+                        parent: data.node.parents[0]
+                    });
+                }
+                if (data.selected.length) {
+                    $("#JobID").val(postedItems[0].id);
+                }
+                ///////////////////////////////////////
+                $("#SelectedUserToSent").val(JSON.stringify(postedItems));
+                ///////////////////////////////////////
+            }).jstree({
+                "core": {
+                    "themes": {
+                        "variant":"large"
+                    },
+                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                },
+                "checkbox": {
+                    "Keep_selected_style":false
+                },
+                "plugins": ["checkbox"],
+                checkbox: {three_state: false, cascade:""}
+            }).on("loaded.jstree", function () {
+                $.jstree.reference('#jstreejobs').open_all();
+                h1('@ViewBag.userJobId');
+
+            });
+        });
+
+
+        function h1(data) {
+            //عدد
+            parentNode = $('#jstreejobs').jstree(true).get_parent(data);
+            //آرایه
+            childrenNode = $('#jstreejobs').jstree(true).get_node(data).children;
+            //آرایه
+            siblingsNode = [];
+
+            //تبدیل پرنت نود به یک آرایه
+            prnode = [];
+            prnode.push(parentNode);
+
+            //بدست آوردن همترازهای همگروه
+            $('#jstreejobs').jstree(true).get_node(parentNode).children.forEach(function (c) {
+                if (c !== data) siblingsNode.push(c);
+            });
+
+            //نگهدار همه آی دی های مشاغل
+            var AllIdjobList = [];
+            AllIdjobList = @ViewBag.JobIdList;
+
+            //حذف فرزندان از آرایه همه مشاغل
+            for (var i = 0; i < childrenNode.length; i++) {
+                removeItem(AllIdjobList, childrenNode[i]);
+            }
+            //حذف همترازها از آرایه همه مشاغل
+            for (var i = 0; i < siblingsNode.length; i++) {
+                removeItem(AllIdjobList, siblingsNode[i]);
+            }
+            //حذف پرنت از آرایه همه مشاغل
+            removeItem(AllIdjobList, prnode[0]);
+
+            //غیر فعال کردن همه مشاغل غیر مجاز
+              for (var i = 0; i <= AllIdjobList.length; i++) {
+                  $.jstree.reference('#jstreejobs').disable_node(AllIdjobList[i]);
+              }
+
+            //console.log('child = ' + JSON.stringify(childrenNode));
+            //console.log('parent = ' + JSON.stringify(prnode));
+            //console.log('siblings = ' + JSON.stringify(siblingsNode));
+            //console.log('All = ' + JSON.stringify(AllIdjobList));
+        }
+
+
+        //تابع حذف سلول از آرایه
+        function removeItem(arrayTag, itemTag) {
+            for (var i in arrayTag) {
+                if ($.trim(arrayTag[i]).replace(/ /g, "") == itemTag) {
+                    arrayTag.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
+    </script>
+}

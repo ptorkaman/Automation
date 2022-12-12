@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using WebAutomationSystem.DataModelLayer.Services;
+using WebAutomationSystem.DataModelLayer.ViewModels;
 
 namespace WebAutomationSystem.DataModelLayer.Repository
 {
@@ -29,6 +30,20 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                 _context.Entry(currentJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
             }
+        }
+
+        public List<UserWithJobNameViewModel> UserFullNameWithJobName()
+        {
+            var query = (from userjob in _context.UserJobs
+                         join user in _context.Users on userjob.UserID equals user.Id
+                         join jobchart in _context.JobsCharts on userjob.JobID equals jobchart.JobsChartID
+                         where userjob.IaHaveJob == true
+                         select new UserWithJobNameViewModel()
+                         {
+                             UserID = user.Id,
+                             UserFullNameWithJob = jobchart.JobsChartName + "(" + user.FirstName + " " + user.Family + ")"
+                         }).ToList();
+            return query;
         }
     }
 }

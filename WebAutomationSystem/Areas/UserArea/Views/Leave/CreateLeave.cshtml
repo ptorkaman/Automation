@@ -1,0 +1,409 @@
+﻿@model WebAutomationSystem.DataModelLayer.ViewModels.CreateLeaveViewModel
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "ثبت مرخصی";
+}
+
+<style>
+    .selected {
+        background-color: gray;
+        color: white;
+    }
+
+    .swal2-modal {
+        width: 280px !important;
+        padding: 10px !important;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-leaf"></i>
+            فرم ثبت مرخصی
+        </span>
+    </div>
+
+    <div class="panel container-fluid"
+         style="box-shadow:3px 1px 1px 0 gray; padding-bottom:15px; border-radius:2px; background-color:#dbd3d3; color:black; font-size:12px; text-align:center;">
+
+        <form asp-controller="Leave" asp-action="CreateLeave" method="post">
+            <div class="col-md-12 col-xs-12" style="margin-bottom:10px; font-size:13px;">
+                @* ------------------------------------------------------- *@
+                <label style="margin-bottom:5px;">محاسبه مرخصی از تاریخ :</label>
+                <input type="text" autocomplete="off" placeholder="از تاریخ..."
+                       id="fromdate" name="fromdate" value="@ViewBag.fromdate"
+                       style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+                       data-mddatetimepicker="true"
+                       data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                       data-enabletimepicker="false"
+                       data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                       data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+
+                <label style="margin-bottom:5px;">تا تاریخ :</label>
+                <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
+                       id="todate" name="todate" value="@ViewBag.todate"
+                       style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+                       data-mddatetimepicker="true"
+                       data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                       data-enabletimepicker="false"
+                       data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                       data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+                @* ------------------------------------------------------- *@
+                <button type="submit">
+                    محاسبه
+                    <i class="icon-search4"></i>
+                </button>
+            </div>
+
+            <div style="margin-bottom:30px;">
+                <div class="col-md-6 col-xs-12" style="text-align:right;">مجموع مرخصی استحقاقی : <span style="color:darkgreen;">@ViewBag.Estehghaghy روز</span></div>
+                <div class="col-md-6 col-xs-12" style="text-align:left;">مجموع مرخصی استعلاجی : <span style="color:darkgreen;">@ViewBag.Estelaji روز</span></div>
+            </div>
+            <div>
+                <div class="col-md-6 col-xs-12" style="text-align:right;">مجموع مرخصی بدون حقوق : <span style="color:darkgreen;">@ViewBag.BiHoghugh روز</span></div>
+                <div class="col-md-6 col-xs-12" style="text-align:left;">مجموع مرخصی ساعتی : <span style="color:darkgreen;">@ViewBag.Saati</span></div>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+        <!--تعیین شرایط مرخصی-->
+        <form id="frmleave">
+            <div class="col-md-6 col-xs-12" style="height:500px; margin-top:20px; font-size:12px;">
+                <div class="panel panel-body overflow-auto"
+                     style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                    <div style="text-align:center; font-weight:bold; margin-bottom:10px;">
+                        تعیین شرایط مرخصی
+                    </div>
+
+                    <br />
+                    @* کپی این بخش از جستجوی لیست نامه های وارده *@
+                    <div class="col-md-12 col-xs-12" style="text-align:center; font-size:12px;">
+                        @* طبقه بندی نامه ها *@
+                        <span class="col-md-3 col-xs-6">
+                            ساعتی
+                            <input type="radio" class="leaveType_saat" asp-for="LeaveType" value="1" checked />
+                        </span>
+                        <span class="col-md-3 col-xs-6">
+                            استحقاقی
+                            <input type="radio" class="leaveType_estehghagh" asp-for="LeaveType" value="2" />
+                        </span>
+                        <span class="col-md-3 col-xs-6">
+                            استعلاجی
+                            <input type="radio" class="leaveType_estelaj" asp-for="LeaveType" value="3" />
+                        </span>
+                        <span class="col-md-3 col-xs-6">
+                            بدون حقوق
+                            <input type="radio" class="leaveType_bihoghugh" asp-for="LeaveType" value="4" />
+                        </span>
+                    </div>
+
+                    <div class="col-md-12 col-xs-12" style="text-align:center; margin-top:40px;">
+                        @* ------------------------------------------------------- *@
+                        <div class="col-md-6 col-xs-12">
+                            <label class="col-md-5" style="margin-bottom:5px;">تاریخ شروع:</label>
+                            <input class="col-md-7" type="text" autocomplete="off" placeholder="از تاریخ..."
+                                   asp-for="FromDate_Day"
+                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   data-mddatetimepicker="true"
+                                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                                   data-enabletimepicker="false"
+                                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <label class="col-md-5" style="margin-bottom:5px;">تاریخ پایان:</label>
+                            <input class="col-md-7" type="text" autocomplete="off" placeholder=" تا تاریخ..."
+                                   asp-for="ToDate_Day"
+                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   data-mddatetimepicker="true"
+                                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                                   data-enabletimepicker="false"
+                                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+                        </div>
+                        @* ------------------------------------------------------- *@
+                    </div>
+
+                    <div class="col-md-12 col-xs-12" style="text-align:center; margin-top:40px;">
+                        @* ------------------------------------------------------- *@
+                        <div class="col-md-6 col-xs-12">
+                            <label class="col-md-5" style="margin-bottom:5px;">ساعت خروج:</label>
+                            <input class="col-md-7" type="text" autocomplete="off" placeholder="از ساعت..."
+                                   asp-for="FromTime_Saati"
+                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   data-mddatetimepicker="true"
+                                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                                   data-enabletimepicker="true"
+                                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <label class="col-md-5" style="margin-bottom:5px;">ساعت ورود:</label>
+                            <input class="col-md-7" type="text" autocomplete="off" placeholder="تا ساعت..."
+                                   asp-for="ToTime_Saati"
+                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   data-mddatetimepicker="true"
+                                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                                   data-enabletimepicker="true"
+                                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+                        </div>
+                        @* ------------------------------------------------------- *@
+                    </div>
+
+                    <div class="col-md-12 col-xs-12" style="text-align:center; margin-top:40px;">
+                        <div>
+                            <label class="control-label col-md-4 col-xs-12">توضیحات :</label>
+                            <div class="col-md-8 col-xs-12">
+                                <textarea asp-for="Description" rows="8" type="text" class="form-control custominput" placeholder=" توضیحات..." autocomplete="off"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <!--جدول انتخاب شخص جهت ارسال درخواست-->
+        <div id="divtreeview" class="col-md-6 col-xs-12" style="height:500px; margin-top:20px;">
+            <div class="panel panel-body overflow-auto"
+                 style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                <div id="jstreejobs"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <input id="SelectedUserToSent" name="SelectedUserToSent" type="text" class="hidden" />
+    <div class="col-xs-12 form-group" style="margin-top:15px;">
+        <a id="btnLeaveRequest" style="border:1px solid gray; border-radius:2px; color:black;" class="btn pull-right">
+            ارسال درخواست
+        </a>
+    </div>
+
+    <div id="divmsg" style="text-align:center; border:1px solid gray; border-radius:2px;" class="alert col-md-12 hidden"></div>
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#jstreejobs").on("changed.jstree", function (e, data) {
+
+                var i, j;
+                var postedItems = [];
+
+                j = data.selected.length;
+                for (var i = 0; i < j; i++) {
+                    postedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.selected[i],
+                        parent: data.node.parents[0]
+                    });
+                }
+                if (data.selected.length) {
+                    $("#JobID").val(postedItems[0].id);
+                }
+                ///////////////////////////////////////
+                $("#SelectedUserToSent").val(JSON.stringify(postedItems));
+                ///////////////////////////////////////
+            }).jstree({
+                "core": {
+                    "themes": {
+                        "variant":"large"
+                    },
+                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                },
+                "checkbox": {
+                    "Keep_selected_style":false
+                },
+                "plugins": ["checkbox"],
+                checkbox: {three_state: false, cascade:""}
+            }).on("loaded.jstree", function () {
+                $.jstree.reference('#jstreejobs').open_all();
+                h1('@ViewBag.userJobId');
+
+            });
+        });
+
+        function h1(data) {
+            //عدد
+            parentNode = $('#jstreejobs').jstree(true).get_parent(data);
+            //آرایه
+            //فقط اینجا
+            childrenNode = $('#jstreejobs').jstree(true).get_children_dom;//.get_node(data).children;
+            ////////////////////////////////////
+            //آرایه
+            siblingsNode = [];
+
+            //تبدیل پرنت نود به یک آرایه
+            prnode = [];
+            prnode.push(parentNode);
+
+            //بدست آوردن همترازهای همگروه
+            $('#jstreejobs').jstree(true).get_node(parentNode).children.forEach(function (c) {
+                if (c !== data) siblingsNode.push(c);
+            });
+
+            //نگهدار همه آی دی های مشاغل
+            var AllIdjobList = [];
+            AllIdjobList = @ViewBag.JobIdList;
+
+            //حذف فرزندان از آرایه همه مشاغل
+            for (var i = 0; i < childrenNode.length; i++) {
+                removeItem(AllIdjobList, childrenNode[i]);
+            }
+            //حذف همترازها از آرایه همه مشاغل
+            for (var i = 0; i < siblingsNode.length; i++) {
+                removeItem(AllIdjobList, siblingsNode[i]);
+            }
+            //حذف پرنت از آرایه همه مشاغل
+            removeItem(AllIdjobList, prnode[0]);
+
+            //غیر فعال کردن همه مشاغل غیر مجاز
+              for (var i = 0; i <= AllIdjobList.length; i++) {
+                  $.jstree.reference('#jstreejobs').disable_node(AllIdjobList[i]);
+              }
+        }
+
+        //تابع حذف سلول از آرایه
+        function removeItem(arrayTag, itemTag) {
+            for (var i in arrayTag) {
+                if ($.trim(arrayTag[i]).replace(/ /g, "") == itemTag) {
+                    arrayTag.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    </script>
+
+<script>
+    $(document).ready(function () {
+        $("#FromDate_Day").prop('disabled', true);
+        $("#ToDate_Day").prop('disabled', true);
+    });
+
+    $(".leaveType_saat").change(function () {
+        $("#FromDate_Day").prop('disabled', true);
+        $("#ToDate_Day").prop('disabled', true);
+        $("#FromDate_Day").val('');
+        $("#ToDate_Day").val('');
+        $("#FromTime_Saati").prop('disabled', false);
+        $("#ToTime_Saati").prop('disabled', false);
+    });
+
+    $(".leaveType_estehghagh, .leaveType_estelaj, .leaveType_bihoghugh").change(function () {
+        $("#FromDate_Day").prop('disabled', false);
+        $("#ToDate_Day").prop('disabled', false);
+        $("#FromTime_Saati").val('');
+        $("#ToTime_Saati").val('');
+        $("#FromTime_Saati").prop('disabled', true);
+        $("#ToTime_Saati").prop('disabled', true);
+    });
+</script>
+
+<script>
+    $("#btnLeaveRequest").on('click', function (e) {
+        e.preventDefault();
+        var formvalue = $("#frmleave").serialize();
+
+        $.ajax({
+            type: 'post',
+            url: '@Url.Action("RequestLeave","Leave")',
+            data: formvalue + "&SelectedUserToSent=" + $("#SelectedUserToSent").val(),
+        }).done(function (result) {
+            if (result.status == 'ok') {
+                   swal({
+                        title: "ارسال درخواست",
+                        text: "درخواست مرخصی شما با موفقیت ارسال شد",
+                        type: 'success',
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "green",
+                        confirmButtonText:"باشه"
+                    }).then(function () {
+                        window.location.reload(true);
+                    });
+            }
+            if (result.status == 'noUserSelectedtoconfirm') {
+                swal({
+                    title: "گیرنده نامشخص",
+                    text: "لطفا گیرنده درخواست مرخصی را مشخص کنید",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+            if (result.status == 'morethanoneconfirm') {
+                    swal({
+                    title: "گیرنده نامشخص",
+                    text: "لطفا یک نفر را جهت تایید مرخصی انتخاب نمایید",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+            if (result.status == 'empty') {
+                   swal({
+                    title: "نامشخص بودن تاریخ",
+                    text: "لطفا تاریخ شروع و پایان مرخصی را مشخص نمایید",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+            if (result.status == 'datenotsimilar') {
+                swal({
+                    title: "تاریخ نامعتبر",
+                    text: "تاریخ شروع و پایان مرخصی ساعتی باید در یک روز باشد",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+            if (result.status == 'frombiggerto') {
+                swal({
+                    title: "تاریخ نامعتبر",
+                    text: "تاریخ شروع مرخصی نمی تواند از تاریخ پایان بزرگتر باشد",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+            if (result.status == 'error') {
+                swal({
+                    title: "خطا در سیستم",
+                    text: "در ارتباط با سرور مشکلی رخ داده است!",
+                    type: 'warning',
+                    showCancelButton: false,
+                    allowOutsideClick: false,
+                    confirmButtonColor: "red",
+                    confirmButtonText: "باشه"
+                });
+            }
+        });
+    });
+</script>
+}

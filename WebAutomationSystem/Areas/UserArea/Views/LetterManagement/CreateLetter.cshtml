@@ -59,6 +59,18 @@
         <form asp-controller="LetterManagement" asp-action="CreateLetter" method="post" enctype="multipart/form-data">
             <div class="col-md-8 col-xs-12 col-md-offset-2">
 
+                @if  (ViewBag.LetterType == 2)
+                {
+                    <div class="alert" style="border:1px solid gray; background-color:#bab6b6; font-weight:bold; text-align:center;">
+                        @ViewBag.msg
+                    </div>
+                }
+                <input asp-for="LetterType" value="@ViewBag.LetterType" class="hidden"/>
+                <input asp-for="MainLetterID" value="@ViewBag.MainLetterID" class="hidden" />
+                <input id="LetterNo" name="LetterNo" value="@ViewBag.LetterNo" class="hidden"/>
+                <input id="LetterDate" name="LetterDate" value="@ViewBag.LetterDate" class="hidden" />
+
+
                 <!--LetterCreateDate-->
                 <div class="row" style="height:45px;">
                     <label asp-for="LetterCreateDate" class="col-md-3 col-xs-12 LabelClass"></label>

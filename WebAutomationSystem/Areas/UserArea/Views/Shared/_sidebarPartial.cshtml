@@ -1,21 +1,20 @@
-﻿<div class="sidebar sidebar-main" style="background-color:#d4d1d1;">
+﻿@using  Microsoft.AspNetCore.Identity
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContext
+@inject WebAutomationSystem.DataModelLayer.Services.IUnitOfWork _context
+@inject UserManager<ApplicationUsers> _userManager
+
+@{
+    var getNewLetter = _context.sentLettersUW.Get
+        (sl => sl.ReadType == false && sl.userId_reciever == _userManager.GetUserId(_httpContext.HttpContext.User));
+}
+
+
+<div class="sidebar sidebar-main" style="background-color:#d4d1d1;">
     <div class="sidebar-content">
 
         <!-- START - User menu -->
-        <div class="sidebar-user">
-            <div class="category-content">
-                <div class="media">
-                    <a href="#" class="media-left">
-                    </a>
-                    <div class="media-body">
-                        <span class="media-heading text-semibold">پروین ترکمان  </span>
-                        <div class="text-size-mini text-muted">
-                            <i class="icon-pin text-size-small"></i> &nbsp;پنل کاربران ( مسئول مالی )
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @await Component.InvokeAsync("UserInfoWithJob", Model)
+
         <!-- END - User menu -->
         <!-- START - Main navigation -->
         <div class="sidebar-category sidebar-category-visible">
@@ -30,7 +29,7 @@
                                                                  title="صفحه اصلی"></i>
                     </li>
                     <li class="active">
-                        <a href="index.html">
+                        <a asp-controller="UserHome" asp-action="Index">
                             <i class="icon-home4"></i>
                             <span>پیشخوان</span>
                         </a>
@@ -40,35 +39,45 @@
                     <!-- END - Item Navigation Header -->
                     <!-- START - مطالب و محتوا -->
                     <li>
-                        <a href="#"><i class="icon-bookmark"></i><span>کارتابل</span></a>
+                        <a href="#">
+                            <i class="icon-bookmark"></i>
+                            <span>کارتابل</span>
+                            @if (getNewLetter.Count() > 0)
+                            {
+                                <span style="color:red;">&#10042;</span>
+                            }
+
+                        </a>
 
                         <ul>
-                            <li>
-                                <a href="#"><i class="icon-book2"></i> <span>همه نامه های وارده</span></a>
 
-                            </li>
                             <li>
-                                <a href="#"><i class="icon-book"></i> <span>نامه های خوانده شده</span></a>
-
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-envelop"></i> <span>نامه های خوانده نشده</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-forrst"></i> <span>نامه های اقدام فوری</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-forrst2"></i> <span>نامه های محرمانه</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-notebook"></i> <span>یادداشت های رسیده</span></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon-book3"></i> <span>نامه های ارجاع داده شده</span></a>
+                                <a asp-controller="LetterList" asp-action="Index">
+                                    <i class="icon-book2"></i>
+                                    <span style="float:right;">لیست نامه ها</span>
+                                    @if (getNewLetter.Count() > 0)
+                                    {
+                                        <span style="float:left; font-size:11px; width:38px; height:18px; text-align:center; color:white; background-color:red; border-radius:90px;">جدید!</span>
+                                    }
+                                </a>
                             </li>
 
+
+
+                            <li>
+                                <a asp-controller="RecievedNotation" asp-action="Index"><i class="icon-notebook"></i> <span>یادداشت های رسیده</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="RecievedReferLetter" asp-action="Index"><i class="icon-book3"></i> <span>نامه های ارجاعی دریافتی</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="LeaveManagement" asp-action="Index"><i class="glyphicon glyphicon-leaf"></i> <span>مدیریت مرخصی کاربران</span></a>
+                            </li>
                             <li>
                                 <a href="#"><i class="icon-reminder"></i> <span>نمایش یادآوری ها</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="PrivateEnterDocumentList" asp-action="Index"><i class="icon-file-spreadsheet"></i> <span>لیست اسناد وارده</span></a>
                             </li>
                         </ul>
                     </li>
@@ -77,18 +86,20 @@
 
                         <ul>
                             <li>
-                                <a href="#"><i class="icon-forward2"></i><span>نامه های ارسالی</span></a>
+                                <a asp-controller="SentLetter" asp-action="Index"><i class="icon-forward2"></i><span>نامه های ارسالی</span></a>
                             </li>
 
                             <li>
-                                <a href="#"><i class="icon-grab"></i><span>پیگیری</span></a>
-                            </li>
-
-                            <li>
-                                <a href="#"><i class="icon-notebook"></i><span>یادداشت های ارسالی</span></a>
+                                <a asp-controller="FollowUpLetter" asp-action="Index"><i class="icon-grab"></i><span>پیگیری نامه</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-repo-forked"></i><span>نامه های ارجاع داده شده</span></a>
+                                <a asp-controller="LeaveListRequest" asp-action="Index"><i class="glyphicon glyphicon-leaf"></i><span>لیست مرخصی ها</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="SentNotation" asp-action="Index"><i class="icon-notebook"></i><span>یادداشت های ارسالی</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="ReferralLetters" asp-action="Index"><i class="icon-repo-forked"></i><span>نامه های ارجاع داده شده</span></a>
                             </li>
                         </ul>
                     </li>
@@ -104,18 +115,19 @@
                             </li>
 
                             <li>
-                                <a href="#"><i class="icon-notebook"></i><span>ایجاد یادداشت</span></a>
+                                <a asp-controller="Notation" asp-action="Index"><i class="icon-notebook"></i><span>ایجاد یادداشت</span></a>
                             </li>
 
                             <li>
-                                <a href="#"><i class="icon-reminder"></i><span>ثبت یادآوری</span></a>
+                                <a asp-controller="Reminder" asp-action="Index"><i class="icon-reminder"></i><span>ثبت یادآوری</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-bubble7"></i><span>پیش نویس</span></a>
+                                <a asp-controller="Draft" asp-action="Index"><i class="icon-bubble7"></i><span>پیش نویس</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon-codepen"></i><span>ثبت اسناد خارجه</span></a>
+                                <a asp-controller="Leave" asp-action="CreateLeave"><i class="glyphicon glyphicon-leaf"></i><span>درخواست مرخصی</span></a>
                             </li>
+
                             <li>
                                 <a asp-controller="DefaultForm" asp-action="Index"><i class="icon-package"></i><span>لیست فرمهای پیش فرض</span></a>
                             </li>
@@ -129,7 +141,7 @@
 
                         <ul>
                             <li>
-                                <a href="#"><i class="icon-new"></i><span>اخبار و اطلاعیه ها</span></a>
+                                <a asp-controller="RecievedNews" asp-action="Index"><i class="icon-new"></i><span>اخبار و اطلاعیه ها</span></a>
                             </li>
                         </ul>
                     </li>
@@ -164,7 +176,50 @@
                         </ul>
                     </li>
                     <!-- END - پیکربندی سیستم -->
+                    <!--START---گزارشات-->
+                    <li>
+                        <a href="#" class="has-ul"><i class="icon-book3"></i><span>گزارشات</span></a>
+                        <ul class="hidden-ul">
+                            <!--گزارشات مرخصی-->
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-leaf"></i><span>گزارشات مرخصی</span></a>
+                                <ul class="hidden-ul">
+                                    <li>
+                                        <a asp-area="UserArea" asp-controller="LeaveReport" asp-action="Index"><i class="icon-book"></i><span>گزارش مرخصی شخصی</span></a>
+                                        <a href="#"><i class="icon-book2"></i><span>گزارش مرخصی کلی</span></a>
+                                    </li>
+                                </ul>
+                            </li>
 
+                            <!--گزارشات کارکرد-->
+                            <li>
+                                <a href="#"><i class="icon-download"></i><span>گزارشات کارکرد</span></a>
+                                <ul class="hidden-ul">
+                                </ul>
+                            </li>
+                            <!--گزارشات مالی-->
+                            <li>
+                                <a href="#"><i class="icon-cash"></i><span>گزارشات مالی</span></a>
+                                <ul class="hidden-ul">
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--End-گزارشات-->
+                    <!-- START - دبیرخانه -->
+                    <li>
+                        <a href="#"><i class="icon-office"></i><span>دبیرخانه</span></a>
+
+                        <ul>
+                            <li>
+                                <a asp-controller="EnterDocument" asp-action="RegisterEnterDocument"><i class="icon-enter5"></i><span>ثبت اسناد ورودی</span></a>
+                            </li>
+                            <li>
+                                <a asp-controller="EnterDocumentList" asp-action="Index"><i class="icon-list-numbered"></i><span>لیست اسناد ثبت شده</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END - دبیرخانه -->
                 </ul>
                 <!-- END - Item Navigation -->
 

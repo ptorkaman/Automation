@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj": {}
+    "D:\\Project\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj": {
+    "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
+        "projectUniqueName": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
         "projectName": "WebAutomationSystem.CommonLayer",
-        "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
+        "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationSystem.CommonLayer.csproj",
         "packagesPath": "C:\\Users\\3934738036\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\obj\\",
+        "outputPath": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3934738036\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
+    "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
+        "projectUniqueName": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
         "projectName": "WebAutomationSystem.DataModelLayer",
-        "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
+        "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
         "packagesPath": "C:\\Users\\3934738036\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\obj\\",
+        "outputPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3934738036\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -105,6 +105,18 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"
@@ -134,14 +146,14 @@
         }
       }
     },
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj": {
+    "D:\\Project\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj",
+        "projectUniqueName": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj",
         "projectName": "WebAutomationSystem",
-        "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj",
+        "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem\\WebAutomationSystem.csproj",
         "packagesPath": "C:\\Users\\3934738036\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem\\obj\\",
+        "outputPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3934738036\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -158,11 +170,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationsystem.CommonLayer.csproj": {
-                "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationsystem.CommonLayer.csproj"
+              "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationsystem.CommonLayer.csproj": {
+                "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationsystem.CommonLayer\\WebAutomationsystem.CommonLayer.csproj"
               },
-              "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
-                "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj"
+              "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
+                "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj"
               }
             }
           }
@@ -181,6 +193,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -193,7 +209,11 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.4, )"
+            },
+            "Stimulsoft.Reports.Web.NetCore": {
+              "target": "Package",
+              "version": "[2019.2.1, )"
             }
           },
           "imports": [

@@ -7,7 +7,7 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 {
     public class AdministrativeFormViewModel
     {
-        public int Id { get; set; }
+        public int AdministrativeFormID { get; set; }
 
 
         public bool AdministrativeFormType { get; set; }

@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/lib/MdPersiandatetimepicker/css/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+
+<div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+    <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h6 class="modal-title">محاسبه مرخصی <span style="color:darkgreen;">@ViewBag.FullName</span></h6>
+</div>
+
+<div class="container-fluid" style="margin-top:15px; margin-bottom:5px;">
+    <div class="col-md-12 col-xs-12" style="margin-bottom:10px; font-size:13px; text-align:center;">
+        @* ------------------------------------------------------- *@
+        <label style="margin-bottom:5px;">محاسبه مرخصی از تاریخ :</label>
+        <input type="text" autocomplete="off" placeholder="از تاریخ..."
+               id="startdate" name="startdate"
+               style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+               data-mddatetimepicker="true"
+               data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+               data-enabletimepicker="false" />
+
+        <label style="margin-bottom:5px;">تا تاریخ :</label>
+        <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
+               id="enddate" name="enddate"
+               style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+               data-mddatetimepicker="true"
+               data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+               data-enabletimepicker="false" />
+        @* ------------------------------------------------------- *@
+    </div>
+    <input type="text" class="hidden" id="UserID" name="UserID" value="@ViewBag.UserID" />
+    <div style="margin-bottom:30px;">
+        <div class="col-md-5 col-md-offset-1 col-xs-12" style="text-align:right;">مجموع مرخصی استحقاقی : <span style="color:darkgreen;" id="estehghaghy">0 روز</span></div>
+        <div class="col-md-5 col-xs-12" style="text-align:left;">مجموع مرخصی استعلاجی : <span style="color:darkgreen;" id="estelaji">0 روز</span></div>
+    </div>
+    <div>
+        <div class="col-md-5 col-md-offset-1 col-xs-12" style="text-align:right;">مجموع مرخصی بدون حقوق : <span style="color:darkgreen;" id="bihoghugh">0 روز</span></div>
+        <div class="col-md-5 col-xs-12" style="text-align:left;">مجموع مرخصی ساعتی : <span style="color:darkgreen;" id="saati">0 ساعت</span></div>
+    </div>
+</div>
+
+<div class="modal-footer" style="text-align:left;">
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+    <a id="btncalculate" class="btn" style="width:80px; border-radius:2px; color:white; background-color:gray;">
+        محاسبه
+    </a>
+</div>
+
+<script src="~/lib/MdPersiandatetimepicker/js/calendar.js"></script>
+<script src="~/lib/MdPersiandatetimepicker/js/jquery.Bootstrap-PersianDateTimePicker.js"></script>
+
+<script>
+    $("#btncalculate").on('click', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("CalculateUserLeave","LeaveManagement")',
+            data: {
+                'startdate': $("#startdate").val(),
+                'enddate': $("#enddate").val(),
+                'UserID': $("#UserID").val(),
+            }
+        }).done(function (res) {
+            if (res.status == 'ok') {
+                $("#estehghaghy").html(res.estehghaghy + " روز");
+                $("#estelaji").html(res.estelaji + " روز");
+                $("#bihoghugh").html(res.bihoghugh + " روز");
+                $("#saati").html(res.saati);
+            }
+        });
+    });
+</script>

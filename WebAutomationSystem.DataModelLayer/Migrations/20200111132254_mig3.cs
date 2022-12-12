@@ -8,11 +8,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "IaActive",
-                table: "Users_Tbl");
+                table: "Users");
 
             migrationBuilder.AddColumn<byte>(
                 name: "IsActive",
-                table: "Users_Tbl",
+                table: "Users",
                 nullable: false,
                 defaultValue: (byte)0);
         }
@@ -21,11 +21,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "IsActive",
-                table: "Users_Tbl");
+                table: "Users");
 
             migrationBuilder.AddColumn<byte>(
                 name: "IaActive",
-                table: "Users_Tbl",
+                table: "Users",
                 type: "tinyint",
                 nullable: false,
                 defaultValue: (byte)0);

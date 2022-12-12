@@ -1,0 +1,44 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.Leave
+
+@{
+    Layout = null;
+}
+
+    <form asp-controller="LeaveManagement" asp-action="AcceptOrRejectPost" method="post">
+        <div class="modal-header" style="background-color:@ViewBag.theme; color:white; border-radius:5px 5px 0 0;">
+            <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">@ViewBag.ViewTitle</h4>
+        </div>
+
+
+        @if (ViewBag.flag == 1)
+        {
+            <div class="modal-body form-horizontal">
+                آیا از تایید مرخصی
+
+                <span style="font-weight:bold;">@ViewBag.FullName</span>
+                مطمئن هستید؟
+            </div>
+        }
+        else
+        {
+            <div class="modal-body form-horizontal">
+                آیا از رد درخواست مرخصی
+
+                <span style="font-weight:bold;">@ViewBag.FullName</span>
+                مطمئن هستید؟
+            </div>
+        }
+
+        <input type="hidden" asp-for="LeaveID" />
+        <input type="hidden" id="flag" name="flag" value="@ViewBag.flag" />
+
+
+        <div class="modal-footer" style="text-align:left;">
+            <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+            <button type="submit" class="btn" style="width:80px; border-radius:2px; color:white; background-color:@ViewBag.theme">
+                تایید
+            </button>
+        </div>
+
+    </form>

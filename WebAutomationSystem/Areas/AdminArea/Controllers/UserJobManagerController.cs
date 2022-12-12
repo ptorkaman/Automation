@@ -13,7 +13,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 {
 
     [Area("AdminArea")]
-    [Authorize]
+    [Authorize(Roles = "AdminAreaPanel")]
     public class UserJobManagerController : Controller
     {
         private readonly IUnitOfWork _context;

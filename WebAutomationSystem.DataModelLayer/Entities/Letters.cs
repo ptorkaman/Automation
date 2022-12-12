@@ -9,7 +9,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
     public class Letters
     {
         [Key]
-        public int Id { get; set; }
+        public int LetterID { get; set; }
         public string LetterContent { get; set; }
         public string LetterSubject { get; set; }
         //فوریت نامه
@@ -25,7 +25,11 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public DateTime? ReplyDate { get; set; }
         public string UserID { get; set; }
         public DateTime LetterCreateDate { get; set; }
-
+        public bool IsInDraft { get; set; }
+        public string LetterNumber { get; set; }
+        //1 Letter    2 ReplyLetter
+        public byte LetterType { get; set; }
+        public int MainLetterID { get; set; }
         //
         [ForeignKey("UserID")]
         public virtual ApplicationUsers Users { get; set; }

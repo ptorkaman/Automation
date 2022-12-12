@@ -8,12 +8,12 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "Description",
-                table: "Roles_Tbl",
+                table: "Roles",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "RoleLevel",
-                table: "Roles_Tbl",
+                table: "Roles",
                 nullable: true);
         }
 
@@ -21,11 +21,11 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Description",
-                table: "Roles_Tbl");
+                table: "Roles");
 
             migrationBuilder.DropColumn(
                 name: "RoleLevel",
-                table: "Roles_Tbl");
+                table: "Roles");
         }
     }
 }

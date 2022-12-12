@@ -16,7 +16,7 @@ using WebAutomationSystem.DataModelLayer.ViewModels;
 namespace WebAutomationSystem.Areas.UserArea.Controllers
 {
     [Area("UserArea")]
-    [Authorize]
+    [Authorize(Roles = "UserAreaPanel")]
     public class LetterManagementController : Controller
     {
         private readonly IUnitOfWork _context;
@@ -24,7 +24,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly IUploadFiles _upload;
         private readonly IMapper _mapper;
 
-        public LetterManagementController(IUnitOfWork db, 
+        public LetterManagementController(IUnitOfWork db,
                                             UserManager<ApplicationUsers> userManager,
                                                         IUploadFiles upload,
                                                             IMapper mapper)
@@ -35,14 +35,24 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             _mapper = mapper;
         }
 
+
         [HttpGet]
-        public IActionResult CreateLetter()
+        public IActionResult CreateLetter(byte LetterType = 1, int MainLetterID = 0, string LetterNo = "", string LetterDate = "")
         {
+            if (LetterType == 2)
+            {
+                ViewBag.msg = "پاسخ نامه با شماره " + LetterNo + " و تاریخ " + LetterDate;
+            }
+            ViewBag.LetterType = LetterType;
+            ViewBag.MainLetterID = MainLetterID;
+            ViewBag.LetterNo = LetterNo;
+            ViewBag.LetterDate = LetterDate;
             return View();
         }
 
+
         [HttpPost]
-        public IActionResult CreateLetter(LettersViewModel model,string newfilePathName)
+        public IActionResult CreateLetter(LettersViewModel model, string newfilePathName, string LetterNo, string LetterDate)
         {
             if (ModelState.IsValid)
             {
@@ -59,6 +69,17 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                 model.LetterCreateDate = DateTime.Now;
                 _context.lettersUW.Create(_mapper.Map<Letters>(model));
                 _context.save();
+
+                return RedirectToAction("Index", "Draft");
+            }
+
+            ViewBag.LetterType =model.LetterType;
+            ViewBag.MainLetterID = model.MainLetterID;
+            ViewBag.LetterNo = LetterNo;
+            ViewBag.LetterDate = LetterDate;
+            if (model.LetterType == 2)
+            {
+                ViewBag.msg = "پاسخ نامه با شماره " + LetterNo + " و تاریخ " + LetterDate;
             }
             return View(model);
         }

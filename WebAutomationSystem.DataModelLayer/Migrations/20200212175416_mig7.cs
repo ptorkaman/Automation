@@ -8,7 +8,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Reminder_Tbl",
+                name: "Reminder",
                 columns: table => new
                 {
                     ReminderID = table.Column<int>(nullable: false)
@@ -22,25 +22,25 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reminder_Tbl", x => x.ReminderID);
+                    table.PrimaryKey("PK_Reminder", x => x.ReminderID);
                     table.ForeignKey(
-                        name: "FK_Reminder_Tbl_Users_Tbl_UserID",
+                        name: "FK_Reminder_Users_UserID",
                         column: x => x.UserID,
-                        principalTable: "Users_Tbl",
+                        principalTable: "Users",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reminder_Tbl_UserID",
-                table: "Reminder_Tbl",
+                name: "IX_Reminder_UserID",
+                table: "Reminder",
                 column: "UserID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Reminder_Tbl");
+                name: "Reminder");
         }
     }
 }

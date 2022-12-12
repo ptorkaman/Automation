@@ -9,7 +9,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
     public class RolePatternDetails
     {
         [Key]
-        public int Id { get; set; }
+        public int RolePatternDetailsID { get; set; }
         public int RolePatternID { get; set; }
         public string RoleID { get; set; }
 

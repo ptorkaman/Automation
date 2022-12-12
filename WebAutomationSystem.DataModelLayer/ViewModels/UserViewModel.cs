@@ -1,12 +1,21 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using WebAutomationSystem.DataModelLayer.Entities;
 
 namespace WebAutomationSystem.DataModelLayer.ViewModels
 {
     public class UserViewModel
     {
+        public long? BlobDescriptionSignatureId { get; set; }
+        public BlobDescription BlobDescriptionSignature { get; set; }
+
+        public long? BlobDescriptionId { get; set; }
+        public string BlobDescriptionSaveId { get; set; }
+        public BlobDescription BlobDescription { get; set; }
+        public List<IFormFile> Files { get; set; }
         public string Id { get; set; }
 
         [Display(Name = "نام")]
@@ -43,6 +52,9 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         [Display(Name = "جنسیت")]
         public byte Gender { get; set; }
+        [Display(Name = "نوع")]
+        public byte IsAdmin { get; set; }
+
         [Display(Name = "تصویر")]
         public string ImagePath { get; set; }
         [Display(Name = "امضا")]
@@ -83,4 +95,45 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         public string Password { get; set; }
     }
 
+    public class ChangePasswordViewModel
+    {
+        [Display(Name = "رمز عبور قدیمی")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "رمز عبور قدیمی وارد نشده است")]
+        public string OldPassword { get; set; }
+
+
+        [Display(Name = "رمز عبور جدید")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "رمز عبور جدید وارد نشده است")]
+        [StringLength(maximumLength: 30, MinimumLength = 4, ErrorMessage = "رمز عبور باید حداقل 4 و حداکثر 30 کاراکتر باشد")]
+        public string NewPassword { get; set; }
+
+
+        [Display(Name = "تکرار رمز عبور جدید")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "تکرار رمز عبور وارد نشده است")]
+        [Compare("NewPassword", ErrorMessage = "تکرار رمز عبور با رمز عبور جدید یکسان نیست")]
+        public string ConfirmNewPassword { get; set; }
+    }
+
+    public class ChangePasswordByAdminViewModel
+    {
+        [Display(Name = "رمز عبور جدید")]
+        public string NewPassword { get; set; }
+
+        [Display(Name = "تکرار رمز عبور جدید")]
+        public string ConfirmNewPassword { get; set; }
+
+        public string  userId { get; set; }
+    }
+
+    public class UserFullNameViewModel
+    {
+        public string UserId { get; set; }
+        public string UserFullName { get; set; }
+    }
+
+    public class UserWithJobNameViewModel
+    {
+        public string UserID { get; set; }
+        public string UserFullNameWithJob { get; set; }
+    }
 }

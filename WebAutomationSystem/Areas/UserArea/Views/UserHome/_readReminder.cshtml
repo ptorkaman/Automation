@@ -1,0 +1,40 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.Reminder
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    Layout = null;
+}
+
+<form asp-controller="UserHome" asp-action="ReadReminderPost" method="post">
+    <div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">@Model.ReminderTtile</h4>
+    </div>
+
+    <div style="margin-top:15px;">
+
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-2 col-xs-12">تاریخ ثبت یادآوری :</span>
+            <sapn style="font-weight:bold">@ConvertDateTime.ConvertMiladiToShamsi(Model.ReminderCreateDate, "yyyy/MM/dd")</sapn>
+        </div>
+        <input asp-for="ReminderID" class="hidden" />
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-2 col-xs-12">تاریخ یادآوری :</span>
+            <sapn style="font-weight:bold">@ConvertDateTime.ConvertMiladiToShamsi(Model.ReminderDate, "yyyy/MM/dd")</sapn>
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-2 col-xs-12">متن یادآوری :</span>
+            <sapn style="font-weight:bold">@Model.ReminderContent</sapn>
+        </div>
+
+    </div>
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px; border-radius:2px; border:1px solid gray;" data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn" style="width:80px; border-radius:2px; border:1px solid gray; color:white; background-color:gray;">
+            خواندم
+        </button>
+    </div>
+
+</form>

@@ -1,0 +1,220 @@
+﻿
+@{
+    Layout = null;
+}
+
+<style>
+    .selected {
+        background-color: gray;
+        color: white;
+    }
+
+    .swal2-modal {
+        width: 280px !important;
+    }
+</style>
+
+<div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+    <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">ارجاع نامه</h4>
+</div>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-notebook"></i>
+            انتخاب کارکنان مجاز جهت ارجاع نامه
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; height:250px; overflow:auto; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+        <div class="col-md-12 col-xs-12" style="margin-top:20px;">
+            <div id="jstreejobs"></div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12">
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <label class="col-md-3 col-xs-12">پانوشت :</label>
+            <textarea id="txtdescription" class="col-md-9 col-xs-12 custominput"
+                      style="height:70px;" placeholder="پانوشت نامه ..."></textarea>
+        </div>
+    </div>
+</div>
+
+<input id="LetterId" name="LetterId" type="text" class="hidden" value="@ViewBag.LetterId" />
+<input id="SelectedUserToRefer" name="SelectedUserToRefer" type="text" class="hidden" />
+<input id="MainUserId" name="MainUserId" type="text" class="hidden" value="@ViewBag.MainUserId" />
+
+
+
+<div class="modal-footer" style="text-align:left;">
+    <button id="btnrefer" class="btn btn-default" type="button" style="width:80px; border-radius:2px;">ارجاع</button>
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+</div>
+
+<script>
+         $(function () {
+            $("#jstreejobs").on("changed.jstree", function (e, data) {
+
+                var i, j;
+                var postedItems = [];
+
+                j = data.selected.length;
+                for (var i = 0; i < j; i++) {
+                    postedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: data.selected[i],
+                        parent: data.node.parents[0]
+                    });
+                }
+                if (data.selected.length) {
+                    $("#JobID").val(postedItems[0].id);
+                }
+                ///////////////////////////////////////
+                $("#SelectedUserToRefer").val(JSON.stringify(postedItems));
+                ///////////////////////////////////////
+            }).jstree({
+                "core": {
+                    "themes": {
+                        "variant":"large"
+                    },
+                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                },
+                "checkbox": {
+                    "Keep_selected_style":false
+                },
+                "plugins": ["checkbox"],
+                checkbox: {three_state: false, cascade:""}
+            }).on("loaded.jstree", function () {
+                $.jstree.reference('#jstreejobs').open_all();
+                h1('@ViewBag.userJobId');
+
+            });
+        });
+
+        function h1(data) {
+            //عدد
+            parentNode = $('#jstreejobs').jstree(true).get_parent(data);
+            //آرایه
+            childrenNode = $('#jstreejobs').jstree(true).get_node(data).children;
+            //آرایه
+            siblingsNode = [];
+
+            //تبدیل پرنت نود به یک آرایه
+            prnode = [];
+            prnode.push(parentNode);
+
+            //بدست آوردن همترازهای همگروه
+            $('#jstreejobs').jstree(true).get_node(parentNode).children.forEach(function (c) {
+                if (c !== data) siblingsNode.push(c);
+            });
+
+            //نگهدار همه آی دی های مشاغل
+            var AllIdjobList = [];
+            AllIdjobList = @ViewBag.JobIdList;
+
+            //حذف فرزندان از آرایه همه مشاغل
+            for (var i = 0; i < childrenNode.length; i++) {
+                removeItem(AllIdjobList, childrenNode[i]);
+            }
+            //حذف همترازها از آرایه همه مشاغل
+            for (var i = 0; i < siblingsNode.length; i++) {
+                removeItem(AllIdjobList, siblingsNode[i]);
+            }
+            //حذف پرنت از آرایه همه مشاغل
+            removeItem(AllIdjobList, prnode[0]);
+
+            //غیر فعال کردن همه مشاغل غیر مجاز
+              for (var i = 0; i <= AllIdjobList.length; i++) {
+                  $.jstree.reference('#jstreejobs').disable_node(AllIdjobList[i]);
+              }
+
+            //console.log('child = ' + JSON.stringify(childrenNode));
+            //console.log('parent = ' + JSON.stringify(prnode));
+            //console.log('siblings = ' + JSON.stringify(siblingsNode));
+            //console.log('All = ' + JSON.stringify(AllIdjobList));
+        }
+
+        //تابع حذف سلول از آرایه
+        function removeItem(arrayTag, itemTag) {
+            for (var i in arrayTag) {
+                if ($.trim(arrayTag[i]).replace(/ /g, "") == itemTag) {
+                    arrayTag.splice(i, 1);
+                    break;
+                }
+            }
+    }
+
+
+       //ارجاع نامه
+        $("#btnrefer").on('click', function (e) {
+            e.preventDefault();
+            //کنترل اینکه کاربر حتما یک شخص را جهت ارسال نامه انتخاب کرده باشد
+            if ($("#SelectedUserToRefer").val() == "" || $("#SelectedUserToRefer").val() == '[]') {
+                swal({
+                        title: "ارجاع نامه",
+                        text: "هیچ شخصی جهت ارجاع انتخاب نشده است",
+                        type: 'warning',
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "red",
+                        confirmButtonText:"باشه"
+                    })
+                return false;
+            }
+
+            $.ajax({
+                type: "Post",
+                url: '@Url.Action("ReferralLetter","RecievedReferLetter")',
+                data: {
+                    'LetterID': $("#LetterId").val(),
+                    'SelectedUserToRefer': $("#SelectedUserToRefer").val(),
+                    'MainUserId': $("#MainUserId").val(),
+                    'Description' : $("#txtdescription").val()
+                }
+            }).done(function (result) {
+
+                if (result.status == 'ok') {
+                    swal({
+                        title: "ارجاع نامه",
+                        text: "نامه شما با موفقیت ارجاع داده شد",
+                        type: 'success',
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "green",
+                        confirmButtonText:"باشه"
+                    }).then(function () {
+                        window.location.reload(true);
+                    });
+                }
+                if (result.status == 'nouserselected') {
+                       swal({
+                        title: "ارجاع نامه",
+                        text: "هیچ شخصی جهت ارجاع انتخاب نشده است",
+                        type: 'warning',
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "red",
+                        confirmButtonText:"باشه"
+                    })
+                }
+
+                   if (result.status == 'error') {
+                       swal({
+                        title: "خطا",
+                        text: "در ارتباط با سرور مشکلی وجود دارد.",
+                        type: 'warning',
+                        showCancelButton: false,
+                        allowOutsideClick: false,
+                        confirmButtonColor: "red",
+                        confirmButtonText:"باشه"
+                    })
+                }
+
+            });
+        });
+</script>

@@ -24,13 +24,14 @@ namespace WebAutomationSystem.CommonLayer.PublicClass
             var filename = "";
             foreach (var item in files)
             {
-                filename = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(item.FileName);
+                filename = item.FileName;
                 using (var fs = new FileStream(Path.Combine(upload, filename), FileMode.Create))
                 {
                     item.CopyTo(fs);
                 }
 
             }
+
             return filename;
         }
 

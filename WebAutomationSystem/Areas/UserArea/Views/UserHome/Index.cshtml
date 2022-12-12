@@ -1,7 +1,31 @@
-﻿
+﻿@using WebAutomationSystem.CommonLayer.PublicClass
+
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>داشبورد کاربر</h1>
 
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="glyphicon glyphicon-dashboard"></i>
+            پیشخوان
+        </span>
+
+        <span style="float:left; font-weight:bold;">
+            تاریخ : <span style="color:darkred;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</span>
+        </span>
+    </div>
+
+    @await Component.InvokeAsync("UserReminderViewComponent")
+
+
+</div>
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+}

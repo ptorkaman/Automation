@@ -149,7 +149,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .HasName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Roles_Tbl");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.ApplicationUsers", b =>
@@ -248,7 +248,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users_Tbl");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.JobsChart", b =>
@@ -269,7 +269,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
 
                     b.HasKey("JobsChartID");
 
-                    b.ToTable("JobsChart_Tbl");
+                    b.ToTable("JobsChart");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

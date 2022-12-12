@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {}
+    "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
+    "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
+        "projectUniqueName": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
         "projectName": "WebAutomationSystem.DataModelLayer",
-        "projectPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
+        "projectPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\WebAutomationSystem.DataModelLayer.csproj",
         "packagesPath": "C:\\Users\\3934738036\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3934738036\\Downloads\\Part36_source\\Part36_source\\source\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\obj\\",
+        "outputPath": "D:\\Project\\WebAutomationSystem\\WebAutomationSystem.DataModelLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\3934738036\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,18 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.0, )"

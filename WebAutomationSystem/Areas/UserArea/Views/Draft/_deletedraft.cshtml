@@ -1,0 +1,27 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.Letters
+
+@{
+    Layout = null;
+}
+
+<form asp-controller="Draft" asp-action="DeleteLetter" method="post">
+    <div class="modal-header" style="background-color:darkred; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">حذف نامه از پیش نویس</h4>
+    </div>
+
+        <div class="modal-body form-horizontal">
+           آیا از حذف نامه <span style="font-weight:bold;">@Model.LetterSubject</span> مطمئن هستید ؟
+        </div>
+
+    <input type="hidden" asp-for="LetterID" />
+  
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn" style="width:80px; color:white; background-color:darkred; border-radius:2px;">
+            حذف !
+        </button>
+    </div>
+
+</form>

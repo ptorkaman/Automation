@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div>
+    <div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+        <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">نمایش یادداشت</h4>
+    </div>
+
+    <div style="margin-top:15px;">
+
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-3 col-xs-12" style="font-weight:bold">تاریخ دریافت یادداشت :</span>
+            <sapn>@ViewBag.NotationDate</sapn>
+        </div>
+      
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-3 col-xs-12" style="font-weight:bold"> موضوع یادداشت :</span>
+            <sapn>@ViewBag.NotationTitle</sapn>
+        </div>
+
+        <div class="col-md-12 col-xs-12">
+            <span class="col-md-3 col-xs-12" style="font-weight:bold">متن یادداشت :</span>
+            <sapn>@ViewBag.NotationContent</sapn>
+        </div>
+
+    </div>
+
+    <div class="modal-footer" style="text-align:left;">
+        <button class="btn btn-default" type="button" style="width:80px; border-radius:2px; border:1px solid gray;" data-dismiss="modal">بازگشت</button>
+     
+    </div>
+
+</div>

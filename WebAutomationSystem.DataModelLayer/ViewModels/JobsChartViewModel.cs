@@ -17,4 +17,14 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         public int JobsChartId { get; set; }
     }
+
+    public class JobsChartWithUserInfoViewModel
+    {
+        public int JobsChartID { get; set; }
+        public string JobsChartName { get; set; }
+        public int JobsChartLevel { get; set; }
+        public string FirstName { get; set; }
+        public string Family { get; set; }
+    }
+
 }

@@ -17,6 +17,15 @@ namespace WebAutomationSystem.DataModelLayer.Services
         GenericClass<RolePatternDetails> rolePatternDetailsUW { get; }
         GenericClass<Letters> lettersUW { get; }
         GenericClass<AdministrativeForm> administrativeFormUW { get; }
+        GenericClass<ReferralLetters> referralLettersUW { get; }
+        GenericClass<Notation> notationUW { get; }
+        GenericClass<SentLetters> sentLettersUW { get; }
+        GenericClass<Leave> leaveUW { get; }
+        GenericClass<ForeignDocument> foreignDocumentUW { get; }
+        GenericClass<Category> categoryUW { get; }
+        GenericClass<Blob> blobUW { get; }
+        GenericClass<BlobDescription> blobDescriptionUW { get; }
+        GenericClass<BlobStream> blobStreamUW { get; }
         IEntityDataBaseTransaction BeginTransaction();
         void save();
         void Dispose();

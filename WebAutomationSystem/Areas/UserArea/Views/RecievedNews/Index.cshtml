@@ -1,0 +1,101 @@
+﻿@model IEnumerable<News>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "لیست اخبار و اطلاعیه ها";
+    int counter = 1;
+}
+
+<style>
+    tr:hover td {
+        background-color: #dcd6d6;
+    }
+</style>
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+        <span style="font-weight:bold;">
+            <i class="icon-newspaper"></i>
+            لیست اخبار و اطلاعیه ها
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
+
+        <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td style="width:60px;">ردیف</td>
+                        <td style="width:200px;">موضوع اطلاعیه</td>
+                        <td>تاریخ ارسال اطلاعیه </td>
+                        <td>متن اطلاعیه</td>
+                        <td>پیوست</td>
+                        <td style="width:240px;">عملیات</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="font-size:13px;">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.NewsTitle</td>
+                            <td>@ConvertDateTime.ConvertMiladiToShamsi(item.NewsDate, "yyyy/MM/dd")</td>
+
+                            <td style="text-align:right;">
+                                @if (item.NewsContent.Length > 150)
+                                {
+                                    @item.NewsContent.Substring(0, 150) <span style="color:blue;">(ادامه دارد ...)</span>
+                                }
+                                else
+                                {
+                                    @item.NewsContent
+                                }
+
+                            </td>
+
+                            <td>
+                                @if (item.NewsAttachment != null)
+                                {
+                                    <a href="~/upload/newsattach/@item.NewsAttachment" download="@item.NewsAttachment">دانلود</a>
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+
+                            <td>
+                                <div class="row">
+                                    <a asp-controller="RecievedNews" asp-action="DisplayNews"
+                                       asp-route-NewsDate="@ConvertDateTime.ConvertMiladiToShamsi(item.NewsDate, "yyyy/MM/dd")"
+                                       asp-route-NewsTitle="@item.NewsTitle"
+                                       asp-route-NewsContent="@item.NewsContent"
+                                       style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
+                                       data-toggle="modal" data-target="#modal-action"
+                                       class="btn customBlue1">
+                                        <i class="glyphicon glyphicon-share"></i>
+                                        نمایش اطلاعیه
+                                    </a>
+                                </div>
+
+                            </td>
+                        </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+}

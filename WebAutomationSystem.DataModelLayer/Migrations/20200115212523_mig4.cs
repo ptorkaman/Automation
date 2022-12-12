@@ -7,7 +7,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "JobsChart_Tbl",
+                name: "JobsChart",
                 columns: table => new
                 {
                     JobsChartID = table.Column<int>(nullable: false)
@@ -18,14 +18,14 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobsChart_Tbl", x => x.JobsChartID);
+                    table.PrimaryKey("PK_JobsChart", x => x.JobsChartID);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "JobsChart_Tbl");
+                name: "JobsChart");
         }
     }
 }

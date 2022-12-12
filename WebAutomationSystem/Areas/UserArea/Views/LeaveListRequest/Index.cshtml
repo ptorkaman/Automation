@@ -1,0 +1,184 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.ViewModels.LeaveListViewModel>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+
+@{
+    ViewData["Title"] = "لیست مرخصی های درخواستی";
+    int counter = 1;
+}
+
+
+<div class="content">
+
+    <div class="panel panel-heading col-md-12 col-xs-12"
+         style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+
+        <span style="font-weight:bold;" class="col-md-6 col-xs-12">
+            <i class="glyphicon glyphicon-leaf"></i>
+            لیست درخواست های مرخصی
+        </span>
+    </div>
+
+
+    <form>
+        <div class="panel col-md-12" style="border:1px solid gray; background-color:#e6e2e2; text-align:center;
+                        padding:10px 6px 5px 6px; border-radius:2px; margin-bottom:20px;">
+
+
+            <label style="margin-bottom:5px;">نام تایید کننده :</label>
+            <input type="text" id="confirmname" name="confirmname" value="@ViewBag.confirmname"
+                   style="border:1px solid gray; width:300px; height:28px; margin-bottom:5px; text-align:center; font-weight:bold;" />
+
+            @* ------------------------------------------------------- *@
+            <label style="margin-bottom:5px;">از تاریخ :</label>
+            <input type="text" autocomplete="off" placeholder="از تاریخ..."
+                   id="fromdate" name="fromdate" value="@ViewBag.fromdate"
+                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   data-mddatetimepicker="true"
+                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                   data-enabletimepicker="false"
+                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+
+            <label style="margin-bottom:5px;">تا تاریخ :</label>
+            <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
+                   id="todate" name="todate" value="@ViewBag.todate"
+                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   data-mddatetimepicker="true"
+                   data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
+                   data-enabletimepicker="false"
+                   data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}"
+                   data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+            @* ------------------------------------------------------- *@
+            <button type="submit">
+                جستجو
+                <i class="icon-search4"></i>
+            </button>
+            <hr style="width:100%; background-color:gray; height:1px;" />
+
+            <div class="row" style="margin-top:10px; text-align:center;">
+                <span class="col-md-6 col-xs-12" style="font-size:11px;">
+                    <span class="col-md-2" style="margin-bottom:5px; font-weight:bold;">نوع :</span>
+                    <span class="col-md-2">
+                        ساعتی
+                        <input type="radio" name="leaveType" id="leaveType" value="1" @ViewBag.leaveType_1 />
+                    </span>
+                    <span class="col-md-2">
+                        استحقاقی
+                        <input type="radio" name="leaveType" id="leaveType" value="2" @ViewBag.leaveType_2 />
+                    </span>
+                    <span class="col-md-2">
+                        استعلاجی
+                        <input type="radio" name="leaveType" id="leaveType" value="3" @ViewBag.leaveType_3 />
+                    </span>
+                    <span class="col-md-2">
+                        بی حقوق
+                        <input type="radio" name="leaveType" id="leaveType" value="4" @ViewBag.leaveType_4 />
+                    </span>
+                    <span class="col-md-2">
+                        همه 
+                        <input type="radio" name="leaveType" id="leaveType" value="0" @ViewBag.leaveType_0 />
+                    </span>
+                </span>
+
+                <span class="col-md-6 col-xs-12" style="font-size:11px;">
+                    <span class="col-md-4" style="margin-bottom:5px; font-weight:bold;">وضعیت :</span>
+                    <span class="col-md-2">
+                        بررسی
+                        <input type="radio" name="leaveAccept" id="leaveAccept" value="1" @ViewBag.leaveAccept_1 />
+                    </span>
+                    <span class="col-md-2">
+                        تایید شده
+                        <input type="radio" name="leaveAccept" id="leaveAccept" value="2" @ViewBag.leaveAccept_2 />
+                    </span>
+                    <span class="col-md-2">
+                        رد شده
+                        <input type="radio" name="leaveAccept" id="leaveAccept" value="3" @ViewBag.leaveAccept_3 />
+                    </span>
+                    <span class="col-md-2">
+                        همه
+                        <input type="radio" name="leaveAccept" id="leaveAccept" value="0" @ViewBag.leaveAccept_0 />
+                    </span>
+                </span>
+            </div>
+        </div>
+    </form>
+
+    <hr style="width:100%; background-color:gray; height:1px;" />
+
+    <div class="panel panel-body container-fluid"
+         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+
+        <div class="table-responsive"
+             style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray; margin-top:10px;">
+            <table class="table table-bordered" style="background-color:white;">
+                <thead>
+                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                        <td style="width:20px;">ردیف</td>
+                        <td>تاریخ ثبت درخواست</td>
+                        <td>نوع درخواست</td>
+                        <td>از تاریخ</td>
+                        <td>تا تاریخ</td>
+                        <td>از ساعت</td>
+                        <td>تا ساعت</td>
+                        <td>وضعیت درخواست</td>
+                        <td>ناظر</td>
+                        <td style="width:164px !important; text-align:center;">عملیات</td>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tabledraftlist">
+                    @foreach (var item in Model)
+                    {
+                    <tr style="font-size:12px;">
+                        <td style="width:20px; text-align:center;">@counter</td>
+                        <td>
+                            @ConvertDateTime.ConvertMiladiToShamsi(item.LeaveRequestDate, "yyyy/MM/dd")
+                        </td>
+                        <td>@item.LeaveTypeDesc</td>
+                        <td>@(item.LeaveType != 1 ? ConvertDateTime.ConvertMiladiToShamsi(item.FromDate_Day, "yyyy/MM/dd"): "")</td>
+                        <td>@(item.LeaveType != 1 ? ConvertDateTime.ConvertMiladiToShamsi(item.ToDate_Day, "yyyy/MM/dd"): "")</td>
+                        <td>@(item.LeaveType == 1 ? ConvertDateTime.ConvertMiladiToShamsi(item.FromTime_Saati, "yyyy/MM/dd HH:mm"): "")</td>
+                        <td>@(item.LeaveType == 1 ? ConvertDateTime.ConvertMiladiToShamsi(item.ToTime_Saati, "yyyy/MM/dd HH:mm"): "")</td>
+                        <td style="text-align:center; background-color: @(item.LeaveAccept == 1 ? "Yellow" : item.LeaveAccept == 2 ? "LightGreen" : item.LeaveAccept == 3 ? "lightcoral" : "")">@item.LeaveAcceptDesc</td>
+                        <td>@item.FullName_Confirm</td>
+                        <td>
+                            @if (item.LeaveAccept == 1)
+                            {
+                                <a asp-controller="LeaveListRequest" asp-action="DeleteLeave"
+                                   asp-route-LeaveID="@item.LeaveID"
+                                   data-toggle="modal" data-target="#modal-action"
+                                   style="height:30px; width:80px; font-size:9px; margin-bottom:3px;"
+                                   class="btn customRed1">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    حذف
+                                </a>
+                            }
+
+                            @if (item.LeaveAccept == 2)
+                            {
+                                <a asp-controller="LeaveListRequest" asp-action="PrintLeave" target="_blank"
+                                   asp-route-LeaveID="@item.LeaveID"
+                                   style="height:30px; width:80px; font-size:10px; margin-bottom:3px;"
+                                   class="btn customGreen1">
+                                    <i class="glyphicon glyphicon-print"></i>
+                                    پرینت
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                        counter++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section UserScripts{
+    <script src="~/js/modal/modal.js"></script>
+}
