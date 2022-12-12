@@ -149,6 +149,7 @@
 
                         <div class="col-md-6">
                             <input type="hidden" id="BlobDescriptionSaveId"  asp-for="BlobDescriptionSaveId" value="" />
+                            <input type="hidden" id="BlobDescriptionId" asp-for="BlobDescriptionId" value="" />
                             <img id="imguserimage" src="~/upload/userimage/defaultuserImage1.jpg"
                                  style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
 
@@ -179,6 +180,7 @@
                         </div>
 
                         <div class="col-md-6">
+                            <input type="hidden" id="BlobDescriptionSignatureId" asp-for="BlobDescriptionSignatureId" value="" />
                             <img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg"
                                  style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
 
@@ -244,6 +246,7 @@
 
                     $("#newImagePathName").val(result.imagename);debugger
                     document.getElementById("BlobDescriptionSaveId").value=result.imagename;
+                    document.getElementById("BlobDescriptionId").value = result.blobDescriptionId;
                     
                 }
 
@@ -286,6 +289,7 @@
 
 
                     $("#newSignaturePathName").val(result.imagename);
+                    document.getElementById("BlobDescriptionSignatureId").value = result.blobDescriptionId;
                 }
 
             }).fail(function (result) {

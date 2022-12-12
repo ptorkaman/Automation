@@ -11,6 +11,6 @@ namespace WebAutomationSystem.DataModelLayer.Services
     public interface IBlobRepository
     {
         bool CheckFileExtension(IEnumerable<IFormFile> upload, CancellationToken cancellationToken);
-        BlobStream SaveFile(List<IFormFile> upload,int userid, CancellationToken cancellationToken);
+        long? SaveFile(List<IFormFile> upload,int userid, CancellationToken cancellationToken);
     }
 }

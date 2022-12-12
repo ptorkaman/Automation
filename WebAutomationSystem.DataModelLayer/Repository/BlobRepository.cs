@@ -52,7 +52,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return query;
         }
 
-        public BlobStream SaveFile(List<IFormFile> upload, int userid, CancellationToken cancellationToken)
+        public long? SaveFile(List<IFormFile> upload, int userid, CancellationToken cancellationToken)
         {
             if (upload != null && upload.Any())
             {
@@ -97,7 +97,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                         _context.BlobStreams.AddAsync(blobStream, cancellationToken);
                         _context.SaveChanges();
                     }
-                    return blobStream;
+                    return blobDescription.Id;
                 }
                 return null;
             }

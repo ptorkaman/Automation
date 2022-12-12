@@ -60,21 +60,6 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUser(UserViewModel model, string birthdayDateuser, byte r1, string newImagePathName, string newSignaturePathName)
         {
-            string MyFileName = Path.GetFileName(model.BlobDescriptionSaveId.ToString());
-
-
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            bool folderExists = Directory.Exists(Path.Combine(webRootPath, "upload/userimage"));
-
-            string fullPath = Path.Combine(Path.Combine(webRootPath, "upload/userimage"), MyFileName);
-            FileInfo filee = new FileInfo(fullPath);
-            var stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read);
-            byte[] file;
-            using (var reader = new BinaryReader(stream))
-            {
-                file = reader.ReadBytes((int)stream.Length);
-            }
-
             if (birthdayDateuser == null)
             {
                 ModelState.AddModelError("BirthDayDateMilladi", "لطفا تاریخ تولد را وارد نمایید");
@@ -128,10 +113,10 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         public IActionResult UploadImageFile(IEnumerable<IFormFile> filearray, string path)
         {
             string filename = _upload.UploadFileFunc(filearray, path);
-            SaveImageFile(filearray, path);
-            return Json(new { status = "success", imagename = filename });
+           var blobDescriptionid= SaveImageFile(filearray, path);
+            return Json(new { status = "success", imagename = filename, blobDescriptionId= blobDescriptionid });
         }
-        public IActionResult SaveImageFile(IEnumerable<IFormFile> filearray, string path)
+        public long? SaveImageFile(IEnumerable<IFormFile> filearray, string path)
         {
             #region save blob
             CancellationToken cancellationToken = new CancellationToken();
@@ -143,13 +128,13 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                 {
                     var user = _userManager.GetUserAsync(HttpContext.User);
                     var result = _blobRepository.SaveFile(upload.ToList(), user.Id, cancellationToken);
-                    ViewBag.BlobDescriptionId = result;
-                    return Json(new { status = "success", imagename = result.Blob.BlobStream.File });
+                    return result;
+                    //return Json(new { status = "success", imagename = result.Blob.BlobStream.File });
                 }
                 else
                 {
                     TempData["Error"] = "فرمت فایل وارد شده صحیح نمیباشد ";
-                    return Json(new { status = "error", imagename = "" });
+                    return null;
                 }
             }
             return null;
