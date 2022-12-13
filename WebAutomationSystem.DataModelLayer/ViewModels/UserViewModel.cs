@@ -10,6 +10,8 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
     public class UserViewModel
     {
         public long? BlobDescriptionSignatureId { get; set; }
+        public string BlobDescriptionSignatureSaveId { get; set; }
+
         public BlobDescription BlobDescriptionSignature { get; set; }
 
         public long? BlobDescriptionId { get; set; }

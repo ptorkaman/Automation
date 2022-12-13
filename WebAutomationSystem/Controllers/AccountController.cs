@@ -84,12 +84,12 @@ namespace WebAutomationSystem.Controllers
                         if (user.IsAdmin == 1)
                         {
                             //Admin
-                            return Redirect("/AdminArea/UserManager/Index");
+                            return Redirect("/AdminArea/Dashboard/Index");
                         }
                         else if (user.IsAdmin == 2)
                         {
                             //User
-                            return Redirect("/userArea/UserHome/Index");
+                            return Redirect("/userArea/Dashboard/Index");
                         }
 
                     }

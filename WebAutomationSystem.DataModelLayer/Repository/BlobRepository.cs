@@ -95,7 +95,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                             CreatedOn = DateTime.Now
                         };
                         _context.BlobStreams.AddAsync(blobStream, cancellationToken);
-                        _context.SaveChanges();
+                        _context.SaveChangesAsync();
                     }
                     return blobDescription.Id;
                 }

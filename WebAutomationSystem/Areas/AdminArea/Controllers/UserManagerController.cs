@@ -30,11 +30,13 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         private readonly IUnitOfWork _context;
         private readonly IBlobRepository _blobRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IBlobDescriptionRepository _blobDescriptionRepository;
+        private readonly IUserRepository _userRepository;
 
         //یکی از کلاسهای آیدنتیتی جهت کار با کاربران سیستم می باشد
         private readonly UserManager<ApplicationUsers> _userManager;
 
-        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper, IBlobRepository blobRepository, IWebHostEnvironment webHostEnvironment)
+        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper, IBlobRepository blobRepository, IWebHostEnvironment webHostEnvironment, IBlobDescriptionRepository blobDescriptionRepository, IUserRepository userRepository)
         {
             _webHostEnvironment = webHostEnvironment;
             _upload = upload;
@@ -42,11 +44,20 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             _userManager = userManager;
             _mapper = mapper;
             _blobRepository = blobRepository;
+            _blobDescriptionRepository = blobDescriptionRepository;
+            _userRepository = userRepository;   
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var model = _context.userManagerUW.Get();
+            foreach (var item in model)
+            {
+                if(item.BlobDescriptionId!=null)
+                item.BlobDescription = await _blobDescriptionRepository.GetByIncludeId(item.BlobDescriptionId);
+                if (item.BlobDescriptionSignatureId != null)
+                    item.BlobDescription = await _blobDescriptionRepository.GetByIncludeId(item.BlobDescriptionSignatureId);
+            }
             return View(model);
         }
 
@@ -86,8 +97,23 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                     userMapped.IsActive = 1;
                     IdentityResult result = await _userManager.CreateAsync(userMapped, "123@d_F");
 
+
+
                     if (result.Succeeded)
                     {
+                        string webRootPath = _webHostEnvironment.WebRootPath;
+                        string newPath = Path.Combine(webRootPath, "upload\\userimage\\" + model.BlobDescriptionSaveId);
+                        //bool folderExists = Directory.Exists(newPath);
+                        FileInfo fileee = new FileInfo(newPath);
+                        if (fileee.Exists)
+                            fileee.Delete();
+
+                        newPath = Path.Combine(webRootPath, "upload\\signatureimage\\" + model.BlobDescriptionSignatureSaveId);
+                        //folderExists = Directory.Exists(newPath);
+                        fileee = new FileInfo(newPath);
+                        if (fileee.Exists)
+                            fileee.Delete();
+
                         if (model.IsAdmin == 1)
                         {
                             //admin
@@ -100,6 +126,9 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                         }
                         return RedirectToAction("Index");
                     }
+                 
+
+                    
                 }
                 catch
                 {

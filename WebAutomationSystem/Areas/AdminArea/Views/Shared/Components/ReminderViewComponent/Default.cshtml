@@ -31,7 +31,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr style="font-size:13px; height:35px; background-color:@(item.IsRead == false ? "#f8cece" : "White");">
+                    <tr style="font-size:13px; height:35px; background-color:@(item.IsRead == false ? "#F2E7D5" : "White");">
                         <td style="width:60px; text-align:center;">@counter</td>
                         <td style="text-align:right;">@item.ReminderTtile</td>
 
@@ -48,10 +48,10 @@
                         </td>
                         <td>
                             <div class="row">
-                                <a asp-controller="Dashboard" asp-action="ReadReminder" asp-route-ReminderID="@item.ReminderID"
+                                <a asp-controller="Dashboard" asp-action="ReadReminder" asp-route-ReminderID="@item.ReminderID" title="خواندن"
                                    style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
                                    data-toggle="modal" data-target="#modal-action"
-                                   class="btn customGreen1">
+                               class="btn btn-outline-primary">
                                     <i class="glyphicon glyphicon-book"></i>
                                     خواندن
                                 </a>

@@ -16,7 +16,7 @@
     </div>
 
     <div style="margin-bottom:5px;">
-        <a class="btn customGreen1" asp-controller="UserManager" asp-action="AddUser">
+        <a class="btn btn-outline-primary" asp-controller="UserManager" asp-action="AddUser" title="افزودن کاربر جدید">
             <i class="glyphicon glyphicon-plus"></i>
             افزودن کاربر جدید
         </a>
@@ -29,7 +29,7 @@
                     <tr>
                         <td>ردیف</td>
                         <td>نام</td>
-                        <td>فامیلی</td>
+                        <td>نام خانوادگی</td>
                         <td>شماره تماس</td>
                         <td>کدپرسنلی</td>
                         <td>نام کاربری</td>
@@ -43,85 +43,173 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr style="font-size:12px;">
-                        <td style="width:60px; text-align:center;">@counter</td>
-                        <td style="text-align:right;">@item.FirstName</td>
-                        <td>@item.Family</td>
-                        <td>@item.PhoneNumber</td>
-                        <td>@item.PersonalCode</td>
-                        <td>@item.UserName</td>
-                        <td style="padding:2px; text-align:center;">
-                            <img src="~/upload/userimage/@item.ImagePath" style="width:60px; height:65px;" />
-                        </td>
-                        <td style="padding:2px; text-align:center;">
-                            <img src="~/upload/signatureimage/@item.SignaturePath" style="width:60px; height:65px;" />
-                        </td>
-
-                        @if (item.IsActive == 1)
-                        {
-                            <td style="width:35px; color:black;">
-                                <span class="badge badge-success" style="width:50px; border-radius:15px;">
-                                    فعال
-                                </span>
-                            </td>
-                        }
-                        else
-                        {
-                            <td style="width:35px; color:black;">
-                                <span class="badge badge-danger" style="width:50px; border-radius:15px;">
-                                    غیرفعال
-                                </span>
-                            </td>
-                        }
-
-                        @*<td>
-                            @(item.IsAdmin == 1 ? "ادمین" : "کاربر")
-                        </td>*@
-
-                        <td>
-                            <div class="row">
-                                <a asp-controller="UserManager" asp-action="UserDetails" asp-route-userId="@item.Id"
-                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
-                                   class="btn customBlue1">
-                                    <i class="glyphicon glyphicon-book"></i>
-                                </a>
-
-                                <a asp-controller="UserManager" asp-action="EditUser" asp-route-userId="@item.Id"
-                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
-                                   class="btn customYellow1">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                </a>
-
-                                @if (item.IsActive == 1)
+                        <tr style="font-size:12px;">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.FirstName</td>
+                            <td>@item.Family</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.PersonalCode</td>
+                            <td>@item.UserName</td>
+                            <td style="padding:2px; text-align:center;">
+                                @if (item.BlobDescription != null && item.BlobDescription?.Blobs != null)
                                 {
-                                    <a asp-controller="UserManager" asp-action="ActiveOrDeactiveUser" asp-route-userID="@item.Id"
-                                       asp-route-IsActive="@item.IsActive" data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
-                                       class="btn customRed1">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                    </a>
+                                    foreach (var file in item.BlobDescription.Blobs)
+                                    {
+                                        <div class="avatar-item">
+                                            @{
+                                                var data = "data:image/jpg;base64," + Convert.ToBase64String(file.BlobStream.File);
+                                                if (file.ContentType == "application/pdf")
+                                                {
+                                                    <img src="/assets/img/pdf.jpg" height="100" width="100" />
+                                                }
+                                                else if (file.ContentType.Contains("word"))
+                                                {
+                                                    <img src="/assets/img/docx.png" height="100" width="100" />
+                                                }
+                                                else if (file.ContentType.Contains("sheet"))
+                                                {
+                                                    <img src="/assets/img/excel.png" height="100" width="100" />
+                                                }
+                                                else
+                                                {
+                                                    <img src=@data height="100" width="100" />
+                                                }
+                                                <div class="avatar-badge" title="" data-toggle="tooltip" data-original-title="دانلود">
+                                                    <a href='@Url.Action("Download", "File")?Id=@file.Id' target="_blank">
+                                                        <i class="fas fa-cloud-download-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div style="padding-top: 5px;position: absolute;">  @file.Title   </div>
+                                                <div style="margin-right:80px" class="avatar-badge" title="" data-toggle="tooltip" data-original-title="حذف">
+                                                    <a href="" data-confirm="حذف پیوست|آیا از حذف این پیوست اطمینان دارید؟"
+                                           data-confirm-text-yes="حذف"
+                                           data-confirm-text-cancel="انصراف"
+                                           data-confirm-yes="confirmDelete(@file.Id)" id="delete_" @file.Id>
+                                                        <i class="fas fa-trash-alt ico-red"></i>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
                                 }
                                 else
                                 {
-                                    <a asp-controller="UserManager" asp-action="ActiveOrDeactiveUser" asp-route-userID="@item.Id"
-                                       asp-route-IsActive="@item.IsActive" data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
-                                       class="btn customGreen1">
-                                        <i class="glyphicon glyphicon-ok"></i>
-                                    </a>
+                                    <img src="~/upload/userimage/@item.ImagePath" style="width:60px; height:65px;" />
                                 }
-                                <a asp-controller="UserManager" asp-action="ChangePasswordByAdmin" 
+                            </td>
+                            <td style="padding:2px; text-align:center;">
+                                @if (item.BlobDescriptionSignature != null && item.BlobDescriptionSignature?.Blobs != null)
+                                {
+                                    foreach (var file in item.BlobDescriptionSignature.Blobs)
+                                    {
+                                        <div class="avatar-item">
+                                            @{
+                                                var data = "data:image/jpg;base64," + Convert.ToBase64String(file.BlobStream.File);
+                                                if (file.ContentType == "application/pdf")
+                                                {
+                                                    <img src="/assets/img/pdf.jpg" height="100" width="100" />
+                                                }
+                                                else if (file.ContentType.Contains("word"))
+                                                {
+                                                    <img src="/assets/img/docx.png" height="100" width="100" />
+                                                }
+                                                else if (file.ContentType.Contains("sheet"))
+                                                {
+                                                    <img src="/assets/img/excel.png" height="100" width="100" />
+                                                }
+                                                else
+                                                {
+                                                    <img src=@data height="100" width="100" />
+                                                }
+                                                <div class="avatar-badge" title="" data-toggle="tooltip" data-original-title="دانلود">
+                                                    <a href='@Url.Action("Download", "File")?Id=@file.Id' target="_blank">
+                                                        <i class="fas fa-cloud-download-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div style="padding-top: 5px;position: absolute;">  @file.Title   </div>
+                                                <div style="margin-right:80px" class="avatar-badge" title="" data-toggle="tooltip" data-original-title="حذف">
+                                                    <a href="" data-confirm="حذف پیوست|آیا از حذف این پیوست اطمینان دارید؟"
+                                           data-confirm-text-yes="حذف"
+                                           data-confirm-text-cancel="انصراف"
+                                           data-confirm-yes="confirmDelete(@file.Id)" id="delete_" @file.Id>
+                                                        <i class="fas fa-trash-alt ico-red"></i>
+                                                    </a>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="~/upload/signatureimage/@item.SignaturePath" style="width:60px; height:65px;" />
+                                }
+                            </td>
+
+                            @if (item.IsActive == 1)
+                            {
+                                <td style="width:35px; color:black;">
+                                    <span class="badge badge-success" style="width:50px; border-radius:15px;" title="فعال">
+                                        فعال
+                                    </span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="width:35px; color:black;">
+                                    <span class="badge badge-danger" style="width:50px; border-radius:15px;" title="غیرفعال">
+                                        غیرفعال
+                                    </span>
+                                </td>
+                            }
+
+                            @*<td>
+                        @(item.IsAdmin == 1 ? "ادمین" : "کاربر")
+                        </td>*@
+
+                            <td>
+                                <div class="row">
+                                    <a asp-controller="UserManager" asp-action="UserDetails" asp-route-userId="@item.Id" title="مشاهده جزئیات"
+                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
+                                   class="btn btn-outline-info">
+                                        <i class="glyphicon glyphicon-book"></i>
+                                    </a>
+
+                                    <a asp-controller="UserManager" asp-action="EditUser" asp-route-userId="@item.Id" title="ویرایش کاربر"
+                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
+                                   class="btn btn-outline-warning">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+
+                                    @if (item.IsActive == 1)
+                                    {
+                                        <a asp-controller="UserManager" asp-action="ActiveOrDeactiveUser" asp-route-userID="@item.Id"title="غیر فعال کردن کاربر"
+                                   asp-route-IsActive="@item.IsActive" data-toggle="modal" data-target="#modal-action"
+                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
+                                   class="btn btn-outline-danger">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="UserManager" asp-action="ActiveOrDeactiveUser" asp-route-userID="@item.Id"title="فعال کردن کاربر"
+                                   asp-route-IsActive="@item.IsActive" data-toggle="modal" data-target="#modal-action"
+                                   style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
+                                   class="btn btn-outline-primary">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </a>
+                                    }
+                                    <a asp-controller="UserManager" asp-action="ChangePasswordByAdmin" title="تغییر رمز کاربر"
                                    asp-route-userID="@item.Id"
                                    asp-route-FullName="@item.FirstName @item.Family"
                                    data-toggle="modal" data-target="#modal-action"
                                    style="height:30px; width:40px; font-size:9px; margin-bottom:3px;"
-                                   class="btn customGreen1">
-                                    <i class="icon-key"></i>
-                                </a>
-                            </div>
+                                   class="btn btn-outline-primary">
+                                        <i class="icon-key"></i>
+                                    </a>
+                                </div>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                         counter++;
                     }
 
@@ -134,6 +222,6 @@
 
 @Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
 
-@section AdminScripts{ 
+@section AdminScripts{
     <script src="~/js/modal/modal.js"></script>
 }

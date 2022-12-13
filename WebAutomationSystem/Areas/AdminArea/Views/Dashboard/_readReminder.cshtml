@@ -6,7 +6,7 @@
 }
 
 <form asp-controller="Dashboard" asp-action="ReadReminderPost" method="post">
-    <div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+    <div class="modal-header" style="background-color:#DEF5E5; color:black; border-radius:5px 5px 0 0;">
         <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">@Model.ReminderTtile</h4>
     </div>
@@ -31,8 +31,8 @@
     </div>
 
     <div class="modal-footer" style="text-align:left;">
-        <button class="btn btn-default" type="button" style="width:80px; border-radius:2px; border:1px solid gray;" data-dismiss="modal">بازگشت</button>
-        <button type="submit" class="btn" style="width:80px; border-radius:2px; border:1px solid gray; color:white; background-color:gray;">
+        <button class="btn btn-outline-danger" type="button"  data-dismiss="modal">بازگشت</button>
+        <button type="submit" class="btn btn-outline-primary" >
             خواندم
         </button>
     </div>

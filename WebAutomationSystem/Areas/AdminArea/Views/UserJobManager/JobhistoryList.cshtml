@@ -33,7 +33,7 @@
             <div style="margin-bottom:5px;">
                 <a asp-controller="UserJobManager" asp-action="AddJobToUser"
                    asp-route-FirstName="@getuser.FirstName" asp-route-Family="@getuser.Family" asp-route-userId="@ViewBag.userId"
-                   class="btn customGreen1">
+               class="btn btn-outline-primary" title="انتساب شغل">
                     <i class="glyphicon glyphicon-plus"></i>
                     انتساب شغل
                 </a>
@@ -97,7 +97,7 @@
                                        asp-route-userId="@getuser.Id"
                                        style="width:100px; font-size:10px; padding:5px;"
                                        data-toggle="modal" data-target="#modal-action"
-                                       class="btn customRed1">
+                               class="btn btn-outline-danger">
                                         <i class="glyphicon glyphicon-remove"></i>
                                         گرفتن شغل
                                     </a>

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "چارت اجزای سیستم";
 }
 
@@ -13,21 +12,20 @@
     </div>
 
     <div style="margin-bottom:5px;">
-        <a class="btn customGreen1" href="#" id="navigationtoadd">
+        <a class="btn btn-outline-primary" href="#" id="navigationtoadd" title="ثبت بخش جدید">
             <i class="glyphicon glyphicon-plus"></i>
             ثبت بخش جدید
         </a>
     </div>
 
     <div class="alert" style="border:1px solid gray; font-weight:bold; margin-top:15px;
-                                text-align:center; font-size:15px; background-color:#d1cccc;">
+                                text-align:center; font-size:15px; background-color:#D9F8C4;">
         جهت افزودن بخش جدید ابتدا یک جز را از درخت اجزا انتخاب نمایید.
     </div>
 
     <div class="panel panel-body container-fluid overflow-auto" style="border-radius:2px; height:450px;
                     box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
         <div id="jstreesyspart">
-
         </div>
     </div>
 
@@ -59,19 +57,19 @@
                             $('#navigationtoadd').attr("href", "/AdminArea/SystemPart/AddSystemPart?id=" + id +
                                 "&parentname=" + parentname);
                         }
-                     
+
                     });
                 }
 
             }).jstree({
                 "core": {
                     "themes": {
-                        "variant":"large"
+                        "variant": "large"
                     },
-                    "data":  @Html.Raw(ViewBag.SystemPart) ,
+                    "data": @Html.Raw(ViewBag.SystemPart) ,
                 },
                 "checkbox": {
-                    "Keep_selected_style":false
+                    "Keep_selected_style": false
                 },
             }).on("loaded.jstree", function () {
                 $.jstree.reference('#jstreesyspart').open_all();

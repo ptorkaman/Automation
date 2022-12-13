@@ -65,7 +65,9 @@ namespace WebAutomationSystem
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IForignDocumentRepository, ForignDocumentRepository>();
             services.AddScoped<IBlobRepository, BlobRepository>();
+            services.AddScoped<IBlobDescriptionRepository, BlobDescriptionRepository>();
 
+            
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             
@@ -132,8 +134,11 @@ namespace WebAutomationSystem
                 //default
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
 
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller=Account}/{action=Login}/{id?}");
                 //SignalR
                 endpoints.MapHub<LetterHub>("/myownHub");
             });

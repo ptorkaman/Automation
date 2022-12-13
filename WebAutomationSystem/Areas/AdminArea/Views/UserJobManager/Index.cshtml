@@ -23,7 +23,7 @@
 
     <div class="panel panel-body container-fluid" style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2;">
 
-        <span class="col-md-12 col-xs-12" style="text-align:center; margin-bottom:10px; font-size:14px; font-weight:bold;">
+        <span class="col-md-12 col-xs-12" style="text-align:center; margin-bottom:10px; font-size:14px; font-weight:bold;background-color: #D9F8C4;padding: 10px;">
             ردیف هایی که به رنگ <span style="color:#fa8a8a">قرمز</span> می باشند کاربران غیرفعال هستند.
         </span>
 
@@ -53,8 +53,8 @@
                                 <td>
                                     <div class="row">
                                         <a asp-controller="UserJobManager" asp-action="JobhistoryList" asp-route-userId="@item.Id"
-                                           style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
-                                           class="btn customGreen1">
+                                   style="height:30px; width:100px; font-size:10px; margin-bottom:3px;" title="تاریخچه مشاغل"
+                                   class="btn btn-outline-primary">
                                             <i class="icon-office"></i>
                                             تاریخچه مشاغل
                                         </a>

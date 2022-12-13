@@ -22,7 +22,7 @@
     </div>
 
     <div style="margin-bottom:5px;">
-        <a class="btn customGreen1" asp-controller="News" asp-action="AddNews">
+        <a class="btn btn-outline-primary" asp-controller="News" asp-action="AddNews" title="ثبت اطلاعیه جدید">
             <i class="glyphicon glyphicon-plus"></i>
             ثبت اطلاعیه جدید
         </a>
@@ -64,7 +64,7 @@
                             <td>
                                 @if  (item.NewsAttachment != null)
                                 {
-                                    <a href="~/upload/newsattach/@item.NewsAttachment" download="@item.NewsAttachment">دانلود</a>
+                                    <a href="~/upload/newsattach/@item.NewsAttachment" download="@item.NewsAttachment" class="btn btn-outline-info">دانلود</a>
                                 }
                                 else
                                 {
@@ -78,7 +78,7 @@
                                        asp-route-NewsID="@item.NewsID"
                                        style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
                                        data-toggle="modal" data-target="#modal-action"
-                                       class="btn customRed1">
+                                   class="btn btn-outline-danger">
                                         <i class="glyphicon glyphicon-remove"></i>
                                         حذف
                                     </a>
@@ -86,7 +86,7 @@
                                     <a asp-controller="News" asp-action="EditNews"
                                        asp-route-NewsID="@item.NewsID"
                                        style="height:30px; width:100px; font-size:10px; margin-bottom:3px;"
-                                       class="btn customYellow1">
+                                   class="btn btn-outline-warning">
                                         <i class="glyphicon glyphicon-edit"></i>
                                         ویرایش
                                     </a>

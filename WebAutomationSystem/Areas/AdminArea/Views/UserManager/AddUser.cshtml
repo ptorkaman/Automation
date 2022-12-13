@@ -180,6 +180,7 @@
                         </div>
 
                         <div class="col-md-6">
+                            <input type="hidden" id="BlobDescriptionSignatureSaveId" asp-for="BlobDescriptionSignatureSaveId" value="" />
                             <input type="hidden" id="BlobDescriptionSignatureId" asp-for="BlobDescriptionSignatureId" value="" />
                             <img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg"
                                  style="height:130px; width:110px; margin:5px auto; border:1px solid gray; background-size:100%; width:100%;" />
@@ -289,13 +290,14 @@
 
 
                     $("#newSignaturePathName").val(result.imagename);
+                    document.getElementById("BlobDescriptionSignatureSaveId").value = result.imagename;                    
                     document.getElementById("BlobDescriptionSignatureId").value = result.blobDescriptionId;
                 }
 
             }).fail(function (result) {
                    if (result.status != "success") {
                     $("#divmessage1").css("color", "red");
-                    $("#divmessage1").redmoveClass("hidden");
+                    $("#divmessage1").removeClass("hidden");
                     $("#divmessage1").text("در حین آپلود اشکالی بوجود آمد.");
                 }
             });

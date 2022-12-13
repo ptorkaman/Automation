@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.Reminder>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    int counter = 1;
+}
+    <style>
+        tbody > tr > td {
+            padding: 5px 18px !important;
+        }
+    </style>
+
+
+<div class="panel panel-body container-fluid col-md-6 col-xs-12"
+     style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2; height:250px; overflow:auto;">
+
+    <div style="text-align:center; font-weight:bold; margin-bottom:8px;">
+         جلسات 
+    </div>
+
+    <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+        <table class="table table-bordered" style="background-color:white;">
+            <thead>
+                <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                    <td>ردیف</td>
+                    <td>عنوان </td>
+                    <td>وضعیت</td>
+                    <td>عملیات</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr style="font-size:13px; height:35px; background-color:@(item.IsRead == false ? "#F2E7D5" : "White");">
+                        <td style="width:60px; text-align:center;">@counter</td>
+                        <td style="text-align:right;">@item.ReminderTtile</td>
+
+
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <div class="row">
+                                
+                            </div>
+
+                        </td>
+                    </tr>
+                    counter++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+@Html.Partial("_Modal", new BootstrapModel { ID = "modal-action", Size = BootstrapModel.ModalSize.Large })
+
+@section AdminScripts{
+    <script src="~/js/modal/modal.js"></script>
+}
