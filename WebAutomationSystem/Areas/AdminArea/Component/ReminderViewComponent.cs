@@ -9,25 +9,25 @@ using WebAutomationSystem.DataModelLayer.Services;
 
 namespace WebAutomationSystem.Areas.AdminArea.Component
 {
-    [ViewComponent(Name = "ReminderViewComponent")]
-    public class ReminderViewComponent : ViewComponent
-    {
+    //[ViewComponent(Name = "ReminderViewComponent")]
+    //public class ReminderViewComponent : ViewComponent
+    //{
 
-        private readonly IUnitOfWork _context;
-        private readonly UserManager<ApplicationUsers> _userManager;
+    //    private readonly IUnitOfWork _context;
+    //    private readonly UserManager<ApplicationUsers> _userManager;
 
-        public ReminderViewComponent(IUnitOfWork context, UserManager<ApplicationUsers> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
+    //    public ReminderViewComponent(IUnitOfWork context, UserManager<ApplicationUsers> userManager)
+    //    {
+    //        _context = context;
+    //        _userManager = userManager;
+    //    }
 
-        public IViewComponentResult Invoke()
-        {
-            var model = _context.reminderUW.Get(r => r.UserID == _userManager.GetUserId(HttpContext.User) &&
-                                           r.ReminderDate == DateTime.Now.Date);
-            return View(model);
-        }
+    //    public IViewComponentResult Invoke()
+    //    {
+    //        var model = _context.reminderUW.Get(r => r.UserID == _userManager.GetUserId(HttpContext.User) &&
+    //                                       r.ReminderDate == DateTime.Now.Date);
+    //        return View(model);
+    //    }
 
-    }
+    //}
 }

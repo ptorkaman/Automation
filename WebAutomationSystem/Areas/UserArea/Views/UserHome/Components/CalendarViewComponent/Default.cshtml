@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebAutomationSystem.DataModelLayer.Entities.Reminder>
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    int counter = 1;
+}
+<style>
+    tbody > tr > td {
+        padding: 5px 18px !important;
+    }
+</style>
+
+
+<div class="panel panel-body container-fluid col-md-6 col-xs-12"
+     style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2; height:250px; overflow:auto;">
+
+    <div style="text-align:center; font-weight:bold; margin-bottom:8px;">
+        تقویم
+    </div>
+
+    <div class="table-responsive" style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray;">
+
+        <input id="ReminderDateShamsi" name="ReminderDateShamsi" type="text" class="form-control custominput" data-mddatetimepicker="true" data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus" data-enabletimepicker="false" data-mdpersiandatetimepickerselecteddatetime="{&quot;Year&quot;:1399,&quot;Month&quot;:1,&quot;Day&quot;:13,&quot;Hour&quot;:0,&quot;Minute&quot;:0,&quot;Second&quot;:0}" data-mdpersiandatetimepickershowing="true" aria-describedby="popover265350">
+    </div>
+
+</div>
+

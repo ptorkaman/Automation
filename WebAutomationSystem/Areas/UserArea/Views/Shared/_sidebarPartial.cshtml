@@ -1,4 +1,4 @@
-﻿@using  Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor _httpContext
 @inject WebAutomationSystem.DataModelLayer.Services.IUnitOfWork _context
 @inject UserManager<ApplicationUsers> _userManager
@@ -130,6 +130,10 @@
 
                             <li>
                                 <a asp-controller="DefaultForm" asp-action="Index"><i class="icon-package"></i><span>لیست فرمهای پیش فرض</span></a>
+                            </li>
+
+                            <li>
+                                <a asp-controller="LetterManagement" asp-action="CreateLetter"><i class="icon-people"></i><span>ایجاد جلسات</span></a>
                             </li>
                         </ul>
                     </li>

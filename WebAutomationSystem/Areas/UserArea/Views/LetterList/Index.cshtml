@@ -187,9 +187,6 @@
                             <td style="text-align:right; background-color:@(item.ClassificationStatus == 2 ? "#f7f4b9" : item.ClassificationStatus == 3 ? "#f89797" : "")">
                                 @item.ClassificationStatusText
                             </td>
-
-
-
                             @if (item.AttachmentStatus == true)
                             {
                                 <td style="background-color:lightgreen;">
@@ -202,7 +199,6 @@
                             {
                                 <td>ندارد</td>
                             }
-
 
                             <td style="text-align:right; background-color:@(item.ReplyStatus == true ? "lightgreen" : "")">
                                 @item.ReplyStatusText
@@ -241,7 +237,8 @@
                                     <a asp-controller="LetterList" asp-action="ReadLetter" target="_blank"
                                        asp-route-LetterID="@item.LetterID"
                                        style="height:30px; width:45px; font-size:10px; margin-bottom:3px;"
-                                       class="btn customGreen1">
+                                   class="btn btn-outline-primary">
+                                        <i class="glyphicon glyphicon-read"></i>
                                         خواندن
                                     </a>
 
@@ -252,7 +249,9 @@
                                            asp-route-mainUserId="@item.UserID_Sender"
                                            data-toggle="modal" data-target="#modal-action"
                                            style="height:30px; width:40px; font-size:10px; margin-bottom:3px;"
-                                           class="btn customYellow1">
+                                   class="btn btn-outline-warning">
+                                            <i class="glyphicon arrow-clockwise
+"></i>
                                             ارجاع
                                         </a>
                                     }
@@ -265,7 +264,8 @@
                                            asp-route-LetterNo="@item.LetterNumber"
                                            asp-route-LetterDate="@ConvertDateTime.ConvertMiladiToShamsi(item.LetterSentDate, "yyyy/MM/dd")"
                                            style="height:30px; width:40px; font-size:10px; margin-bottom:3px;"
-                                           class="btn customBlue1">
+                                   class="btn btn-outline-info">
+                                            <i class="bi bi-reply"></i>
                                             پاسخ
                                         </a>
                                     }

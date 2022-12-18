@@ -134,7 +134,7 @@
                         <td>فوریت</td>
                         <td>طبقه بندی</td>
                         <td>پیوست</td>
-                        <td style="width:120px;">عملیات</td>
+                        <td style="width:150px;">عملیات</td>
                         <td class="hidden">LetterID</td>
                     </tr>
                 </thead>
@@ -173,18 +173,16 @@
                                 <div class="row" style="text-align:center;">
                                     <a asp-controller="Draft" asp-action="Delete"
                                        asp-route-LetterID="@item.LetterID"
-                                       data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:50px; text-align:center; font-size:10px; margin-bottom:3px;"
-                                       class="btn customGreen1">
+                                       data-toggle="modal" data-target="#modal-action"                                       
+                                       class="btn btn-outline-primary">
                                         خواندن
                                     </a>
 
                                     <a asp-controller="RecievedReferLetter" asp-action="ReferLetter"
                                        asp-route-LetterID="@item.LetterID"
                                        asp-route-mainUserId="@item.UserInfo_Creator.UserID"
-                                       data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:40px; font-size:10px; margin-bottom:3px;"
-                                       class="btn customYellow1">
+                                       data-toggle="modal" data-target="#modal-action"                                       
+                                   class="btn  btn-outline-warning">
                                         ارجاع
                                     </a>
                                 </div>

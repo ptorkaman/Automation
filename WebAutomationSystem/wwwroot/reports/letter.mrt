@@ -178,7 +178,7 @@
               <Name>Text10</Name>
               <Page isRef="2" />
               <Parent isRef="3" />
-              <Text>گروه نرم افزاری نرم افزاری ژوبین </Text>
+              <Text>گروه نرم افزاری ژوبین </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>

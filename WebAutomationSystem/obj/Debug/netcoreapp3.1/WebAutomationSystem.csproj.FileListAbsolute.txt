@@ -254,3 +254,7 @@ D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\WebAu
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\WebAutomationSystem.dll
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\WebAutomationSystem.pdb
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\WebAutomationSystem.genruntimeconfig.cache
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\CalendarViewComponent\Default.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\ReminderViewComponent\Default.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\SessionViewComponent\Default.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\UserInfoInDashborad\Default.cshtml.g.cs

@@ -93,7 +93,10 @@ body {
     border-color: #3abaf4;
     color: #fff;
 }
-
+.btn-outline-info, .btn-outline-info.disabled {
+    border-color: #0da8ee;
+    color: #0da8ee;
+}
     .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled:active {
         background-color: #0da8ee !important;
     }

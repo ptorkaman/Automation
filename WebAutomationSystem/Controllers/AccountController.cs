@@ -38,7 +38,7 @@ namespace WebAutomationSystem.Controllers
                 }
                 else
                 {
-                    return Redirect("/UserArea/UserHome/Index");
+                    return Redirect("/UserArea");
                 }
             }
             else
@@ -89,7 +89,7 @@ namespace WebAutomationSystem.Controllers
                         else if (user.IsAdmin == 2)
                         {
                             //User
-                            return Redirect("/userArea/Dashboard/Index");
+                            return Redirect("/userArea");
                         }
 
                     }
