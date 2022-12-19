@@ -14,7 +14,7 @@
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'IRANSansWeb(FaNum)_Light';
@@ -28,7 +28,7 @@
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'IRANSansWeb_Bold';
@@ -42,7 +42,7 @@
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'IRANSansWeb(FaNum)_Light';
@@ -56,7 +56,7 @@
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
   font-family: 'OpenSans-Regular-webfont';
@@ -70,7 +70,7 @@
 -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
 font-family:'SEGOEUIL';
@@ -84,7 +84,7 @@ font-family:'SEGOEUIL';
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb(FaNum)_Light';
@@ -98,7 +98,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'IRANSansWeb(FaNum)_Bold';
@@ -112,7 +112,7 @@ font-family:'SEGOEUIL';
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb_Bold';
@@ -126,7 +126,7 @@ font-family:'SEGOEUIL';
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb(FaNum)_Light';
@@ -140,7 +140,7 @@ font-family:'SEGOEUIL';
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
     font-family: 'OpenSans-Regular-webfont';
@@ -154,7 +154,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'SEGOEUIL';
@@ -168,7 +168,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Regular';
@@ -182,7 +182,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Semibold';
@@ -196,7 +196,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Semilight';
@@ -210,7 +210,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Light';
@@ -224,7 +224,7 @@ font-family:'SEGOEUIL';
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Bold';
@@ -496,7 +496,7 @@ th {
   font-weight: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .glyphicon-asterisk:before {
   content: "\002a";

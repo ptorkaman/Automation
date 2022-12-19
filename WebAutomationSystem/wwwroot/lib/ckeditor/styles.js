@@ -113,7 +113,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	/* Widget styles */
 
 	{ name: 'Clean Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-clean' } },
-	{ name: 'Grayscale Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-grayscale' } },
+	{ name: 'Grayscale Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-#cbcbcbscale' } },
 
 	{ name: 'Featured Snippet', type: 'widget', widget: 'codeSnippet', attributes: { 'class': 'code-featured' } },
 

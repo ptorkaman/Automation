@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.filebrowserImageUploadUrl = '/file-upload';
 
 	
-	//config.uiColor = '#9b9d9d';
+	//config.uiColor = '#f1f1f1';
 	config.format_tags = 'p;h1;h2;h3;pre';
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 

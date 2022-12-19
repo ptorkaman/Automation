@@ -28,7 +28,7 @@ a.cke_scayt_toogle {
 	margin : 0px;
 }
 .scayt_disabled a.cke_scayt_item {
-	color : gray;
+	color : #cbcbcb;
 	border-color : #fff;
 }
 .scayt_enabled a.cke_scayt_item:hover,
@@ -44,9 +44,9 @@ a.cke_scayt_toogle {
 .scayt_disabled a.cke_scayt_item:focus,
 .scayt_disabled a.cke_scayt_item:active
 {
-	border-color: gray;
+	border-color: #cbcbcb;
 	background-color: #dff1ff;
-	color : gray;
+	color : #cbcbcb;
 	cursor: no-drop;
 }
 .cke_scayt_set_on, .cke_scayt_set_off

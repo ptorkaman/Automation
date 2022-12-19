@@ -2,7 +2,7 @@
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb(FaNum)_Light';
@@ -16,7 +16,7 @@
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb_Bold';
@@ -30,7 +30,7 @@
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
    font-family:'IRANSansWeb(FaNum)_Light';
@@ -44,7 +44,7 @@
   -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
  font-family:'IRANSansWeb(FaNum)_Bold';
@@ -58,7 +58,7 @@
     -moz-font-smoothing: antialiased;
 -webkit-font-smoothing: antialiased;
 -webkit-font-smoothing: subpixel-antialiased;
--moz-osx-font-smoothing: grayscale;
+-moz-osx-font-smoothing: #cbcbcbscale;
 -webkit-font-smoothing: none;
 
     font-family: 'OpenSans-Regular-webfont';
@@ -72,7 +72,7 @@
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Regular';
@@ -86,7 +86,7 @@
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Semibold';
@@ -100,7 +100,7 @@
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Semilight';
@@ -114,7 +114,7 @@
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Light';
@@ -128,7 +128,7 @@
   -moz-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-font-smoothing: none;
 
   font-family: 'SegoeProDisplay-Bold';
@@ -307,7 +307,7 @@
   left: 20px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-transform: rotate(0deg);
   -ms-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -1908,7 +1908,7 @@
   top: -1px;
   right: -1px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .checker span.checked:after {
   display: block;
@@ -2632,7 +2632,7 @@ label.checkbox-switch.checkbox-inline {
   display: inline-block;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .select2-selection--single .select2-selection__placeholder {
   color: #999999;
@@ -2649,7 +2649,7 @@ label.checkbox-switch.checkbox-inline {
   line-height: 1;
   color: inherit;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .select2-container--open .select2-selection--single .select2-selection__arrow:after {
   content: '\e9c6';
@@ -2914,7 +2914,7 @@ label.checkbox-switch.checkbox-inline {
   margin-top: -6px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   opacity: 0.6;
   filter: alpha(opacity=60);
 }
@@ -3419,7 +3419,7 @@ li.multiselect-filter .form-control {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .selectboxit-open .selectboxit-default-arrow:after {
   content: '\e9c6';
@@ -3746,7 +3746,7 @@ li.multiselect-filter .form-control {
   margin-top: -9px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   opacity: 0.6;
   filter: alpha(opacity=60);
 }
@@ -3912,7 +3912,7 @@ select.selectpicker {
   display: inline-block;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   font-size: 16px;
 }
 .validation-error-label:empty,
@@ -4008,7 +4008,7 @@ select.selectpicker {
   width: 16px;
   height: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-animation: rotation 1s ease infinite;
   -o-animation: rotation 1s ease infinite;
   animation: rotation 1s ease infinite;
@@ -4055,7 +4055,7 @@ select.selectpicker {
   display: block;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .editable-click,
 a.editable-click,
@@ -4220,7 +4220,7 @@ a.editable-empty:focus {
   font-size: 16px;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .tokenfield .token .close:hover {
   opacity: 1;
@@ -4387,7 +4387,7 @@ a.editable-empty:focus {
   font-size: 16px;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 /* ------------------------------------------------------------------------------
 *
@@ -4555,7 +4555,7 @@ a.editable-empty:focus {
   line-height: 1;
   margin: 10px 0;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   opacity: 0.5;
   filter: alpha(opacity=50);
 }
@@ -4669,7 +4669,7 @@ a.editable-empty:focus {
   display: inline-block;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   line-height: 34px;
   -webkit-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
@@ -4699,7 +4699,7 @@ a.editable-empty:focus {
   font-size: 16px;
   line-height: 34px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
@@ -4948,7 +4948,7 @@ a.editable-empty:focus {
   display: inline-block;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   line-height: 34px;
   -webkit-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
@@ -5490,8 +5490,8 @@ a.editable-empty:focus {
 .wysihtml5-toolbar div[data-wysihtml5-command-value="silver"] {
   background: silver !important;
 }
-.wysihtml5-toolbar div[data-wysihtml5-command-value="gray"] {
-  background: gray !important;
+.wysihtml5-toolbar div[data-wysihtml5-command-value="#cbcbcb"] {
+  background: #cbcbcb !important;
 }
 .wysihtml5-toolbar div[data-wysihtml5-command-value="maroon"] {
   background: maroon !important;
@@ -5523,8 +5523,8 @@ a.editable-empty:focus {
 .wysihtml5-toolbar .wysiwyg-color-silver {
   color: silver;
 }
-.wysihtml5-toolbar .wysiwyg-color-gray {
-  color: gray;
+.wysihtml5-toolbar .wysiwyg-color-#cbcbcb {
+  color: #cbcbcb;
 }
 .wysihtml5-toolbar .wysiwyg-color-white {
   color: white;
@@ -5850,7 +5850,7 @@ a.editable-empty:focus {
   right: 0;
   margin-top: -8px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-transition: all ease-in-out 0.2s;
   -o-transition: all ease-in-out 0.2s;
   transition: all ease-in-out 0.2s;
@@ -6026,7 +6026,7 @@ a.editable-empty:focus {
   width: 16px;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .picker__nav--prev:hover,
 .picker__nav--next:hover {
@@ -6321,7 +6321,7 @@ a.editable-empty:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .AnyTime-lbl {
   font-size: 13px;
@@ -6646,7 +6646,7 @@ a.editable-empty:focus {
   font-family: 'icomoon';
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   line-height: 30px;
 }
 .sp-preview .sp-clear-display:after,
@@ -6786,7 +6786,7 @@ a.editable-empty:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .sp-sat {
   background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#FFF), to(rgba(204, 154, 129, 0)));
@@ -6893,7 +6893,7 @@ a.editable-empty:focus {
   line-height: 1;
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .sp-palette .sp-thumb-active.sp-thumb-light .sp-thumb-inner:after {
   color: #333333;
@@ -9658,7 +9658,7 @@ body.stop-scrolling {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .ui-accordion .ui-accordion-header-active .ui-accordion-header-icon:before {
   content: '\e9b7';
@@ -9713,7 +9713,7 @@ body.stop-scrolling {
   line-height: 1;
   color: inherit;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-animation: rotation 1s linear infinite;
   -o-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
@@ -9891,7 +9891,7 @@ body.stop-scrolling {
   width: 16px;
   text-align: center;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .ui-datepicker .ui-datepicker-prev span,
 .ui-datepicker .ui-datepicker-next span {
@@ -10094,7 +10094,7 @@ body.stop-scrolling {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .ui-dialog-content {
   position: relative;
@@ -10160,7 +10160,7 @@ body.stop-scrolling {
   font-weight: 400;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
@@ -10326,7 +10326,7 @@ body.stop-scrolling {
   line-height: 1;
   color: inherit;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .ui-selectmenu-button .ui-selectmenu-text {
   padding: 7px 12px;
@@ -10630,7 +10630,7 @@ body.stop-scrolling {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .ui-spinner-button + .ui-spinner-button {
   border-right: 0;
@@ -11050,7 +11050,7 @@ pre[data-line] {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .fancytree-icon,
 .fancytree-checkbox,
@@ -11704,7 +11704,7 @@ img.fancytree-icon {
   position: relative;
   top: -1px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .fc-icon-left-single-arrow:after {
   content: "\e9c0";
@@ -12355,7 +12355,7 @@ a.fc-more:hover {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .plupload_header {
   display: none;
@@ -12789,7 +12789,7 @@ a.plupload_disabled:focus {
   display: block;
   font-size: 64px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .file-preview-other .glyphicon {
   display: none;
@@ -12839,7 +12839,7 @@ a.plupload_disabled:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-animation: rotation 1s linear infinite;
   -o-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
@@ -13026,7 +13026,7 @@ a.plupload_disabled:focus {
   text-indent: 0;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dropzone .dz-default.dz-message span {
   font-size: 15px;
@@ -13132,7 +13132,7 @@ a.plupload_disabled:focus {
   font-size: 12px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dropzone .dz-preview .dz-error-mark span,
 .dropzone-previews .dz-preview .dz-error-mark span,
@@ -13631,7 +13631,7 @@ a.plupload_disabled:focus {
   width: 16px;
   height: 16px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   -webkit-animation: rotation 1s ease infinite;
   -o-animation: rotation 1s ease infinite;
   animation: rotation 1s ease infinite;
@@ -13658,7 +13658,7 @@ a.plupload_disabled:focus {
   font-size: 16px;
   display: block;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .fancybox-error {
   color: #F44336;
@@ -13743,7 +13743,7 @@ a.plupload_disabled:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .fancybox-nav:hover span {
   visibility: visible;
@@ -13839,7 +13839,7 @@ a.plupload_disabled:focus {
   top: -1px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   padding-left: 10px;
 }
 .footable.breakpoint > tbody > tr.footable-detail-show .footable-toggle:before {
@@ -13970,7 +13970,7 @@ a.plupload_disabled:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .handsontable {
   position: relative;
@@ -14270,7 +14270,7 @@ a.plupload_disabled:focus {
   right: -20px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .handsontable .columnSorting:before {
   content: '\e9c1';
@@ -14377,7 +14377,7 @@ a.plupload_disabled:focus {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
   opacity: 0.8;
   filter: alpha(opacity=80);
 }
@@ -14965,7 +14965,7 @@ thead .htCollapseButton:after {
   font-size: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .htContextMenu table tbody tr.htHidden {
   display: none;
@@ -15058,7 +15058,7 @@ thead .htCollapseButton:after {
   text-align: center;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .pika-prev:hover,
 .pika-next:hover {
@@ -15207,7 +15207,7 @@ thead .htCollapseButton:after {
   display: inline-block;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dataTable thead .sorting:before {
   content: '\e9c1';
@@ -15352,7 +15352,7 @@ thead .htCollapseButton:after {
   color: #999999;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dataTables_filter > label > span {
   float: right;
@@ -15785,7 +15785,7 @@ thead .htCollapseButton:after {
   width: 16px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dt-autofill-list .dt-autofill-button .btn:hover {
   opacity: 0.85;
@@ -15857,7 +15857,7 @@ thead .htCollapseButton:after {
   margin-top: -8px;
   margin-left: -8px;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 /* ------------------------------------------------------------------------------
 *
@@ -16130,7 +16130,7 @@ thead .htCollapseButton:after {
   top: -1px;
   vertical-align: middle;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: #cbcbcbscale;
 }
 .dataTable.dtr-inline.collapsed tbody tr.parent td:first-child:before,
 .dataTable.dtr-inline.collapsed tbody tr.parent th:first-child:before,
@@ -16436,7 +16436,7 @@ html[dir="rtl"] svg + [aria-label] {
 }
 .c3-legend-background {
   fill: #fff;
-  stroke: lightgray;
+  stroke: light#cbcbcb;
   stroke-width: 1;
   opacity: 0.75;
   filter: alpha(opacity=75);

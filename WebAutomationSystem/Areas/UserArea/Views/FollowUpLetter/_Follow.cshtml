@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<div class="modal-header" style="background-color:gray; color:white; border-radius:5px 5px 0 0;">
+<div class="modal-header" style="background-color:#cbcbcb; color:white; border-radius:5px 5px 0 0;">
     <button type="button" class="close pull-left" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title">پیگیری نامه</h4>
 </div>
@@ -16,7 +16,7 @@
         مشخصات نامه
     </div>
 
-    <div class="col-md-12 col-xs-12" style="border-top:1px solid gray;">
+    <div class="col-md-12 col-xs-12" style="border-top:1px solid #cbcbcb;">
         <span class="col-md-6 col-xs-12" style="margin-top:15px;">
             عنوان : <span style="color:darkgreen;">@ViewBag.LetterSubject</span>
         </span>
@@ -46,7 +46,7 @@
     </div>
 
     @* https://www.w3schools.com/charsets/ref_utf_dingbats.asp *@
-    <div class="col-md-12 col-xs-12" style="border-top:1px solid gray; margin-top:10px;">
+    <div class="col-md-12 col-xs-12" style="border-top:1px solid #cbcbcb; margin-top:10px;">
         @if (ViewBag.refercount == 0)
         {
             <span>&#10070;<span>نامه در تاریخ <span style="color:darkgreen; font-weight:bold;">@ViewBag.LetterDate</span> ارسال شده است و توسط <span style="color:darkgreen; font-weight:bold;">@ViewBag.RecieverFullName</span> دریافت گردیده است.</span></span>
@@ -65,5 +65,5 @@
 </div>
 
 <div class="modal-footer" style="text-align:left;">
-    <button class="btn btn-default" type="button" style="width:80px; border-radius:2px;" data-dismiss="modal">بازگشت</button>
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:px;" data-dismiss="modal">بازگشت</button>
 </div>

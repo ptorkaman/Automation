@@ -20,7 +20,7 @@
 <div class="content">
     <form>
         <div class="panel panel-heading col-md-12 col-xs-12"
-             style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+             style="box-shadow:3px 1px 1px 0 #cbcbcb; border-radius:px;">
 
             <span style="font-weight:bold;" class="col-md-6 col-xs-12">
                 <i class="icon-notebook"></i>
@@ -49,26 +49,26 @@
 
         </div>
 
-        <div class="panel col-md-12" style="border:1px solid gray; background-color:#e6e2e2; text-align:center;
-                        padding:10px 6px 5px 6px; border-radius:2px; margin-bottom:20px;">
+        <div class="panel col-md-12" style="border:1px solid #cbcbcb; background-color:#ebebeb; text-align:center;
+                        padding:10px 6px 5px 6px; border-radius:px; margin-bottom:20px;">
 
             <span style="margin-bottom:5px;">جستجو بر اساس :</span>
-            <select asp-for="@LS.ID" style="border:1px solid gray; margin-bottom:5px;" id="searchTypeselected" name="searchTypeselected"
+            <select asp-for="@LS.ID" style="border:1px solid #cbcbcb; margin-bottom:5px;" id="searchTypeselected" name="searchTypeselected"
                     asp-items="@(new SelectList(ListLetterSearchTypeModel,"ID","Title"))">
             </select>
 
             <input type="text" id="inputsearch" name="inputsearch" value="@ViewBag.inputsearch"
-                   style="border:1px solid gray; width:300px; height:28px; margin-bottom:5px; text-align:center; font-weight:bold;" />
+                   style="border:1px solid #cbcbcb; width:300px; height:28px; margin-bottom:5px; text-align:center; font-weight:bold;" />
 
             <span style="margin-bottom:5px;">فوریت :</span>
-            <select asp-for="@I.ID" style="border:1px solid gray; margin-bottom:5px;" id="immediatelytype" name="immediatelytype"
+            <select asp-for="@I.ID" style="border:1px solid #cbcbcb; margin-bottom:5px;" id="immediatelytype" name="immediatelytype"
                     asp-items="@(new SelectList(ListImmediatelyTypeModel,"ID","Title"))">
             </select>
             @* ------------------------------------------------------- *@
             <label style="margin-bottom:5px;">از تاریخ :</label>
             <input type="text" autocomplete="off" placeholder="از تاریخ..."
                    id="fromdate" name="fromdate" value="@ViewBag.fromdate"
-                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   style="border:1px solid #cbcbcb; border-radius:px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
                    data-mddatetimepicker="true"
                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                    data-enabletimepicker="false"
@@ -78,7 +78,7 @@
             <label style="margin-bottom:5px;">تا تاریخ :</label>
             <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
                    id="todate" name="todate" value="@ViewBag.todate"
-                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   style="border:1px solid #cbcbcb; border-radius:px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
                    data-mddatetimepicker="true"
                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                    data-enabletimepicker="false"
@@ -89,7 +89,7 @@
                 جستجو
                 <i class="icon-search4"></i>
             </button>
-            <hr style="width:100%; background-color:gray; height:1px;" />
+            <hr style="width:100%; background-color:#cbcbcb; height:1px;" />
 
             <div class="row" style="margin-top:10px; text-align:center;">
 
@@ -115,16 +115,16 @@
         </div>
     </form>
 
-    <hr style="width:100%; background-color:gray; height:1px;" />
+    <hr style="width:100%; background-color:#cbcbcb; height:1px;" />
 
     <div class="panel panel-body container-fluid"
-         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+         style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb">
 
         <div class="table-responsive"
-             style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray; margin-top:10px;">
+             style="border:1px solid #cbcbcb; border-radius:px; box-shadow:3px 3px 1px 0 #cbcbcb; margin-top:10px;">
             <table class="table table-bordered" style="background-color:white;">
                 <thead>
-                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                    <tr style="font-size:14px; font-weight:bold; background-color:#cbcbcb;">
                         <td style="width:60px;">ردیف</td>
                         <td style="width:250px;">موضوع</td>
                         <td>تاریخ دریافت</td>
@@ -175,7 +175,8 @@
                                        asp-route-LetterID="@item.LetterID"
                                        data-toggle="modal" data-target="#modal-action"                                       
                                        class="btn btn-outline-primary">
-                                        خواندن
+                                        <i class="icon-reading"></i>
+                                        <span style="text-align:center">خواندن</span>
                                     </a>
 
                                     <a asp-controller="RecievedReferLetter" asp-action="ReferLetter"
@@ -183,7 +184,10 @@
                                        asp-route-mainUserId="@item.UserInfo_Creator.UserID"
                                        data-toggle="modal" data-target="#modal-action"                                       
                                    class="btn  btn-outline-warning">
-                                        ارجاع
+                                        <i class="glyphicon glyphicon-share-alt"></i>
+                                        <span style="text-align:center">
+                                            ارجاع
+                                        </span>
                                     </a>
                                 </div>
 

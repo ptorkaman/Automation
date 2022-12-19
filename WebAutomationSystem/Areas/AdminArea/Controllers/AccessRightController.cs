@@ -112,7 +112,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                 return Json(new { status = "success" });
 
             }
-            catch
+            catch (Exception ex)
             {
                 return RedirectToAction("ErrorView", "Home");
             }

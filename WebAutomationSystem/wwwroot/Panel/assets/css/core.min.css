@@ -12,7 +12,7 @@ kbd {
 .dropdown-menu>.dropdown-submenu>a:after {
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .btn.active.focus,
@@ -4477,7 +4477,7 @@ ul.dropdown-menu .dropdown-content-heading:first-child {
     line-height: 1;
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dd-wrapper .link-back:before {
@@ -5958,7 +5958,7 @@ a.thumbnail:hover {
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .alert[class*=alert-styled-].alert-danger:after,
@@ -6439,7 +6439,7 @@ a.thumbnail:hover {
     font-family: icomoon;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .list-group-item-success {

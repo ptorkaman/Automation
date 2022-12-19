@@ -1510,7 +1510,7 @@
             vertical-align: middle;
             margin-left: @element-horizontal-spacing;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            -moz-osx-font-smoothing: #cbcbcbscale;
         }
 
         // Hide default icon and use custom instead
@@ -1529,7 +1529,7 @@
                 text-align: center;
                 margin-top: -(@line-height-computed / 2);
                 margin-bottom: @line-height-computed;
-                border-bottom: 1px solid @gray-lighter;
+                border-bottom: 1px solid @#cbcbcb-lighter;
             }
 
             // Inverse navbar
@@ -1552,7 +1552,7 @@
             font-size: @icon-font-size;
             line-height: 1;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            -moz-osx-font-smoothing: #cbcbcbscale;
         }
     }
 
@@ -1580,7 +1580,7 @@
     // Underlined heading
     &.underlined {
         padding-bottom: (@line-height-computed / 2);
-        border-bottom: 1px solid @gray-lighter;
+        border-bottom: 1px solid @#cbcbcb-lighter;
     }
 
 
@@ -1603,7 +1603,7 @@
             border-bottom-color: fade(#fff, 10%);
 
             .navbar-default & {
-                border-bottom-color: @gray-lighter;
+                border-bottom-color: @#cbcbcb-lighter;
             }
         }
     }

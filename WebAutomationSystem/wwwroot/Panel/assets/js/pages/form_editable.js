@@ -274,7 +274,7 @@ $(function() {
             {value: 2, text: 'Female'}
         ],
         display: function(value, sourceData) {
-            var colors = {"": "gray", 1: "green", 2: "blue"},
+            var colors = {"": "#cbcbcb", 1: "green", 2: "blue"},
             elem = $.grep(sourceData, function(o){return o.value == value;});
 
             if(elem.length) {    

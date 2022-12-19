@@ -7,7 +7,7 @@
 
 <style>
     .selected {
-        background-color: gray;
+        background-color: #cbcbcb;
         color: white;
     }
 
@@ -19,7 +19,7 @@
 
 <div class="content">
 
-    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 #cbcbcb; border-radius:px;">
         <span style="font-weight:bold;">
             <i class="glyphicon glyphicon-leaf"></i>
             فرم ثبت مرخصی
@@ -27,7 +27,7 @@
     </div>
 
     <div class="panel container-fluid"
-         style="box-shadow:3px 1px 1px 0 gray; padding-bottom:15px; border-radius:2px; background-color:#dbd3d3; color:black; font-size:12px; text-align:center;">
+         style="box-shadow:3px 1px 1px 0 #cbcbcb; padding-bottom:15px; border-radius:px; background-color:#dbd3d3; color:black; font-size:12px; text-align:center;">
 
         <form asp-controller="Leave" asp-action="CreateLeave" method="post">
             <div class="col-md-12 col-xs-12" style="margin-bottom:10px; font-size:13px;">
@@ -35,7 +35,7 @@
                 <label style="margin-bottom:5px;">محاسبه مرخصی از تاریخ :</label>
                 <input type="text" autocomplete="off" placeholder="از تاریخ..."
                        id="fromdate" name="fromdate" value="@ViewBag.fromdate"
-                       style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+                       style="border:1px solid #cbcbcb; border-radius:px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
                        data-mddatetimepicker="true"
                        data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                        data-enabletimepicker="false"
@@ -45,7 +45,7 @@
                 <label style="margin-bottom:5px;">تا تاریخ :</label>
                 <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
                        id="todate" name="todate" value="@ViewBag.todate"
-                       style="border:1px solid gray; border-radius:2px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
+                       style="border:1px solid #cbcbcb; border-radius:px; width:100px; height:28px; padding-right:3px; margin-bottom:5px;"
                        data-mddatetimepicker="true"
                        data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                        data-enabletimepicker="false"
@@ -71,12 +71,12 @@
     </div>
 
     <div class="panel panel-body container-fluid"
-         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+         style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb">
         <!--تعیین شرایط مرخصی-->
         <form id="frmleave">
             <div class="col-md-6 col-xs-12" style="height:500px; margin-top:20px; font-size:12px;">
                 <div class="panel panel-body overflow-auto"
-                     style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                     style="border-radius:px; height:500px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#d7d1d1;">
                     <div style="text-align:center; font-weight:bold; margin-bottom:10px;">
                         تعیین شرایط مرخصی
                     </div>
@@ -109,7 +109,7 @@
                             <label class="col-md-5" style="margin-bottom:5px;">تاریخ شروع:</label>
                             <input class="col-md-7" type="text" autocomplete="off" placeholder="از تاریخ..."
                                    asp-for="FromDate_Day"
-                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   style="border:1px solid #cbcbcb; border-radius:px; height:28px; padding-right:3px; margin-bottom:5px;"
                                    data-mddatetimepicker="true"
                                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                                    data-enabletimepicker="false"
@@ -120,7 +120,7 @@
                             <label class="col-md-5" style="margin-bottom:5px;">تاریخ پایان:</label>
                             <input class="col-md-7" type="text" autocomplete="off" placeholder=" تا تاریخ..."
                                    asp-for="ToDate_Day"
-                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   style="border:1px solid #cbcbcb; border-radius:px; height:28px; padding-right:3px; margin-bottom:5px;"
                                    data-mddatetimepicker="true"
                                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                                    data-enabletimepicker="false"
@@ -136,7 +136,7 @@
                             <label class="col-md-5" style="margin-bottom:5px;">ساعت خروج:</label>
                             <input class="col-md-7" type="text" autocomplete="off" placeholder="از ساعت..."
                                    asp-for="FromTime_Saati"
-                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   style="border:1px solid #cbcbcb; border-radius:px; height:28px; padding-right:3px; margin-bottom:5px;"
                                    data-mddatetimepicker="true"
                                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                                    data-enabletimepicker="true"
@@ -147,7 +147,7 @@
                             <label class="col-md-5" style="margin-bottom:5px;">ساعت ورود:</label>
                             <input class="col-md-7" type="text" autocomplete="off" placeholder="تا ساعت..."
                                    asp-for="ToTime_Saati"
-                                   style="border:1px solid gray; border-radius:2px; height:28px; padding-right:3px; margin-bottom:5px;"
+                                   style="border:1px solid #cbcbcb; border-radius:px; height:28px; padding-right:3px; margin-bottom:5px;"
                                    data-mddatetimepicker="true"
                                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                                    data-enabletimepicker="true"
@@ -173,7 +173,7 @@
         <!--جدول انتخاب شخص جهت ارسال درخواست-->
         <div id="divtreeview" class="col-md-6 col-xs-12" style="height:500px; margin-top:20px;">
             <div class="panel panel-body overflow-auto"
-                 style="border-radius:2px; height:500px; box-shadow:3px 1px 1px 0 gray; background-color:#d7d1d1;">
+                 style="border-radius:px; height:500px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#d7d1d1;">
                 <div id="jstreejobs"></div>
             </div>
         </div>
@@ -182,12 +182,13 @@
 
     <input id="SelectedUserToSent" name="SelectedUserToSent" type="text" class="hidden" />
     <div class="col-xs-12 form-group" style="margin-top:15px;">
-        <a id="btnLeaveRequest" style="border:1px solid gray; border-radius:2px; color:black;" class="btn pull-right">
+        <a id="btnLeaveRequest" class="btn btn-outline-primary pull-right">
+            <i class="glyphicon glyphicon-send"></i>
             ارسال درخواست
         </a>
     </div>
 
-    <div id="divmsg" style="text-align:center; border:1px solid gray; border-radius:2px;" class="alert col-md-12 hidden"></div>
+    <div id="divmsg" style="text-align:center; border:1px solid #cbcbcb; border-radius:px;" class="alert col-md-12 hidden"></div>
 </div>
 
 

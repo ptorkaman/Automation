@@ -232,7 +232,7 @@
     left: 20px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     -webkit-transform: rotate(0);
     -ms-transform: rotate(0);
     -o-transform: rotate(0);
@@ -246,7 +246,7 @@
 .select2-selection--single .select2-selection__clear:after {
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .navigation li.active>.has-ul:after {
@@ -2822,7 +2822,7 @@ label.checkbox-switch.checkbox-inline {
     line-height: 1;
     color: inherit;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .bs-searchbox:after,
@@ -2832,7 +2832,7 @@ label.checkbox-switch.checkbox-inline {
 .validation-valid-label:before {
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .select2-container--disabled .select2-selection--single .select2-selection__clear,
@@ -4310,7 +4310,7 @@ select.selectpicker {
     display: block;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .editable-input .help-block {
@@ -4518,7 +4518,7 @@ a.editable-empty:hover {
     content: '\ed6b';
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .tokenfield .token {
@@ -4921,7 +4921,7 @@ a.editable-empty:hover {
     line-height: 1;
     margin: 10px 0;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     opacity: .5;
     filter: alpha(opacity=50)
 }
@@ -5015,7 +5015,7 @@ a.editable-empty:hover {
     -webkit-transition: all .15s ease-in-out;
     -o-transition: all .15s ease-in-out;
     font-family: icomoon;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     line-height: 34px;
     -webkit-font-smoothing: antialiased
 }
@@ -5336,7 +5336,7 @@ a.editable-empty:hover {
     display: inline-block;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     line-height: 34px;
     -webkit-transition: all .15s ease-in-out;
     -o-transition: all .15s ease-in-out;
@@ -5782,7 +5782,7 @@ a.editable-empty:hover {
 .sp-clear-display:after,
 .sp-dd:after {
     font-family: icomoon;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .note-handle .note-control-selection {
@@ -5965,8 +5965,8 @@ a.editable-empty:hover {
     background: silver !important
 }
 
-.wysihtml5-toolbar div[data-wysihtml5-command-value=gray] {
-    background: gray !important
+.wysihtml5-toolbar div[data-wysihtml5-command-value=#cbcbcb] {
+    background: #cbcbcb !important
 }
 
 .wysihtml5-toolbar div[data-wysihtml5-command-value=maroon] {
@@ -6009,8 +6009,8 @@ a.editable-empty:hover {
     color: silver
 }
 
-.wysihtml5-toolbar .wysiwyg-color-gray {
-    color: gray
+.wysihtml5-toolbar .wysiwyg-color-#cbcbcb {
+    color: #cbcbcb
 }
 
 .wysihtml5-toolbar .wysiwyg-color-white {
@@ -7512,7 +7512,7 @@ a.editable-empty:hover {
     line-height: 1;
     color: #fff;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .sp-palette .sp-thumb-active.sp-thumb-light .sp-thumb-inner:after {
@@ -10448,7 +10448,7 @@ body.stop-scrolling {
     font-family: Icomoon;
     width: 16px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .ui-selectable {
@@ -10763,7 +10763,7 @@ body.stop-scrolling {
     width: 16px;
     text-align: center;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .ui-datepicker .ui-datepicker-next span,
@@ -11002,7 +11002,7 @@ body.stop-scrolling {
     font-size: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .ui-dialog-content {
@@ -11078,7 +11078,7 @@ body.stop-scrolling {
     font-weight: 400;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     opacity: .8;
     filter: alpha(opacity=80)
 }
@@ -11087,7 +11087,7 @@ body.stop-scrolling {
 .ui-spinner-button:after {
     font-family: Icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .ui-slider .ui-slider-handle.ui-state-active:after,
@@ -12087,7 +12087,7 @@ pre[data-line] {
     font-size: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .fancytree-checkbox,
@@ -12811,7 +12811,7 @@ a.fc-more {
     position: relative;
     top: -1px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .fc-icon-left-single-arrow:after {
@@ -13541,7 +13541,7 @@ a.fc-more:hover {
     font-size: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .file-preview-other:after,
@@ -13549,7 +13549,7 @@ a.fc-more:hover {
 .file-uploading:after {
     font-family: icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .plupload_header {
@@ -14279,7 +14279,7 @@ a.plupload_disabled:hover {
     text-indent: 0;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dropzone .dz-default.dz-message span {
@@ -14401,7 +14401,7 @@ a.plupload_disabled:hover {
     font-size: 12px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dropzone .dz-preview .dz-error-mark span,
@@ -14945,7 +14945,7 @@ a.plupload_disabled:hover {
     width: 16px;
     height: 16px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     -webkit-animation: rotation 1s ease infinite;
     -o-animation: rotation 1s ease infinite;
     animation: rotation 1s ease infinite
@@ -14974,7 +14974,7 @@ a.plupload_disabled:hover {
     font-size: 16px;
     display: block;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .fancybox-error {
@@ -15067,7 +15067,7 @@ a.plupload_disabled:hover {
     font-size: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .fancybox-nav:hover span {
@@ -15178,7 +15178,7 @@ a.plupload_disabled:hover {
     top: -1px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     padding-left: 10px
 }
 
@@ -15188,7 +15188,7 @@ a.plupload_disabled:hover {
 .pika-prev:after {
     font-family: Icomoon;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .footable.breakpoint>tbody>tr.footable-detail-show .footable-toggle:before {
@@ -15656,7 +15656,7 @@ a.plupload_disabled:hover {
     right: -20px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .handsontable .columnSorting:before {
@@ -15783,7 +15783,7 @@ a.plupload_disabled:hover {
     font-size: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: #cbcbcbscale;
     opacity: .8;
     filter: alpha(opacity=80)
 }
@@ -16746,7 +16746,7 @@ thead .htCollapseButton:after {
     display: inline-block;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dataTable thead .sorting:before {
@@ -16894,7 +16894,7 @@ thead .htCollapseButton:after {
     color: #999;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .DTFC_LeftBodyWrapper .DTFC_Cloned thead th:after,
@@ -17313,7 +17313,7 @@ thead .htCollapseButton:after {
     width: 16px;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dt-autofill-list .dt-autofill-button .btn:hover {
@@ -17384,7 +17384,7 @@ thead .htCollapseButton:after {
     margin-top: -8px;
     margin-left: -8px;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .dt-buttons-full .dt-buttons {
@@ -17645,7 +17645,7 @@ thead .htCollapseButton:after {
     top: -1px;
     vertical-align: middle;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
+    -moz-osx-font-smoothing: #cbcbcbscale
 }
 
 .timer>li.dots,

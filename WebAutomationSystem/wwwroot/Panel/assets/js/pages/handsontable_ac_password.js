@@ -22,7 +22,7 @@ $(function() {
         {car: "Dodge", qty: 100, date: "11/03/2015", color: "orange", price: 24900},
         {car: "Hummer", qty: 100, date: "11/04/2015", color: "green", price: 54000},
         {car: "Suzuki", qty: 100, date: "11/05/2015", color: "blue", price: 29300},
-        {car: "Toyota", qty: 100, date: "11/06/2015", color: "gray", price: 54500},
+        {car: "Toyota", qty: 100, date: "11/06/2015", color: "#cbcbcb", price: 54500},
         {car: "Nissan", qty: 100, date: "11/07/2015", color: "black", price: 44900},
         {car: "Porsche", qty: 100, date: "11/08/2015", color: "white", price: 35000},
         {car: "Volkswagen", qty: 100, date: "11/09/2015", color: "purple", price: 41000},
@@ -60,7 +60,7 @@ $(function() {
             {
                 data: 'color',
                 type: 'autocomplete',
-                source: ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white', 'purple', 'lime', 'olive', 'cyan'],
+                source: ['yellow', 'red', 'orange', 'green', 'blue', '#cbcbcb', 'black', 'white', 'purple', 'lime', 'olive', 'cyan'],
                 strict: false
             },
             {
@@ -105,7 +105,7 @@ $(function() {
             {
                 data: 'color',
                 type: 'autocomplete',
-                source: ['yellow', 'red', 'orange', 'green', 'blue', 'gray', 'black', 'white', 'purple', 'lime', 'olive', 'cyan'],
+                source: ['yellow', 'red', 'orange', 'green', 'blue', '#cbcbcb', 'black', 'white', 'purple', 'lime', 'olive', 'cyan'],
                 strict: true,
                 allowInvalid: false
             },

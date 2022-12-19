@@ -161,15 +161,15 @@ a > img {
 	text-align: right;
 }
 
-.image-grayscale
+.image-#cbcbcbscale
 {
 	background-color: white;
 	color: #666;
 }
 
-.image-grayscale img, img.image-grayscale
+.image-#cbcbcbscale img, img.image-#cbcbcbscale
 {
-	filter: grayscale(100%);
+	filter: #cbcbcbscale(100%);
 }
 
 .embed-240p

@@ -17,7 +17,7 @@
 <div class="content">
     <form>
         <div class="panel panel-heading col-md-12 col-xs-12"
-             style="box-shadow:3px 1px 1px 0 gray; border-radius:2px;">
+             style="box-shadow:3px 1px 1px 0 #cbcbcb; border-radius:px;">
 
             <span style="font-weight:bold;" class="col-md-6 col-xs-12">
                 <i class="icon-notebook"></i>
@@ -25,22 +25,22 @@
             </span>
         </div>
 
-        <div class="panel col-md-12" style="border:1px solid gray; background-color:#e6e2e2; text-align:center;
-                        padding:10px 6px 5px 6px; border-radius:2px; margin-bottom:20px;">
+        <div class="panel col-md-12" style="border:1px solid #cbcbcb; background-color:#ebebeb; text-align:center;
+                        padding:10px 6px 5px 6px; border-radius:px; margin-bottom:20px;">
 
             <span style="margin-bottom:5px;">جستجو بر اساس :</span>
-            <select asp-for="@RN.ID" style="border:1px solid gray; margin-bottom:5px;" id="searchTypeselected" name="searchTypeselected"
+            <select asp-for="@RN.ID" style="border:1px solid #cbcbcb; margin-bottom:5px;" id="searchTypeselected" name="searchTypeselected"
                     asp-items="@(new SelectList(ListSentNotationSearchTypeModel,"ID","Title"))">
             </select>
 
             <input type="text" id="inputsearch" name="inputsearch" value="@ViewBag.inputsearch"
-                   style="border:1px solid gray; width:300px; height:28px; margin-bottom:5px; text-align:center; font-weight:bold;" />
+                   style="border:1px solid #cbcbcb; width:300px; height:28px; margin-bottom:5px; text-align:center; font-weight:bold;" />
 
             @* ------------------------------------------------------- *@
             <label style="margin-bottom:5px;">از تاریخ :</label>
             <input type="text" autocomplete="off" placeholder="از تاریخ..."
                    id="fromdate" name="fromdate" value="@ViewBag.fromdate"
-                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   style="border:1px solid #cbcbcb; border-radius:px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
                    data-mddatetimepicker="true"
                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                    data-enabletimepicker="false"
@@ -50,7 +50,7 @@
             <label style="margin-bottom:5px;">تا تاریخ :</label>
             <input type="text" autocomplete="off" placeholder=" تا تاریخ..."
                    id="todate" name="todate" value="@ViewBag.todate"
-                   style="border:1px solid gray; border-radius:2px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
+                   style="border:1px solid #cbcbcb; border-radius:px; width:80px; height:28px; padding-right:3px; margin-bottom:5px;"
                    data-mddatetimepicker="true"
                    data-placement="right" data-mdpersiandatetimepicker="" data-trigger="focus"
                    data-enabletimepicker="false"
@@ -64,16 +64,16 @@
         </div>
     </form>
 
-    <hr style="width:100%; background-color:gray; height:1px;" />
+    <hr style="width:100%; background-color:#cbcbcb; height:1px;" />
 
     <div class="panel panel-body container-fluid"
-         style="border-radius:2px; box-shadow:3px 1px 1px 0 gray; background-color:#e6e2e2">
+         style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb">
 
         <div class="table-responsive"
-             style="border:1px solid gray; border-radius:2px; box-shadow:3px 3px 1px 0 gray; margin-top:10px;">
+             style="border:1px solid #cbcbcb; border-radius:px; box-shadow:3px 3px 1px 0 #cbcbcb; margin-top:10px;">
             <table class="table table-bordered" style="background-color:white;">
                 <thead>
-                    <tr style="font-size:14px; font-weight:bold; background-color:#c4bdbd;">
+                    <tr style="font-size:14px; font-weight:bold; background-color:#cbcbcb;">
                         <td style="width:20px;">ردیف</td>
                         <td style="width:250px;">موضوع</td>
                         <td>تاریخ ارسال</td>
@@ -112,8 +112,9 @@
                                        asp-route-NotationTitle="@item.NotationTitle"
                                        asp-route-NotationDate="@ConvertDateTime.ConvertMiladiToShamsi(item.NotationDate,"yyyy/MM/dd")"
                                        data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:55px; font-size:10px; margin-bottom:3px;"
+                                       style="height:30px;  font-size:10px; margin-bottom:3px;"
                                    class="btn btn-outline-primary">
+                                        <i class="icon-reading"></i>
                                         خواندن
                                     </a>
                                 </div>

@@ -857,7 +857,7 @@ Other Changes:
 		- CKEditor [Language](https://ckeditor.com/cke4/addon/language) plugin support.
 		- CKEditor [Placeholder](https://ckeditor.com/cke4/addon/placeholder) plugin support.
 		- [Drag&Drop](https://ckeditor.com/docs/ckeditor4/latest/examples/fileupload.html) support.
-		- **Experimental** [GRAYT](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-grayt_autoStartup) (Grammar As You Type) functionality.
+		- **Experimental** [GRAYT](https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html#cfg-#cbcbcbt_autoStartup) (Grammar As You Type) functionality.
 	- Fixed issues:
 		* [#98](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/98): SCAYT affects dialog double-click. Fixed in SCAYT core.
 		* [#102](https://github.com/WebSpellChecker/ckeditor-plugin-scayt/issues/102): SCAYT core performance enhancements.
@@ -1157,7 +1157,7 @@ Other Changes:
 
 * [#12844](https://dev.ckeditor.com/ticket/12844) and [#13103](https://dev.ckeditor.com/ticket/13103): Upgraded the [testing environment](https://ckeditor.com/docs/ckeditor4/latest/guide/dev_tests.html) to [Bender.js](https://github.com/benderjs/benderjs) `0.2.3`.
 * [#12930](https://dev.ckeditor.com/ticket/12930): Because of licensing issues, `truncated-mathjax/` is now removed from the `tests/` directory. Now `bender.config.mathJaxLibPath` must be configured manually in order to run [Mathematical Formulas](https://ckeditor.com/cke4/addon/mathjax) plugin tests.
-* [#13266](https://dev.ckeditor.com/ticket/13266): Added more shades of gray in the [Color Dialog](https://ckeditor.com/cke4/addon/colordialog) window. Thanks to [mizafish](https://github.com/mizafish)!
+* [#13266](https://dev.ckeditor.com/ticket/13266): Added more shades of #cbcbcb in the [Color Dialog](https://ckeditor.com/cke4/addon/colordialog) window. Thanks to [mizafish](https://github.com/mizafish)!
 
 
 ## CKEditor 4.4.7
