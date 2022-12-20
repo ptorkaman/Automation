@@ -20,5 +20,8 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "متن نامه وارد نشده است")]
         public string AdministrativeFormContent { get; set; }
         public string UserID { get; set; }
+        [Display(Name = "دبیرخانه")]
+        public int SecretariatTypeId { get; set; }
+
     }
 }

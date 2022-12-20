@@ -14,7 +14,8 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public string AdministrativeFormTitle { get; set; }
         public string AdministrativeFormContent { get; set; }
         public string UserID { get; set; }
-
+        public int SecretariatTypeId { get; set; }
+        public SecretariatType SecretariatType { get; set; }
         [ForeignKey("UserID")]
         public virtual ApplicationUsers User { get; set; }
     }

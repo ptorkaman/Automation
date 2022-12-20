@@ -34,6 +34,36 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<Blob> _blob;
         private GenericClass<BlobDescription> _blobDescription;
         private GenericClass<BlobStream> _blobStream;
+        private GenericClass<Cartable> _cartable;
+        private GenericClass<CartableUser> _cartableUser;
+
+        //ثبت کاربر کارتابل   
+        public GenericClass<CartableUser> cartableUserUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_cartableUser == null)
+                {
+                    _cartableUser = new GenericClass<CartableUser>(_context);
+                }
+                return _cartableUser;
+            }
+        }
+
+        //ثبت کارتابل   
+        public GenericClass<Cartable> cartableUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_cartable == null)
+                {
+                    _cartable = new GenericClass<Cartable>(_context);
+                }
+                return _cartable;
+            }
+        }
 
         //ثبت توضیحات  فایل
         public GenericClass<BlobStream> blobStreamUW

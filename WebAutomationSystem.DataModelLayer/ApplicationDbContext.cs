@@ -13,6 +13,8 @@ namespace WebAutomationSystem.DataModelLayer
         {
               
         }
+        public DbSet<Cartable> Cartables { get; set; }
+        public DbSet<CartableUser> CartableUsers { get; set; }
         public DbSet<BlobDescription> BlobDescriptions { get; set; }
         public DbSet<Blob> Blobs { get; set; }
         public DbSet<BlobStream> BlobStreams { get; set; }
