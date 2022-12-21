@@ -55,7 +55,7 @@ namespace WebAutomationSystem.Controllers
         [HttpPut("{id}")]
         public IActionResult Update([FromBody] AdministrativeForm model)
         {
-            var query = _context.administrativeFormUW.GetById(model.AdministrativeFormID);
+            var query = _context.administrativeFormUW.GetById(model.Id);
             if (query == null)
             {
                 NotFound();

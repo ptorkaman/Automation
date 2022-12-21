@@ -125,7 +125,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
 
             modelBuilder.Entity("WebAutomationSystem.DataModelLayer.Entities.AdministrativeForm", b =>
                 {
-                    b.Property<int>("AdministrativeFormID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -142,7 +142,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<string>("UserID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("AdministrativeFormID");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserID");
 

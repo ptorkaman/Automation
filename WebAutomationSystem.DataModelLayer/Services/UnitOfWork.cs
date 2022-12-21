@@ -36,6 +36,21 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<BlobStream> _blobStream;
         private GenericClass<Cartable> _cartable;
         private GenericClass<CartableUser> _cartableUser;
+        private GenericClass<SecretariatType> _secretariatType;
+
+        //ثبت دبیرخانه   
+        public GenericClass<SecretariatType> secretariatTypeUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_secretariatType == null)
+                {
+                    _secretariatType = new GenericClass<SecretariatType>(_context);
+                }
+                return _secretariatType;
+            }
+        }
 
         //ثبت کاربر کارتابل   
         public GenericClass<CartableUser> cartableUserUW

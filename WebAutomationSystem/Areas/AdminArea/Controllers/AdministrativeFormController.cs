@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAutomationSystem.DataModelLayer.Entities;
+using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
 
@@ -19,11 +20,12 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUsers> _userManager;
-
+        private readonly ISecretariatTypeRepository _secretariatTypeRepository;
         public AdministrativeFormController(IUnitOfWork context,
                                         UserManager<ApplicationUsers> userManager,
-                                                 IMapper mapper)
+                                                 IMapper mapper, ISecretariatTypeRepository secretariatTypeRepository)
         {
+            _secretariatTypeRepository = secretariatTypeRepository;
             _context = context;
             _userManager = userManager;
             _mapper = mapper;
@@ -38,6 +40,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         [HttpGet]
         public IActionResult AddNewDefaultForm()
         {
+            ViewBag.type = _secretariatTypeRepository.GetAll();
             return View();
         }
 

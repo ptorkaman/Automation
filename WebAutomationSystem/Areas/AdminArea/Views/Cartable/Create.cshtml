@@ -1,0 +1,45 @@
+﻿@model WebAutomationSystem.DataModelLayer.Entities.Cartable
+@using WebAutomationSystem.CommonLayer.PublicClass
+
+@{
+    ViewData["Title"] = "فرم ثبت کارتابل جدید";
+}
+
+<div class="content">
+
+    <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 #cbcbcb; border-radius:px;">
+        <span style="font-weight:bold;">
+            <i class="icon-newspaper2"></i>
+            @ViewData["Title"]
+        </span>
+    </div>
+
+    <div class="panel panel-body container-fluid" style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb;
+                background-color:#ebebeb;">
+
+        <form asp-controller="Cartable" asp-action="Create" method="post">
+            <div class="col-md-8 col-md-offset-2">
+                
+                <!--Title-->
+                <div>
+                    <label asp-for="Title" class="control-label col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Title" type="text" class="form-control custominput" placeholder="عنوان کارتابل..." autocomplete="off" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+          
+                <div class="col-xs-12 form-group" style="margin-top:15px;">
+                    <input type="submit" 
+                           value="ثبت اطلاعات" class="btn btn-outline-primary pull-right" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section AdminScripts{
+   
+
+}

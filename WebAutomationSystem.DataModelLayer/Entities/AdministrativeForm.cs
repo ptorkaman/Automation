@@ -9,7 +9,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
     public class AdministrativeForm
     {
         [Key]
-        public int AdministrativeFormID { get; set; }
+        public int Id { get; set; }
         public bool AdministrativeFormType { get; set; }
         public string AdministrativeFormTitle { get; set; }
         public string AdministrativeFormContent { get; set; }

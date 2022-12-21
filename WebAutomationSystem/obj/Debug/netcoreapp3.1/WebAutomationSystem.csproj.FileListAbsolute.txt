@@ -258,3 +258,6 @@ D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\ReminderViewComponent\Default.cshtml.g.cs
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\SessionViewComponent\Default.cshtml.g.cs
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\UserHome\Components\UserInfoInDashborad\Default.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Cartable\Index.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Cartable\Create.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Cartable\Edit.cshtml.g.cs

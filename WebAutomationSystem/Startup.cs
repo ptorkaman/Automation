@@ -66,6 +66,7 @@ namespace WebAutomationSystem
             services.AddScoped<IForignDocumentRepository, ForignDocumentRepository>();
             services.AddScoped<IBlobRepository, BlobRepository>();
             services.AddScoped<IBlobDescriptionRepository, BlobDescriptionRepository>();
+            services.AddScoped<ISecretariatTypeRepository, SecretariatTypeRepository>();
 
             
             services.AddAutoMapper(typeof(Startup));

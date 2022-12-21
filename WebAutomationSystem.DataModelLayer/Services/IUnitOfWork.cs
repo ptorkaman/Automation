@@ -26,6 +26,9 @@ namespace WebAutomationSystem.DataModelLayer.Services
         GenericClass<Blob> blobUW { get; }
         GenericClass<BlobDescription> blobDescriptionUW { get; }
         GenericClass<BlobStream> blobStreamUW { get; }
+        GenericClass<Cartable> cartableUW { get; }
+        GenericClass<CartableUser> cartableUserUW { get; }
+        GenericClass<SecretariatType> secretariatTypeUW { get; }
         IEntityDataBaseTransaction BeginTransaction();
         void save();
         void Dispose();

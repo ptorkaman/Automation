@@ -24,6 +24,7 @@ namespace WebAutomationSystem.AutoMapper
 
             CreateMap<News, NewsCreateCommandModel>().ReverseMap();
             CreateMap<News, NewsUpdateCommandModel>().ReverseMap();
+            CreateMap<Cartable, Cartable>().ReverseMap();
         }
     }
 }
