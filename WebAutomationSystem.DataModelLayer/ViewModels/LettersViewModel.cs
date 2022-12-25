@@ -40,6 +40,10 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         public byte LetterType { get; set; }
         public int MainLetterID { get; set; }
+
+        [Display(Name = "دبیرخانه")]
+        [Required( ErrorMessage = "لطفا {0} وارد نمایید.")]
+        public int SecretariatTypeId { get; set; }
     }
 
     public class LettersListViewModel

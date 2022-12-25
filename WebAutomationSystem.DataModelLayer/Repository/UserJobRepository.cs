@@ -41,6 +41,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                          select new UserWithJobNameViewModel()
                          {
                              UserID = user.Id,
+                             JobId=jobchart.JobsChartID,
                              UserFullNameWithJob = jobchart.JobsChartName + "(" + user.FirstName + " " + user.Family + ")"
                          }).ToList();
             return query;

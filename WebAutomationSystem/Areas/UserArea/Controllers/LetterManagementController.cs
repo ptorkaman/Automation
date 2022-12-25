@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebAutomationSystem.CommonLayer.PublicClass;
 using WebAutomationSystem.CommonLayer.Services;
 using WebAutomationSystem.DataModelLayer.Entities;
+using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
 
@@ -23,16 +24,18 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly IUploadFiles _upload;
         private readonly IMapper _mapper;
-
+        private readonly ISecretariatTypeRepository _secretariatTypeRepository;
         public LetterManagementController(IUnitOfWork db,
                                             UserManager<ApplicationUsers> userManager,
                                                         IUploadFiles upload,
-                                                            IMapper mapper)
+                                                            IMapper mapper,
+                                                            ISecretariatTypeRepository secretariatTypeRepository)   
         {
             _context = db;
             _userManager = userManager;
             _upload = upload;
             _mapper = mapper;
+            _secretariatTypeRepository = secretariatTypeRepository;
         }
 
 
@@ -47,6 +50,8 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             ViewBag.MainLetterID = MainLetterID;
             ViewBag.LetterNo = LetterNo;
             ViewBag.LetterDate = LetterDate;
+            ViewBag.type = _secretariatTypeRepository.GetAll();
+
             return View();
         }
 
@@ -88,6 +93,8 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         public IActionResult AutomationFormList()
         {
             var model = _context.administrativeFormUW.Get(a => a.AdministrativeFormType == true).ToList();
+            ViewBag.type = _secretariatTypeRepository.GetAll();
+
             return PartialView("_automationFormList", model);
         }
 
@@ -125,5 +132,28 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
 
             }
         }
+
+
+        
+
+                    [HttpPost]
+        public ActionResult GetLetterBySecretariatTypeId(int id)
+        {
+            using (var transaction = _context.BeginTransaction())
+            {
+                try
+                {
+                    var model = _context.administrativeFormUW.Get(a => a.SecretariatTypeId == id).ToList();
+                    return Json(model);
+                }
+                catch
+                {
+                    transaction.RollBack();
+                    return Json(new { status = "error" });
+                }
+            }
+        }
+
+
     }
 }

@@ -124,7 +124,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             var lettersQuery = (from SL in _context.SentLetters
                                 join L in _context.Letters on SL.LetterID equals L.LetterID
                                 join U in _context.Users on SL.userId_sender equals U.Id
-                                where SL.userId_reciever == userId_reciever
+                                //where SL.userId_reciever == userId_reciever
                                 select new MyLetterViewModel()
                                 {
                                     LetterID = L.LetterID,

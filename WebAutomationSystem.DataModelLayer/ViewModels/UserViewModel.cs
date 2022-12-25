@@ -137,5 +137,6 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
     {
         public string UserID { get; set; }
         public string UserFullNameWithJob { get; set; }
+        public int JobId { get;  set; }
     }
 }

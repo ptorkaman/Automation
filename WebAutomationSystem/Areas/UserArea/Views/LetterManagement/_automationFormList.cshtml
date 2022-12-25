@@ -27,7 +27,14 @@
             لیست نامه های اداری
         </span>
     </div>
-
+    <div>
+        <label class="control-label col-md-3 col-xs-12">دبیرخانه </label>
+        <div class="col-md-9 col-xs-12">
+            <select class="form-control select2" asp-items="@(new SelectList(ViewBag.type, "Id", "Title"))" name="SecretariatTypeId" id="SecretariatTypeId" onchange="getLetter()">
+                <option> انتخاب کنید</option>
+            </select>
+        </div>
+    </div>
     <div class="panel panel-body container-fluid"
          style="border-radius:px; height:250px; overflow:auto; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb;">
 
@@ -73,7 +80,38 @@
 
 <script>
     $("#tbladministrativeform tr").click(function () {
+        debugger
         $(this).addClass('selected').siblings().removeClass('selected');
         CKEDITOR.instances["LetterContent"].setData($(this).find('td').eq(2).html());
     });
+
+    function getLetter() {
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("GetLetterBySecretariatTypeId","LetterManagement")',
+            data: { 'id': $("#SecretariatTypeId").val() },
+        }).done(function (result) {
+            if (result.length > 0) {
+                $("#tbladministrativeform tr").remove();
+                var index = $("#tbladministrativeform tr").length;
+                result.forEach(function (item) {
+                    var index = $("#tbladministrativeform tr").length + 1;
+                    var tr =
+                        "<tr style='font-size: 13px; cursor: pointer; ' id='span_" + index + "' onclick='selectRow(this.id)'>" +
+                        "<td style='width:60px; text-align:center; '>" + index + "</td>" +
+                        "<td style='text-align: right; '>" + item.administrativeFormTitle + "</td>" +
+                        "<td style='text-align: right; '><span id='content_" + index + "'>" + item.administrativeFormContent + "</span></td>" +
+                        "</tr>";
+                    $("#tbladministrativeform ").append(tr);
+                });
+            }
+
+        });
+    }
+    function selectRow(id) {
+        var str = id.split('_')[1];
+        str = "content_" + str;
+        var data = document.getElementById(str).innerText;
+        CKEDITOR.instances["LetterContent"].setData(data);
+    }
 </script>

@@ -83,7 +83,29 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             ViewBag.RolePatternName = RolePatternName;
             ViewBag.RolePatternID = RolePatternID;
             ViewBag.getRolePatternID = _irr.GetRolePatternId(RolePatternID);
-            FillTreeView();
+            List<TreeViewModel> node = new List<TreeViewModel>();
+
+            node.Add(new TreeViewModel
+            {
+                id = "1",
+                text = "مدیر عامل",
+                parent = "#"
+            });
+
+            foreach (JobsChart job in _context.jobsChartUW.Get(j => j.JobsChartLevel != 0))
+            {
+                node.Add(new TreeViewModel
+                {
+                    id = job.JobsChartID.ToString(),
+                    parent = job.JobsChartLevel.ToString(),
+                    text = job.JobsChartName
+                });
+            }
+
+
+            ViewBag.ReservedJobList =
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+
             return View();
         }
 

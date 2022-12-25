@@ -70,6 +70,14 @@
                 <input id="LetterNo" name="LetterNo" value="@ViewBag.LetterNo" class="hidden"/>
                 <input id="LetterDate" name="LetterDate" value="@ViewBag.LetterDate" class="hidden" />
 
+                <div class="row">
+                    <label asp-for="SecretariatTypeId" class="LabelClass col-md-3 col-xs-12"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <select class="form-control select2" asp-items="@(new SelectList(ViewBag.type, "Id", "Title"))" name="SecretariatTypeId">
+                        </select>                        
+                        <span asp-validation-for="SecretariatTypeId" class="text-danger"></span>
+                    </div>
+                </div>
 
                 <!--LetterCreateDate-->
                 <div class="row" style="height:45px;">
@@ -223,7 +231,7 @@
                         $("#cke_69").attr('data-toggle', 'modal');
                         $("#cke_69").attr('data-target', '#modal-action');
 
-                        $("#cke_69").attr('href', '/UserArea/LetterManagement/DefaultFormList');
+                        $("#cke_69").attr('href', '/UserArea/LetterManagement/DefaultFormList'); 
                         $("#cke_70").attr('href', '/UserArea/LetterManagement/AutomationFormList');
                     });
 

@@ -18,5 +18,8 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public SecretariatType SecretariatType { get; set; }
         [ForeignKey("UserID")]
         public virtual ApplicationUsers User { get; set; }
+
+
+       
     }
 }
