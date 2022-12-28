@@ -18,6 +18,11 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         [Required(AllowEmptyStrings = false, ErrorMessage = "لطفا {0} وارد نمایید.")]
         [StringLength(maximumLength: 300, MinimumLength = 8, ErrorMessage = "موضوع نامه بایستی حداقل 8 و حداکثر 300 کاراکتر باشد.")]
         public string LetterSubject { get; set; }
+
+        //نوع نامه  
+        [Display(Name = "نوع نامه")]
+        public byte SecretriantLetterType { get; set; }
+
         //فوریت نامه
         [Display(Name = "فوریت")]
         public byte ImmediatellyStatus { get; set; }

@@ -34,6 +34,9 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         [ForeignKey("UserID")]
         public virtual ApplicationUsers Users { get; set; }
 
-        public int SecretariatTypeId { get; set; }
+        public int SecretariatTypeId { get; set; }// دبیرخانه
+
+        public byte SecretriantLetterType { get; set; }//نوع نامه صادره یا داخلی
+
     }
 }

@@ -64,6 +64,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                 //insert
                 if (model.ReplyStatus == 1)
                 {
+                    if(model.ReplyDate!=null)
                     model.ReplyDate = ConvertDateTime.ConvertShamsiToMiladi(model.ReplyDate).ToString();
                 }
                 if (model.AttachmentStatus == 1)

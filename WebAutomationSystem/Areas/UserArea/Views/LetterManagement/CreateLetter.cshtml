@@ -57,58 +57,63 @@
          style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb;">
 
         <form asp-controller="LetterManagement" asp-action="CreateLetter" method="post" enctype="multipart/form-data">
-            <div class="col-md-8 col-xs-12 col-md-offset-2">
+            <div class="col-md-12 col-xs-12 ">
 
-                @if  (ViewBag.LetterType == 2)
+                @if (ViewBag.LetterType == 2)
                 {
                     <div class="alert" style="border:1px solid #cbcbcb; background-color:#bab6b6; font-weight:bold; text-align:center;">
                         @ViewBag.msg
                     </div>
                 }
-                <input asp-for="LetterType" value="@ViewBag.LetterType" class="hidden"/>
+                <input asp-for="LetterType" value="@ViewBag.LetterType" class="hidden" />
                 <input asp-for="MainLetterID" value="@ViewBag.MainLetterID" class="hidden" />
-                <input id="LetterNo" name="LetterNo" value="@ViewBag.LetterNo" class="hidden"/>
+                <input id="LetterNo" name="LetterNo" value="@ViewBag.LetterNo" class="hidden" />
                 <input id="LetterDate" name="LetterDate" value="@ViewBag.LetterDate" class="hidden" />
 
                 <div class="row">
-                    <label asp-for="SecretariatTypeId" class="LabelClass col-md-3 col-xs-12"></label>
-                    <div class="col-md-9 col-xs-12">
-                        <select class="form-control select2" asp-items="@(new SelectList(ViewBag.type, "Id", "Title"))" name="SecretariatTypeId">
-                        </select>                        
-                        <span asp-validation-for="SecretariatTypeId" class="text-danger"></span>
+                    <div class="col-md-4 col-xs-12">
+                        <label asp-for="SecretariatTypeId" class="LabelClass col-md-2 col-xs-12"></label>
+                        <div class="col-md-9 col-xs-12">
+                            <select class="form-control select2" asp-items="@(new SelectList(ViewBag.type, "Id", "Title"))" name="SecretariatTypeId">
+                            </select>
+                            <span asp-validation-for="SecretariatTypeId" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
+                    <div class="col-md-6 col-xs-12">
+                        <label asp-for="SecretriantLetterType" class="control-label col-md-2 col-xs-12 LabelClass"></label>
+                        <div class="col-md-9 col-xs-12" style="height:45px;">
+                            <label class="col-md-2 col-xs-4">
+                                داخلی
+                                <input asp-for="SecretriantLetterType" type="radio" value="1" checked />
+                            </label>
+                            <label class="col-md-2 col-xs-4">
+                                صادره
+                                <input asp-for="SecretriantLetterType" type="radio" value="2" />
+                            </label>
 
-                <!--LetterCreateDate-->
-                <div class="row" style="height:45px;">
-                    <label asp-for="LetterCreateDate" class="col-md-3 col-xs-12 LabelClass"></label>
-                    <div class="col-md-9 col-xs-12">
-                        <div style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</div>
+                        </div>
                     </div>
-                </div>
-
-                <!--LetterSubject-->
-                <div>
-                    <label asp-for="LetterSubject" class="control-label col-md-3 col-xs-12 LabelClass"></label>
-                    <div class="col-md-9 col-xs-12">
-                        <input asp-for="LetterSubject" type="text" class="form-control custominput" placeholder="موضوع نامه ..." />
-                        <span asp-validation-for="LetterSubject" class="text-danger"></span>
+                    <div class="col-md-2 col-xs-12">
+                        <label asp-for="LetterCreateDate" class="col-md-6 col-xs-12 LabelClass"></label>
+                        <div class="col-md-6 col-xs-12">
+                            <div style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</div>
+                        </div>
                     </div>
-                </div>
+                </div>             
 
                 <!--ImmediatellyStatus-->
-                <div>
-                    <label asp-for="ImmediatellyStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                <div class="row">
+                    <label asp-for="ImmediatellyStatus" class="control-label col-md-1 col-xs-12 LabelClass"></label>
                     <div class="col-md-9 col-xs-12" style="height:45px;">
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             عادی
                             <input asp-for="ImmediatellyStatus" type="radio" value="1" checked />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             فوری
                             <input asp-for="ImmediatellyStatus" type="radio" value="2" />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             آنی
                             <input asp-for="ImmediatellyStatus" type="radio" value="3" />
                         </label>
@@ -116,18 +121,18 @@
                 </div>
 
                 <!--ClassificationStatus-->
-                <div>
-                    <label asp-for="ClassificationStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                <div class="row">
+                    <label asp-for="ClassificationStatus" class="control-label col-md-1 col-xs-12 LabelClass"></label>
                     <div class="col-md-9 col-xs-12" style="height:45px;">
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             عادی
                             <input asp-for="ClassificationStatus" type="radio" value="1" checked />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             محرمانه
                             <input asp-for="ClassificationStatus" type="radio" value="2" />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-2 col-xs-4">
                             فوق محرمانه
                             <input asp-for="ClassificationStatus" type="radio" value="3" />
                         </label>
@@ -135,14 +140,14 @@
                 </div>
 
                 <!--ReplyStatus-->
-                <div>
-                    <label asp-for="ReplyStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
+                <div class="row">
+                    <label asp-for="ReplyStatus" class="control-label col-md-1 col-xs-12 LabelClass"></label>
                     <div class="col-md-9 col-xs-12" style="height:45px;">
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             دارد
                             <input asp-for="ReplyStatus" id="yesreply" class="checkreply" type="radio" value="1" checked />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-1 col-xs-4">
                             ندارد
                             <input asp-for="ReplyStatus" id="noreply" class="checkreply" type="radio" value="0" />
                         </label>
@@ -150,9 +155,9 @@
                 </div>
 
                 <!--ReplyDate-->
-                <div style="margin-bottom:15px;">
-                    <label asp-for="ReplyDate" class="control-label col-md-3 col-xs-12 LabelClass" for="BirthdayDate"></label>
-                    <div class="input-group col-md-4 col-xs-12" style="padding-left:9px; padding-right:9px;">
+                <div class="row"  style="margin-bottom:15px;">
+                    <label asp-for="ReplyDate" class="control-label col-md-1 col-xs-12 LabelClass" for="BirthdayDate"></label>
+                    <div class="input-group col-md-4 col-xs-12" style="">
                         <div class="input-group-addon"
                              style="border:1px solid #cbcbcb; padding:6px">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -164,33 +169,26 @@
                 </div>
 
                 <!--AttachmentStatus-->
-                <div>
-                    <label asp-for="AttachmentStatus" class="control-label col-md-3 col-xs-12 LabelClass"></label>
-                    <div class="col-md-9 col-xs-12" style="height:45px;">
-                        <label class="col-md-3 col-xs-4">
+                <div class="row">
+                    <label asp-for="AttachmentStatus" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <div class="col-md-2 col-xs-12" style="height:45px;">
+                        <label class="col-md-6 col-xs-4">
                             دارد
                             <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1" checked />
                         </label>
-                        <label class="col-md-3 col-xs-4">
+                        <label class="col-md-6 col-xs-4">
                             ندارد
                             <input asp-for="AttachmentStatus" id="noattach" class="attachclass" type="radio" value="0" />
                         </label>
                     </div>
-                </div>
-
-                <!--AttachedFile-->
-                <div>
-                    <label class="control-label col-md-3 col-xs-12"></label>
-                    <div class="col-md-5 col-xs-12">
+                    <div class="col-md-3 col-xs-12">
                         <div class="col-md-12">
                             <div class="form-horizontal">
-
                                 <label for="LetterAttachamentFile" class="btn"
                                        style="width:100px; height:30px; font-size:11px; background-color:white; border-radius:3px; border:1px solid #cbcbcb;">
                                     انتخاب فایل
                                     <i class="icon-file-picture"></i>
                                 </label>
-
                                 <input type="button" value="الصاق کن" id="btnupload" onclick="UploadFile()" class="btn"
                                        style="height:30px; border-radius:3px; border:1px solid #cbcbcb; background-color:white; width:100px; font-size:11px;" />
 
@@ -204,8 +202,16 @@
                     <div class="col-md-4 col-xs-12" style="text-align:left; color:green;">
                         <span id="spnmessage" class="hidden"></span>
                     </div>
-                </div>
+                </div>               
 
+                <!--LetterSubject-->
+                <div>
+                    <label asp-for="LetterSubject" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="LetterSubject" type="text" class="form-control custominput" placeholder="موضوع نامه ..." />
+                        <span asp-validation-for="LetterSubject" class="text-danger"></span>
+                    </div>
+                </div>
 
             </div>
 
@@ -231,7 +237,7 @@
                         $("#cke_69").attr('data-toggle', 'modal');
                         $("#cke_69").attr('data-target', '#modal-action');
 
-                        $("#cke_69").attr('href', '/UserArea/LetterManagement/DefaultFormList'); 
+                        $("#cke_69").attr('href', '/UserArea/LetterManagement/DefaultFormList');
                         $("#cke_70").attr('href', '/UserArea/LetterManagement/AutomationFormList');
                     });
 
@@ -239,7 +245,7 @@
             </div>
 
             <div class="col-xs-12 form-group" style="margin-top:15px;">
-                <input type="submit" 
+                <input type="submit"
                        value="ایجاد نامه" class="btn btn-outline-primary pull-right" />
             </div>
 
@@ -315,13 +321,13 @@
                 }
 
                 else if (result.status == 'badsize') {
-                       $("#spnmessage").removeClass('hidden');
-                       $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
-                       $("#spnmessage").css("color", "red");
+                    $("#spnmessage").removeClass('hidden');
+                    $("#spnmessage").text('حجم فایل بیش از 500 کیلوبایت است');
+                    $("#spnmessage").css("color", "red");
                 }
 
             }).fail(function (result) {
-                   if (result.status != "success") {
+                if (result.status != "success") {
                     $("#spnmessage").css("color", "red");
                     $("#spnmessage").removeClass("hidden");
                     $("#spnmessage").text("در حین آپلود اشکالی بوجود آمد.");
@@ -331,27 +337,27 @@
         }
     </script>
 
-@* نمایش نام فایل انتخاب شده *@
-<script>
-    $("#LetterAttachamentFile").change(function () {
-        filename = this.files[0].name;
-        $("#spnfilename").html(filename);
-    });
-    
-</script>
-
-@* کدهای مربوط به اتوکامپلیت *@
-<script>
-    $(document).ready(function () {
-        $("#LetterSubject").autocomplete({
-            source: function (request, response) {
-                $.getJSON("/UserArea/LetterManagement/SearchInSubject", {
-                    term: $("#LetterSubject").val().trim()
-                },
-                    response)
-            },
-            minLength:3,
+    @* نمایش نام فایل انتخاب شده *@
+    <script>
+        $("#LetterAttachamentFile").change(function () {
+            filename = this.files[0].name;
+            $("#spnfilename").html(filename);
         });
-    });
-</script>
+
+    </script>
+
+    @* کدهای مربوط به اتوکامپلیت *@
+    <script>
+        $(document).ready(function () {
+            $("#LetterSubject").autocomplete({
+                source: function (request, response) {
+                    $.getJSON("/UserArea/LetterManagement/SearchInSubject", {
+                        term: $("#LetterSubject").val().trim()
+                    },
+                        response)
+                },
+                minLength: 3,
+            });
+        });
+    </script>
 }
