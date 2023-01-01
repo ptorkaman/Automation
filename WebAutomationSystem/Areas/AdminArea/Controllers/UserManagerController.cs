@@ -88,7 +88,14 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                         ModelState.AddModelError("UserName", "نام کاربری تکراری می باشد.");
                         return View(model);
                     }
+                    #region save file
+                    var upload = model.Files;
+                    
+                    model.BlobDescriptionId= SaveImageFile(upload, null);
+                    upload = model.SignFiles;
+                    model.BlobDescriptionSignatureId= SaveImageFile(upload, null);
 
+                    #endregion
                     model.BirthDayDateMilladi = ConvertDateTime.ConvertShamsiToMiladi(birthdayDateuser);
                     var userMapped = _mapper.Map<ApplicationUsers>(model);
                     userMapped.Gender = r1;
@@ -101,18 +108,19 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
                     if (result.Succeeded)
                     {
-                        string webRootPath = _webHostEnvironment.WebRootPath;
-                        string newPath = Path.Combine(webRootPath, "upload\\userimage\\" + model.BlobDescriptionSaveId);
-                        //bool folderExists = Directory.Exists(newPath);
-                        FileInfo fileee = new FileInfo(newPath);
-                        if (fileee.Exists)
-                            fileee.Delete();
+                        //برای وقتی که داخل فولدر ذخیره  میشد
+                        //string webRootPath = _webHostEnvironment.WebRootPath;
+                        //string newPath = Path.Combine(webRootPath, "upload\\userimage\\" + model.BlobDescriptionSaveId);
+                        ////bool folderExists = Directory.Exists(newPath);
+                        //FileInfo fileee = new FileInfo(newPath);
+                        //if (fileee.Exists)
+                        //    fileee.Delete();
 
-                        newPath = Path.Combine(webRootPath, "upload\\signatureimage\\" + model.BlobDescriptionSignatureSaveId);
-                        //folderExists = Directory.Exists(newPath);
-                        fileee = new FileInfo(newPath);
-                        if (fileee.Exists)
-                            fileee.Delete();
+                        //newPath = Path.Combine(webRootPath, "upload\\signatureimage\\" + model.BlobDescriptionSignatureSaveId);
+                        ////folderExists = Directory.Exists(newPath);
+                        //fileee = new FileInfo(newPath);
+                        //if (fileee.Exists)
+                        //    fileee.Delete();
 
                         if (model.IsAdmin == 1)
                         {
@@ -130,7 +138,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
                     
                 }
-                catch
+                catch (Exception ex)    
                 {
                     //throw;
                     return RedirectToAction("ErrorView", "Home");

@@ -27,5 +27,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
 
         public long? BlobDescriptionSignatureId { get; set; }
         public BlobDescription BlobDescriptionSignature { get; set; }
+
+        public bool SignaturePermission { get; set; }
     }
 }

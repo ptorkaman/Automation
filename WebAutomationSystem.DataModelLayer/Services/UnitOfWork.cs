@@ -39,6 +39,21 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<SecretariatType> _secretariatType;
         private GenericClass<Group> _group;
         private GenericClass<GroupUser> _groupUser;
+        private GenericClass<LetterUser> _letterUser;
+
+        //ثبت گیرندگان نامه   
+        public GenericClass<LetterUser> letterUserUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_letterUser == null)
+                {
+                    _letterUser = new GenericClass<LetterUser>(_context);
+                }
+                return _letterUser;
+            }
+        }
 
         //ثبت گروه   
         public GenericClass<GroupUser> groupUserUW

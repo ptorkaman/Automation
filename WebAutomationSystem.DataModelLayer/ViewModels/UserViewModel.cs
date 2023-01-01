@@ -9,6 +9,8 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 {
     public class UserViewModel
     {
+        public bool SignaturePermission { get; set; }
+
         public long? BlobDescriptionSignatureId { get; set; }
         public string BlobDescriptionSignatureSaveId { get; set; }
 
@@ -18,6 +20,7 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         public string BlobDescriptionSaveId { get; set; }
         public BlobDescription BlobDescription { get; set; }
         public List<IFormFile> Files { get; set; }
+        public List<IFormFile> SignFiles { get; set; }
         public string Id { get; set; }
 
         [Display(Name = "نام")]

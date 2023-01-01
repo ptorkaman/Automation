@@ -13,6 +13,7 @@ namespace WebAutomationSystem.DataModelLayer
         {
               
         }
+        public DbSet<LetterUser> LetterUsers { get; set; }
         public DbSet<GroupUser> GroupUsers { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<SecretariatType> SecretariatTypes { get; set; }

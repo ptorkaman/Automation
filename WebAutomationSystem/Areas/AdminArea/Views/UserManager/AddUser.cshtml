@@ -136,22 +136,28 @@
                                     انتخاب تصویر
                                     <i class="icon-file-picture"></i>
                                 </label>
-                                <input asp-for="ImagePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
-                                <span id="spnimageuser" style="color:black; font-size:12px;"></span>
+                                <input accept=".jpg, .png, .tif, .tiff, .jpeg" type='file' id="imgInp" asp-for="Files" />
+
+
+
+                               @* <input asp-for="ImagePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnimageuser" style="color:black; font-size:12px;"></span>*@
 
                                 <!--نام جدید تصویر-->
                                 <input id="newImagePathName" name="newImagePathName" hidden />
 
-                                <input type="button" value="آپلود و نمایش تصویر" id="btnupload" onclick="UploadImage()" class="btn"
-                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />
+                                @*<input type="button" value="آپلود و نمایش تصویر" id="btnupload" onclick="UploadImage()" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />*@
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <input type="hidden" id="BlobDescriptionSaveId"  asp-for="BlobDescriptionSaveId" value="" />
                             <input type="hidden" id="BlobDescriptionId" asp-for="BlobDescriptionId" value="" />
-                            <img id="imguserimage" src="~/upload/userimage/defaultuserImage1.jpg"
-                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                            <img id="blah" src="~/upload/userimage/defaultuserImage1.jpg" alt="your image" height="110" width="130" style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+
+                            @*<img id="imguserimage" src="~/upload/userimage/defaultuserImage1.jpg"
+                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />*@
 
                             <div id="divmessage" class="text-center hidden"></div>
                         </div>
@@ -170,20 +176,24 @@
                                     انتخاب امضا
                                     <i class="icon-file-picture"></i>
                                 </label>
-                                <input asp-for="SignaturePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
-                                <span id="spnsignatureuser" style="color:black;"></span>
+                                <input accept=".jpg, .png, .tif, .tiff, .jpeg" type='file' id="SigInp" asp-for="SignFiles" />
+
+                             @*   <input asp-for="SignaturePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnsignatureuser" style="color:black;"></span>*@
                                 <!--نام جدید تصویر-->
                                 <input id="newSignaturePathName" name="newSignaturePathName" hidden />
-                                <input type="button" value="آپلود و نمایش امضا" onclick="UploadSignature()" id="btnuploadsignature" class="btn"
-                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />
+                                @*<input type="button" value="آپلود و نمایش امضا" onclick="UploadSignature()" id="btnuploadsignature" class="btn"
+                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />*@
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <input type="hidden" id="BlobDescriptionSignatureSaveId" asp-for="BlobDescriptionSignatureSaveId" value="" />
                             <input type="hidden" id="BlobDescriptionSignatureId" asp-for="BlobDescriptionSignatureId" value="" />
-                            <img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg"
-                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                            <img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg" alt="your signature" height="110" width="130" style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+
+                            @*<img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg"
+                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />*@
 
                             <div id="divmessage1" class="text-center hidden"></div>
                         </div>
@@ -205,6 +215,20 @@
 
 @section AdminScripts{
     <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+
+        SigInp.onchange = evt => {
+            const [file] = SigInp.files
+            if (file) {
+                imgusersignature.src = URL.createObjectURL(file)
+            }
+        }
+
         $("#ImagePath").change(function () {
             var filename = this.files[0].name;
             $("#spnimageuser").html(filename);

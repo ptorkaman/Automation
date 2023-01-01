@@ -31,6 +31,7 @@ namespace WebAutomationSystem.DataModelLayer.Services
         GenericClass<SecretariatType> secretariatTypeUW { get; }
         GenericClass<Group> groupUW { get; }
         GenericClass<GroupUser> groupUserUW { get; }
+        GenericClass<LetterUser> letterUserUW { get; }
         IEntityDataBaseTransaction BeginTransaction();
         void save();
         void Dispose();
