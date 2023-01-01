@@ -29,6 +29,8 @@ namespace WebAutomationSystem.DataModelLayer.Services
         GenericClass<Cartable> cartableUW { get; }
         GenericClass<CartableUser> cartableUserUW { get; }
         GenericClass<SecretariatType> secretariatTypeUW { get; }
+        GenericClass<Group> groupUW { get; }
+        GenericClass<GroupUser> groupUserUW { get; }
         IEntityDataBaseTransaction BeginTransaction();
         void save();
         void Dispose();

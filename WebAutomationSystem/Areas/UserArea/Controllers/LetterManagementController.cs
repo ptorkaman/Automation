@@ -25,17 +25,19 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly IUploadFiles _upload;
         private readonly IMapper _mapper;
         private readonly ISecretariatTypeRepository _secretariatTypeRepository;
+        private readonly IGroupRepository _groupRepository;
         public LetterManagementController(IUnitOfWork db,
                                             UserManager<ApplicationUsers> userManager,
                                                         IUploadFiles upload,
                                                             IMapper mapper,
-                                                            ISecretariatTypeRepository secretariatTypeRepository)   
+                                                            ISecretariatTypeRepository secretariatTypeRepository, IGroupRepository groupRepository)   
         {
             _context = db;
             _userManager = userManager;
             _upload = upload;
             _mapper = mapper;
             _secretariatTypeRepository = secretariatTypeRepository;
+            _groupRepository= groupRepository;  
         }
 
 
@@ -51,6 +53,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             ViewBag.LetterNo = LetterNo;
             ViewBag.LetterDate = LetterDate;
             ViewBag.type = _secretariatTypeRepository.GetAll();
+            ViewBag.group = _groupRepository.GetAll();
 
             return View();
         }

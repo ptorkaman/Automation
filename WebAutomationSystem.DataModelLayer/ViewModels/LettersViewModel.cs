@@ -7,6 +7,7 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 {
     public class LettersViewModel
     {
+
         public int LetterID { get; set; }
 
         [Display(Name = "متن نامه")]
@@ -22,6 +23,14 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         //نوع نامه  
         [Display(Name = "نوع نامه")]
         public byte SecretriantLetterType { get; set; }
+
+        //گیرندگان   
+        [Display(Name = "گیرندگان نامه")]
+        public List<int> Recievers { get; set; }
+
+        //گروه   
+        [Display(Name = "گروه دریافت کننده نامه ")]
+        public int? GroupId { get; set; }
 
         //فوریت نامه
         [Display(Name = "فوریت")]

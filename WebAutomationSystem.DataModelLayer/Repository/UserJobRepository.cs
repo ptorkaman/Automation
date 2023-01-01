@@ -4,6 +4,7 @@ using System.Text;
 using System.Linq;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
+using WebAutomationSystem.DataModelLayer.Entities;
 
 namespace WebAutomationSystem.DataModelLayer.Repository
 {
@@ -30,6 +31,11 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                 _context.Entry(currentJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
             }
+        }
+
+        public UserJob GetByJobId(int id)
+        {
+            return _context.UserJobs.Where(c => c.JobID == id).FirstOrDefault();
         }
 
         public List<UserWithJobNameViewModel> UserFullNameWithJobName()

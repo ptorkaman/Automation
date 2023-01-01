@@ -37,6 +37,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public int SecretariatTypeId { get; set; }// دبیرخانه
 
         public byte SecretriantLetterType { get; set; }//نوع نامه صادره یا داخلی
+        public int? GroupId { get; set; }
 
     }
 }

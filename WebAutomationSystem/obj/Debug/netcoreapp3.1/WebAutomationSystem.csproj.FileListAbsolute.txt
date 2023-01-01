@@ -286,3 +286,7 @@ D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\SecretariatType\Edit.cshtml.g.cs
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\SecretariatType\Index.cshtml.g.cs
 D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\UserArea\Views\LetterList\IndexSecretariat.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Group\AssignUserToGroup.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Group\Create.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Group\Edit.cshtml.g.cs
+D:\Project\WebAutomationSystem\WebAutomationSystem\obj\Debug\netcoreapp3.1\Razor\Areas\AdminArea\Views\Group\Index.cshtml.g.cs

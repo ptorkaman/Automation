@@ -205,11 +205,29 @@
                 </div>               
 
                 <!--LetterSubject-->
-                <div>
+                <div class="row">
                     <label asp-for="LetterSubject" class="control-label col-md-1 col-xs-12 LabelClass"></label>
                     <div class="col-md-9 col-xs-12">
                         <input asp-for="LetterSubject" type="text" class="form-control custominput" placeholder="موضوع نامه ..." />
                         <span asp-validation-for="LetterSubject" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--reciever-->
+                <div class="row">
+                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <input asp-for="Recievers" type="text" class="form-control custominput" placeholder="گیرندگان نامه ..." />
+                        <span asp-validation-for="Recievers" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--group-->
+                <div class="row">
+                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <div class="col-md-9 col-xs-12">
+                        <select class="form-control select2" asp-items="@(new SelectList(ViewBag.group, "Id", "Title"))" name="GroupId">
+                        </select>
+                        <span asp-validation-for="GroupId" class="text-danger"></span>
                     </div>
                 </div>
 

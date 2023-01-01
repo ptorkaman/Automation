@@ -37,6 +37,37 @@ namespace WebAutomationSystem.DataModelLayer.Services
         private GenericClass<Cartable> _cartable;
         private GenericClass<CartableUser> _cartableUser;
         private GenericClass<SecretariatType> _secretariatType;
+        private GenericClass<Group> _group;
+        private GenericClass<GroupUser> _groupUser;
+
+        //ثبت گروه   
+        public GenericClass<GroupUser> groupUserUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_groupUser == null)
+                {
+                    _groupUser = new GenericClass<GroupUser>(_context);
+                }
+                return _groupUser;
+            }
+        }
+
+        //ثبت گروه   
+        public GenericClass<Group> groupUW
+        {
+            //فقط خواندنی    
+            get
+            {
+                if (_group == null)
+                {
+                    _group = new GenericClass<Group>(_context);
+                }
+                return _group;
+            }
+        }
+
 
         //ثبت دبیرخانه   
         public GenericClass<SecretariatType> secretariatTypeUW

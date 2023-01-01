@@ -83,5 +83,9 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return query.ToList();
         }
 
+        public object GetByJobId(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

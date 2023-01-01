@@ -93,13 +93,15 @@ body {
     border-color: #3abaf4;
     color: #fff;
 }
+
 .btn-outline-info, .btn-outline-info.disabled {
     border-color: #0da8ee;
     color: #0da8ee;
 }
-    .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled:active {
-        background-color: #0da8ee !important;
-    }
+
+.btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.disabled:hover, .btn-info.disabled:focus, .btn-info.disabled:active {
+    background-color: #0da8ee !important;
+}
 
 .btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active, .btn-outline-info.disabled:hover, .btn-outline-info.disabled:focus, .btn-outline-info.disabled:active {
     background-color: #0da8ee !important;
@@ -143,7 +145,73 @@ body {
     background-color: #fb160a !important;
     color: #fff !important;
 }
+
 .btn-outline-danger, .btn-outline-danger.disabled {
     border-color: #fb160a;
     color: #fb160a;
+}
+
+.table-striped-4n > tbody > tr:nth-child(4n+1):not(.table-striped-child),
+.table-striped-4n > tbody > tr:nth-child(4n+2):not(.table-striped-child) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.table-striped-4n:not(.table-sm) thead th {
+    background-color: transparent;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .collapse {
+        position: relative;
+    }
+
+        .collapse .navbar-nav {
+            position: absolute;
+        }
+}
+
+.height-0 {
+    height: 0 !important;
+}
+
+.table.p-0:not(.table-sm):not(.table-md):not(.dataTable) td,
+.table.p-0:not(.table-sm):not(.table-md):not(.dataTable) th {
+    padding: 0 5px;
+}
+
+    .table.p-0:not(.table-sm):not(.table-md):not(.dataTable) td:first-child,
+    .table.p-0:not(.table-sm):not(.table-md):not(.dataTable) th:first-child {
+        padding-right: 25px;
+    }
+
+    .table.p-0:not(.table-sm):not(.table-md):not(.dataTable) td:last-child,
+    .table.p-0:not(.table-sm):not(.table-md):not(.dataTable) th:last-child {
+        padding-left: 25px;
+    }
+
+.table-striped-child-hover tbody tr .packItemrow > tbody > tr:hover {
+    background-color: red !important;
+}
+
+.table-striped-child-hover {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+    .table-striped-child-hover > tbody > tr:hover {
+        background-color: #FFF6EA !important;
+    }
+
+    .table-striped-child-hover tbody tr {
+        background-color: azure !important
+    }
+
+.table.table-striped .table-striped-child-hover > thead > tr > th {
+    background-color: lightcyan !important
+}
+.table-striped-child-hover > thead > tr {
+    height: 40px;
 }
