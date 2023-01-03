@@ -4,6 +4,9 @@ using System.Text;
 using System.Linq;
 using WebAutomationSystem.DataModelLayer.ViewModels;
 using WebAutomationSystem.DataModelLayer.Services;
+using System.Threading.Tasks;
+using WebAutomationSystem.DataModelLayer.Entities;
+using System.Threading;
 
 namespace WebAutomationSystem.DataModelLayer.Repository
 {
@@ -63,10 +66,10 @@ namespace WebAutomationSystem.DataModelLayer.Repository
         public List<JobsChartWithUserInfoViewModel> JobsChartWithUserInfo()
         {
             var JobsChartQuery = (from JobsChart in _context.JobsCharts
-                                  join userJob in _context.UserJobs  on JobsChart.JobsChartID equals userJob.JobID
+                                  join userJob in _context.UserJobs on JobsChart.JobsChartID equals userJob.JobID
                                   join users in _context.Users on userJob.UserID equals users.Id
                                   where JobsChart.JobsChartLevel != 0
-                                  where userJob.IaHaveJob == true
+                                  where userJob.IsHaveJob == true
                                   select new JobsChartWithUserInfoViewModel()
                                   {
                                       JobsChartID = JobsChart.JobsChartID,
@@ -83,7 +86,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
         {
             var userid = (from uj in _context.UserJobs
                           where uj.JobID == jobid
-                          where uj.IaHaveJob == true
+                          where uj.IsHaveJob == true
                           select uj.UserID).Single();
             return userid;
         }
@@ -98,7 +101,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                 //Create LetterNumber
                 //Year/JobID/LetterID
                 //Get JobID
-                int getUserJobId = _context.UserJobs.Where(u => u.UserID == UserId && u.IaHaveJob == true)
+                int getUserJobId = _context.UserJobs.Where(u => u.UserID == UserId && u.IsHaveJob == true)
                                         .Select(uj => uj.JobID).Single();
 
                 currentLetter.LetterNumber = DateTime.Now.Year + "-" + getUserJobId + "-" + LetterID;
@@ -110,21 +113,12 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             }
         }
 
-        public List<MyLetterViewModel> MyLetter(string userId_reciever,
-                                                     DateTime fromdate,
-                                                        DateTime todate,
-                                                            byte classificationradio = 0,
-                                                                 byte replyradio = 2,
-                                                                    byte attachmentradio = 2,
-                                                                        byte readradio = 2,
-                                                                            byte searchTypeselected = 0,
-                                                                                byte immediatelytype = 0,
-                                                                                    string inputsearch = "")
+        public List<MyLetterViewModel> MyLetter(string userId_reciever, DateTime fromdate, DateTime todate, byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "")
         {
             var lettersQuery = (from SL in _context.SentLetters
                                 join L in _context.Letters on SL.LetterID equals L.LetterID
                                 join U in _context.Users on SL.userId_sender equals U.Id
-                                //where SL.userId_reciever == userId_reciever
+                                where SL.userId_reciever == userId_reciever
                                 select new MyLetterViewModel()
                                 {
                                     LetterID = L.LetterID,
@@ -272,15 +266,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
         }
 
 
-        public List<SentLetterViewModel> SentLetters(string userId_sender,
-                                             DateTime fromdate,
-                                                DateTime todate,
-                                                    byte classificationradio = 0,
-                                                         byte replyradio = 2,
-                                                            byte attachmentradio = 2,
-                                                                    byte searchTypeselected = 0,
-                                                                        byte immediatelytype = 0,
-                                                                            string inputsearch = "")
+        public List<SentLetterViewModel> SentLetters(string userId_sender, DateTime fromdate, DateTime todate, byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "")
         {
             var lettersQuery = (from SL in _context.SentLetters
                                 join L in _context.Letters on SL.LetterID equals L.LetterID
@@ -324,7 +310,9 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                                     ReplyDate = L.ReplyDate,
                                     LetterNumber = L.LetterNumber,
                                     LetterType = L.LetterType,
-                                    MainLetterID = L.MainLetterID
+                                    MainLetterID = L.MainLetterID,
+
+
                                 }).AsEnumerable();
 
             //جستجو در طبقه بندی نامه ها
@@ -417,14 +405,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return lettersQuery.ToList();
         }
 
-        public List<ReferLetterViewModel> ReferLetters(string userId,
-                                     DateTime fromdate,
-                                        DateTime todate,
-                                            byte classificationradio = 0,
-                                                    byte attachmentradio = 2,
-                                                            byte searchTypeselected = 0,
-                                                                byte immediatelytype = 0,
-                                                                    string inputsearch = "")
+        public List<ReferLetterViewModel> ReferLetters(string userId, DateTime fromdate, DateTime todate, byte classificationradio = 0, byte attachmentradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "")
         {
             var lettersQuery = (from RL in _context.ReferralLetters
                                 join L in _context.Letters on RL.LetterID equals L.LetterID
@@ -548,14 +529,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return lettersQuery.ToList();
         }
 
-        public List<RecievedReferLetterViewModel> RecievedReferLetters(string userId,
-                                                                DateTime fromdate,
-                                                                    DateTime todate,
-                                                                        byte classificationradio = 0,
-                                                                            byte attachmentradio = 2,
-                                                                                byte searchTypeselected = 0,
-                                                                                    byte immediatelytype = 0,
-                                                                                        string inputsearch = "")
+        public List<RecievedReferLetterViewModel> RecievedReferLetters(string userId, DateTime fromdate, DateTime todate, byte classificationradio = 0, byte attachmentradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "")
         {
             var lettersQuery = (from RL in _context.ReferralLetters
                                 join L in _context.Letters on RL.LetterID equals L.LetterID
@@ -679,12 +653,12 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return lettersQuery.ToList();
         }
 
-        public MyLetterViewModel ReadLetter(int LetterID)
+        public MyLetterViewModel ReadLetter(string userid, int LetterID)
         {
             var lettersQuery = (from SL in _context.SentLetters
                                 join L in _context.Letters on SL.LetterID equals L.LetterID
                                 join U in _context.Users on SL.userId_sender equals U.Id
-                                where L.LetterID == LetterID
+                                where L.LetterID == LetterID && SL.userId_reciever == userid
                                 select new MyLetterViewModel()
                                 {
                                     LetterID = L.LetterID,
@@ -736,7 +710,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             var userjob = (from UJ in _context.UserJobs
                            join JC in _context.JobsCharts on UJ.JobID equals JC.JobsChartID
                            where UJ.UserID == UserID
-                           where UJ.IaHaveJob == true
+                           where UJ.IsHaveJob == true
                            select JC.JobsChartName).Single();
             return userjob;
         }
@@ -746,7 +720,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             var userjob = (from UJ in _context.UserJobs
                            join JC in _context.JobsCharts on UJ.JobID equals JC.JobsChartID
                            where UJ.UserID == UserID
-                           where UJ.IaHaveJob == true
+                           where UJ.IsHaveJob == true
                            select JC.JobsChartID);
             if (userjob.Count() == 0)
             {
@@ -762,19 +736,38 @@ namespace WebAutomationSystem.DataModelLayer.Repository
         }
 
 
-        public void UpdateLetterReadStatus(int LetterID)
+        public void UpdateLetterReadStatus(string userID ,int LetterID)
         {
-            var result = (from l in _context.SentLetters where l.LetterID == LetterID select l);
+            var result = (from l in _context.SentLetters where l.LetterID == LetterID && l.userId_reciever== userID select l);
             var currentLetter = result.FirstOrDefault();
 
             if (result.Count() > 0)
             {
 
-                currentLetter.ReadType = true;;
-                
+                currentLetter.ReadType = true; 
+
                 _context.SentLetters.Attach(currentLetter);
                 _context.Entry(currentLetter).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
+            }
+        }
+
+        public async Task<Letters> AddAsync(Letters entity, CancellationToken cancellationToken)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+            }
+            try
+            {
+                await _context.AddAsync(entity, cancellationToken);
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(entity)} could not be saved", ex);
             }
         }
     }

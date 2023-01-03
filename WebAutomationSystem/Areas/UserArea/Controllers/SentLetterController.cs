@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAutomationSystem.CommonLayer.PublicClass;
 using WebAutomationSystem.DataModelLayer.Entities;
+using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.Services;
 
 namespace WebAutomationSystem.Areas.UserArea.Controllers
@@ -16,23 +18,21 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
     public class SentLetterController : Controller
     {
         private readonly ILettersRepository _iletter;
+        private readonly IUnitOfWork _context;
         private readonly UserManager<ApplicationUsers> _userManager;
-        public SentLetterController(ILettersRepository iletter, UserManager<ApplicationUsers> userManager)
+
+        private readonly ISentLettersRepository _sentLettersRepository;
+        public SentLetterController(ILettersRepository iletter, UserManager<ApplicationUsers> userManager, IUnitOfWork context, ISentLettersRepository sentLettersRepository)
         {
+            _sentLettersRepository = sentLettersRepository;
             _iletter = iletter;
             _userManager = userManager;
+            _context = context;
         }
 
-        public IActionResult Index(byte classificationradio = 0,
-                                     byte replyradio = 2,
-                                         byte attachmentradio = 2,
-                                             byte readradio = 2,
-                                                 byte searchTypeselected = 0,
-                                                     byte immediatelytype = 0,
-                                                         string inputsearch = "",
-                                                             string fromdate = "",
-                                                                 string todate = "")
+        public IActionResult Index(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
+             CancellationToken cancellationToken = new CancellationToken();
             //طبقه بندی
             switch (classificationradio)
             {
@@ -109,6 +109,11 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                          ConvertDateTime.ConvertShamsiToMiladi(fromdate),
                          ConvertDateTime.ConvertShamsiToMiladi(todate),
                          classificationradio, replyradio, attachmentradio, searchTypeselected, immediatelytype, inputsearch);
+
+            foreach (var item in model)
+            {
+                item.Users = _sentLettersRepository.GetByLetterId(item.LetterID, cancellationToken);
+            }
             return View(model);
         }
     }

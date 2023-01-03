@@ -20,9 +20,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly ILettersRepository _iletter;
         private readonly IUnitOfWork _context;
-        public RecievedReferLetterController(ILettersRepository iletter, 
-                                                UserManager<ApplicationUsers> userManager,
-                                                    IUnitOfWork context)
+        public RecievedReferLetterController(ILettersRepository iletter, UserManager<ApplicationUsers> userManager, IUnitOfWork context)
         {
             _userManager = userManager;
             _iletter = iletter;
@@ -30,15 +28,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
 
-        public IActionResult Index(byte classificationradio = 0,
-                                 byte replyradio = 2,
-                                     byte attachmentradio = 2,
-                                         byte readradio = 2,
-                                             byte searchTypeselected = 0,
-                                                 byte immediatelytype = 0,
-                                                     string inputsearch = "",
-                                                         string fromdate = "",
-                                                             string todate = "")
+        public IActionResult Index(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
             //طبقه بندی
             switch (classificationradio)
@@ -131,7 +121,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             TreeViewCreator();
 
             ViewBag.userJobId = _context.userJobUW.Get
-                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IaHaveJob == true).Select(s => s.JobID).Single();
+                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IsHaveJob == true).Select(s => s.JobID).Single();
             ViewBag.LetterId = LetterID;
             ViewBag.MainUserId = mainUserId;
             return PartialView("_ReferLetter");
@@ -206,7 +196,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
 
 
             ViewBag.ReservedJobList =
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
             ViewBag.JobJson = JsonConvert.SerializeObject(node);
         }

@@ -42,7 +42,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers.Component
             var JobsChartQuery = (from JobsChart in _context.JobsCharts
                                   join userJob in _context.UserJobs on JobsChart.JobsChartID equals userJob.JobID
                                   join users in _context.Users on userJob.UserID equals users.Id
-                                  where userJob.IaHaveJob == true
+                                  where userJob.IsHaveJob == true
                                   where users.Id == UserId
                                   select new UserInfoWithJobViewModel()
                                   {

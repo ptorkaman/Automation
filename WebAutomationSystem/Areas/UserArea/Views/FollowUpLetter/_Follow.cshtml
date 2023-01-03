@@ -57,7 +57,25 @@
             <br />
             @foreach (var item in Model)
             {
-                <span>&#10070;<span>نامه در تاریخ <span style="font-weight:bold; color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(item.ReferDate,"yyyy/MM/dd")</span> توسط <span style="font-weight:bold; color:darkgreen;">@item.Users_ReferUserId.FirstName @item.Users_ReferUserId.Family</span> به <span style="font-weight:bold; color:darkgreen;">@item.Users_RecieveUserId.FirstName @item.Users_RecieveUserId.Family</span> ارجاع داده شده است. پانوشت نامه <span style="font-weight:bold; color:darkgreen;">@item.Description</span></span></span>
+                <span>
+                    &#10070;
+                    <span>
+                        نامه در تاریخ
+                        <span style="font-weight:bold; color:darkgreen;">
+                            @ConvertDateTime.ConvertMiladiToShamsi(item.ReferDate,"yyyy/MM/dd")
+                        </span> توسط
+                        <span style="font-weight:bold; color:darkgreen;">
+                            @item.Users_ReferUserId.FirstName @item.Users_ReferUserId.Family
+                        </span> به
+                        <span style="font-weight:bold; color:darkgreen;">
+                            @item.Users_RecieveUserId.FirstName @item.Users_RecieveUserId.Family
+                        </span>
+                        ارجاع داده شده است. پانوشت نامه
+                        <span style="font-weight:bold; color:darkgreen;">
+                            @item.Description
+                        </span>
+                    </span>
+                </span>
                 <br />
             }
         }
@@ -65,5 +83,5 @@
 </div>
 
 <div class="modal-footer" style="text-align:left;">
-    <button class="btn btn-default" type="button" style="width:80px; border-radius:px;" data-dismiss="modal">بازگشت</button>
+    <button class="btn btn-default" type="button" style="width:80px; border-radius:px;margin-top:20px;" data-dismiss="modal">بازگشت</button>
 </div>

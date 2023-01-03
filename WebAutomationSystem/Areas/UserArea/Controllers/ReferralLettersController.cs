@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Stimulsoft.Report.Components;
+using Stimulsoft.Report.Mvc;
+using Stimulsoft.Report;
 using WebAutomationSystem.CommonLayer.PublicClass;
 using WebAutomationSystem.DataModelLayer.Entities;
 using WebAutomationSystem.DataModelLayer.Services;
+using System.Drawing;
 
 namespace WebAutomationSystem.Areas.UserArea.Controllers
 {
@@ -17,22 +21,16 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
     {
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly ILettersRepository _iletter;
+        private readonly IReferralLetterRepository _referralLetterRepository;
 
-        public ReferralLettersController(UserManager<ApplicationUsers> userManager, ILettersRepository iletter)
+        public ReferralLettersController(UserManager<ApplicationUsers> userManager, ILettersRepository iletter, IReferralLetterRepository referralLetterRepository)
         {
             _userManager = userManager;
             _iletter = iletter;
+            _referralLetterRepository = referralLetterRepository;
         }
 
-        public IActionResult Index(byte classificationradio = 0,
-                                     byte replyradio = 2,
-                                         byte attachmentradio = 2,
-                                             byte readradio = 2,
-                                                 byte searchTypeselected = 0,
-                                                     byte immediatelytype = 0,
-                                                         string inputsearch = "",
-                                                             string fromdate = "",
-                                                                 string todate = "")
+        public IActionResult Index(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
             //طبقه بندی
             switch (classificationradio)
@@ -112,5 +110,36 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                          classificationradio, attachmentradio, searchTypeselected, immediatelytype, inputsearch);
             return View(model);
         }
+
+        public IActionResult ReadLetter(int LetterID)
+        {
+            if (LetterID == 0)
+            {
+                return RedirectToAction("ErrorView", "Home");
+            }
+            //Update ReadLetter Status
+            _iletter.UpdateLetterReadStatus(_userManager.GetUserId(HttpContext.User), LetterID);
+            //
+            StiReport report = new StiReport();
+            var model = _iletter.ReadLetter(_userManager.GetUserId(HttpContext.User), LetterID);
+            report["letterdate"] = ConvertDateTime.ConvertMiladiToShamsi(model.LetterSentDate, "yyyy/MM/dd");
+            report["foriat"] = model.ImmediatellyStatusText;
+            report["attachment"] = model.AttachmentStatusText;
+            report["tabaghe"] = model.ClassificationStatusText;
+            report["lettercontent"] = model.LetterContent;
+            report["lettersubject"] = model.LetterSubject;
+            report["fromuser"] = _iletter.GetUserJob(model.UserID_Sender);
+            report["touser"] = _iletter.GetUserJob(model.UserID_Reciever);
+            ///Sent Image To Stimul
+            StiImage im = new StiImage();
+            im.Image = Image.FromFile("wwwroot/upload/signatureimage/" + _iletter.GetUserSignature(model.UserID_Sender));
+            report["signature"] = im.Image;
+            ////Font To Stimul
+            Stimulsoft.Base.StiFontCollection.AddFontFile("wwwroot/fonts/bmitra/B_Mitra.ttf");
+            ///
+            report.Load(StiNetCoreHelper.MapPath(this, "wwwroot/reports/letter.mrt"));
+            return StiNetCoreReportResponse.PrintAsPdf(report);
+        }
+
     }
 }

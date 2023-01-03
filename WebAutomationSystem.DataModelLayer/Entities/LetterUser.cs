@@ -10,5 +10,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public int LetterId { get; set; }
         public string UserId { get; set; }
         public ApplicationUsers User { get; set; }
+
+        public bool IsRead { get; set; }
     }
 }

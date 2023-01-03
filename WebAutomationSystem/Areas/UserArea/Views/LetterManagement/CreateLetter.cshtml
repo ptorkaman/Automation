@@ -99,7 +99,7 @@
                             <div style="color:darkgreen;">@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "yyyy/MM/dd")</div>
                         </div>
                     </div>
-                </div>             
+                </div>
 
                 <!--ImmediatellyStatus-->
                 <div class="row">
@@ -155,7 +155,7 @@
                 </div>
 
                 <!--ReplyDate-->
-                <div class="row"  style="margin-bottom:15px;">
+                <div class="row" style="margin-bottom:15px;">
                     <label asp-for="ReplyDate" class="control-label col-md-1 col-xs-12 LabelClass" for="BirthdayDate"></label>
                     <div class="input-group col-md-4 col-xs-12" style="">
                         <div class="input-group-addon"
@@ -174,11 +174,11 @@
                     <div class="col-md-2 col-xs-12" style="height:45px;">
                         <label class="col-md-6 col-xs-4">
                             دارد
-                            <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1" checked />
+                            <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1"  />
                         </label>
                         <label class="col-md-6 col-xs-4">
                             ندارد
-                            <input asp-for="AttachmentStatus" id="noattach" class="attachclass" type="radio" value="0" />
+                            <input asp-for="AttachmentStatus" id="noattach" class="attachclass" type="radio" value="0" checked />
                         </label>
                     </div>
                     <div class="col-md-3 col-xs-12">
@@ -202,7 +202,7 @@
                     <div class="col-md-4 col-xs-12" style="text-align:left; color:green;">
                         <span id="spnmessage" class="hidden"></span>
                     </div>
-                </div>               
+                </div>
 
                 <!--LetterSubject-->
                 <div class="row">
@@ -215,17 +215,17 @@
 
                 <!--reciever-->
                 <div class="row">
-                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>
-                    <div class="col-md-9 col-xs-12">
-                        <input asp-for="Recievers" type="text" class="form-control custominput" placeholder="گیرندگان نامه ..." />
-                        <span asp-validation-for="Recievers" class="text-danger"></span>
-                    </div>
+                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>                   
+                    <select multiple class="form-control select2 " asp-for="Recievers" asp-items="@(new SelectList(ViewBag.users, "UserId", "UserFullName"))">                        
+                    </select>
+                    <span asp-validation-for="Recievers" class="text-danger"></span>
                 </div>
                 <!--group-->
                 <div class="row">
-                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <label asp-for="GroupId" class="control-label col-md-2 col-xs-12 LabelClass"></label>
                     <div class="col-md-9 col-xs-12">
                         <select class="form-control select2" asp-items="@(new SelectList(ViewBag.group, "Id", "Title"))" name="GroupId">
+                            <option></option>
                         </select>
                         <span asp-validation-for="GroupId" class="text-danger"></span>
                     </div>
@@ -378,4 +378,23 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#userfullname").autocomplete({
+                source: function (request, response) {
+                    $.getJSON("/UserArea/LeaveReport/SearchInUser", {
+                        term: $("#userfullname").val().trim()
+                    },
+                        response)
+                },
+                select: function (e, u) {
+                    var uid = u.item;
+                    $("#userid").val(uid.id);
+                },
+                minLength: 2,
+            });
+        });
+    </script>
+
 }

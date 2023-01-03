@@ -33,7 +33,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             TreeViewCreator();
             ViewBag.JobIdList = JsonConvert.SerializeObject(_context.jobsChartUW.Get().Select(j => j.JobsChartID).ToList());
             ViewBag.userJobId = _context.userJobUW.Get
-                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IaHaveJob == true).Select(s => s.JobID).Single();
+                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IsHaveJob == true).Select(s => s.JobID).Single();
             return View();
         }
 
@@ -61,7 +61,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
 
 
             ViewBag.ReservedJobList =
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
             ViewBag.JobJson = JsonConvert.SerializeObject(node);
         }

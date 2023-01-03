@@ -51,6 +51,7 @@
                         <td>نوع نامه</td>
                         <td class="hidden">LetterType</td>
                         <td class="hidden">MainLetterID</td>
+                        <td class="hidden">متن نامه</td>
                         <td style="width:120px;">عملیات</td>
                     </tr>
                 </thead>
@@ -87,6 +88,7 @@
                             <td class="hidden">
                                 @item.LetterID
                             </td>
+                            
                             @if (item.LetterType == 1)
                             {
                                 <td>
@@ -106,17 +108,22 @@
                             <td class="hidden">
                                 @item.MainLetterID
                             </td>
-
+                            <td class="hidden">
+                                @Html.Raw(@item.LetterContent)
+                            </td>
                             <td>
                                 <div class="row">
-                                    <a asp-controller="Draft" asp-action="Delete"
-                                       asp-route-LetterID="@item.LetterID"
-                                       data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:65px; font-size:10px; margin-bottom:3px;"
-                                       class="btn btn-outline-danger">
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                        حذف
-                                    </a>
+                                    @if (item.Users.Count == 0 || item.Users.Any(x => x.ReadType == false))
+                                    {
+                                        <a asp-controller="Draft" asp-action="Delete"
+                                   asp-route-LetterID="@item.LetterID"
+                                   data-toggle="modal" data-target="#modal-action"
+                                   style="height:30px; width:65px; font-size:10px; margin-bottom:3px;"
+                                   class="btn btn-outline-danger">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                            حذف
+                                        </a>
+                                    }
                                 </div>
 
                             </td>
@@ -144,59 +151,38 @@
                 <div id="letterid" class="hidden">
                     0
                 </div>
-
                 موضوع : <span style="color:darkgreen;" id="spnsubject">---</span>
-
-                <br />
-                <br />
                 <br />
 
 
-                تاریخ نامه : <span style="color:darkgreen;" id="spnletterdate">---</span>
-
-                <br />
-                <br />
-                <br />
-
-                فوریت : <span style="color:darkgreen;" id="spnforiat">---</span>
-                <br />
-                <br />
+                <div class="row">
+                    <div class="col-md-4">تاریخ نامه : <span style="color:darkgreen;" id="spnletterdate">---</span></div>
+                    <div class="col-md-4">فوریت : <span style="color:darkgreen;" id="spnforiat">---</span></div>
+                    <div class="col-md-4">طبقه بندی : <span style="color:darkgreen;" id="spntabaghe">---</span></div>
+                </div>
                 <br />
 
-                طبقه بندی : <span style="color:darkgreen;" id="spntabaghe">---</span>
-                <br />
-                <br />
-                <br />
-
-                پیوست : <span style="color:darkgreen;" id="spnattach">---</span>
-                <br />
-                <br />
-                <br />
-
-                پاسخ : <span style="color:darkgreen;" id="spnreply">---</span>
-                <br />
-                <br />
-                <br />
-
-                تاریخ پاسخ : <span style="color:darkgreen;" id="spnreplydate">---</span>
-                <br />
-                <br />
-                <br />
-
+                <div class="row">
+                    <div class="col-md-4">پیوست : <span style="color:darkgreen;" id="spnattach">---</span></div>
+                    <div class="col-md-4">پاسخ : <span style="color:darkgreen;" id="spnreply">---</span></div>
+                    <div class="col-md-4">تاریخ پاسخ : <span style="color:darkgreen;" id="spnreplydate">---</span> </div>
+                </div> <br />
+                <div class="row">
+                    متن نامه  : <span style="color:darkgreen;" id="content">---</span>
+                </div>
             </div>
         </div>
     </div>
 
     <input id="SelectedUserToSent" name="SelectedUserToSent" type="text" class="hidden" />
     <div class="col-xs-12 form-group" style="margin-top:15px;">
-        <button id="btnsentLetter"  class="btn btn-outline-primary pull-right">
+        <button id="btnsentLetter" class="btn btn-outline-primary pull-right">
             <i class="glyphicon glyphicon-send"></i>
             ارسال نامه
         </button>
     </div>
 
     <div id="divmsg" style="text-align:center; border:1px solid #cbcbcb; border-radius:px;" class="alert col-md-12 hidden">
-
     </div>
 </div>
 
@@ -221,17 +207,17 @@
             $("#spnreply").html($(this).find('td').eq(6).html());
             $("#spnreplydate").html($(this).find('td').eq(7).html());
             $("#letterid").html($(this).find('td').eq(8).html());
-
-            ///
+          
+            debugger///
             LetterType = $(this).find('td').eq(10).html().trim();
             MainLetterID = $(this).find('td').eq(11).html().trim();
-
+            $("#content").html($(this).find('td').eq(12).html());
             if (LetterType == 2) {
                 $("#divtreeview").css('opacity', '0.5');
                 $("#divtreeview").css('pointer-events', 'none');
             }
             else {
-                   $("#divtreeview").css('opacity', '1');
+                $("#divtreeview").css('opacity', '1');
                 $("#divtreeview").css('pointer-events', 'auto');
             }
         });
@@ -259,15 +245,15 @@
             }).jstree({
                 "core": {
                     "themes": {
-                        "variant":"large"
+                        "variant": "large"
                     },
-                    "data":  @Html.Raw(ViewBag.JobJson) ,
+                    "data": @Html.Raw(ViewBag.JobJson) ,
                 },
                 "checkbox": {
-                    "Keep_selected_style":false
+                    "Keep_selected_style": false
                 },
                 "plugins": ["checkbox"],
-                checkbox: {three_state: false, cascade:""}
+                checkbox: { three_state: false, cascade: "" }
             }).on("loaded.jstree", function () {
                 $.jstree.reference('#jstreejobs').open_all();
                 h1('@ViewBag.userJobId');
@@ -309,9 +295,9 @@
             removeItem(AllIdjobList, prnode[0]);
 
             //غیر فعال کردن همه مشاغل غیر مجاز
-              for (var i = 0; i <= AllIdjobList.length; i++) {
-                  $.jstree.reference('#jstreejobs').disable_node(AllIdjobList[i]);
-              }
+            //for (var i = 0; i <= AllIdjobList.length; i++) {
+            //    $.jstree.reference('#jstreejobs').disable_node(AllIdjobList[i]);
+            //}
 
             //console.log('child = ' + JSON.stringify(childrenNode));
             //console.log('parent = ' + JSON.stringify(prnode));

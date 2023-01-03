@@ -29,13 +29,9 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly IUnitOfWork _context;
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly ILettersRepository _iletter;
-
         private readonly IWebHostEnvironment _hosting;
 
-        public LetterListController(IUnitOfWork context,
-                                        UserManager<ApplicationUsers> userManager,
-                                            ILettersRepository iletter,
-                                                IWebHostEnvironment hosting)
+        public LetterListController(IUnitOfWork context, UserManager<ApplicationUsers> userManager, ILettersRepository iletter, IWebHostEnvironment hosting)
         {
             _context = context;
             _userManager = userManager;
@@ -50,15 +46,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
         [Authorize(Roles = "RecievedLetter")]
-        public IActionResult Index(byte classificationradio = 0,
-                                        byte replyradio = 2,
-                                            byte attachmentradio = 2,
-                                                byte readradio = 2,
-                                                    byte searchTypeselected = 0,
-                                                        byte immediatelytype = 0,
-                                                            string inputsearch = "",
-                                                                string fromdate = "",
-                                                                    string todate = "")
+        public IActionResult Index(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
             //طبقه بندی
             switch (classificationradio)
@@ -140,18 +128,8 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
 
-
-
         [Authorize(Roles = "RecievedLetter")]
-        public IActionResult IndexSecretariat(byte classificationradio = 0,
-                            byte replyradio = 2,
-                                byte attachmentradio = 2,
-                                    byte readradio = 2,
-                                        byte searchTypeselected = 0,
-                                            byte immediatelytype = 0,
-                                                string inputsearch = "",
-                                                    string fromdate = "",
-                                                        string todate = "")
+        public IActionResult IndexSecretariat(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
             //طبقه بندی
             switch (classificationradio)
@@ -243,7 +221,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             TreeViewCreator();
 
             ViewBag.userJobId = _context.userJobUW.Get
-                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IaHaveJob == true).Select(s => s.JobID).Single();
+                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IsHaveJob == true).Select(s => s.JobID).Single();
             ViewBag.LetterId = LetterID;
             ViewBag.MainUserId = mainUserId;
             return PartialView("_ReferLetter");
@@ -318,7 +296,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
 
 
             ViewBag.ReservedJobList =
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
             ViewBag.JobJson = JsonConvert.SerializeObject(node);
         }
@@ -330,10 +308,10 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                 return RedirectToAction("ErrorView", "Home");
             }
             //Update ReadLetter Status
-            _iletter.UpdateLetterReadStatus(LetterID);
+            _iletter.UpdateLetterReadStatus(_userManager.GetUserId(HttpContext.User), LetterID);
             //
             StiReport report = new StiReport();
-            var model = _iletter.ReadLetter(LetterID);
+            var model = _iletter.ReadLetter(_userManager.GetUserId(HttpContext.User), LetterID);
             report["letterdate"] = ConvertDateTime.ConvertMiladiToShamsi(model.LetterSentDate, "yyyy/MM/dd");
             report["foriat"] = model.ImmediatellyStatusText;
             report["attachment"] = model.AttachmentStatusText;

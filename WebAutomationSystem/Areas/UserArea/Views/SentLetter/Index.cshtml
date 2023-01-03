@@ -17,7 +17,15 @@
     LS.ID = ViewBag.searchTypeselected;
     List<SentLetterSearchTypeModel> ListLetterSearchTypeModel = LS.GetSentLetterTypeModel();
 }
+<style>
+    tr:hover td {
+        background-color: #dcd6d6;
+    }
 
+    .hiddenRow {
+        padding: 0 !important;
+    }
+</style>
 
 <div class="content">
     <form>
@@ -136,11 +144,10 @@
 
     <hr style="width:100%; background-color:#cbcbcb; height:1px;" />
 
-    <div class="panel panel-body container-fluid"
-         style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb">
+ @*   <div class="panel panel-body container-fluid"
+         style="border-radius:px; box-shadow:3px 1px 1px 0 #cbcbcb; background-color:#ebebeb">*@
 
-        <div class="table-responsive"
-             style="border:1px solid #cbcbcb; border-radius:px; box-shadow:3px 3px 1px 0 #cbcbcb; margin-top:10px;">
+        <div class="table-responsive" style="border:1px solid #cbcbcb; border-radius:px; box-shadow:3px 3px 1px 0 #cbcbcb;">
             <table class="table table-bordered" style="background-color:white;">
                 <thead>
                     <tr style="font-size:14px; font-weight:bold; background-color:#cbcbcb;">
@@ -162,83 +169,123 @@
                 <tbody id="tabledraftlist">
                     @foreach (var item in Model)
                     {
-                    <tr style="font-size:13px;">
-                        <td style="width:60px; text-align:center;">@counter</td>
-                        <td style="text-align:right;">@item.LetterSubject</td>
-                        <td style="text-align:right;">@ConvertDateTime.ConvertMiladiToShamsi(item.LetterSentDate, "yyyy/MM/dd")</td>
-                        <td style="text-align:right;">@item.FirstName_Reciever @item.Family_Reciever</td>
-                        <td>@item.LetterNumber</td>
-                        <td style="text-align:right; background-color:@(item.ImmediatellyStatus == 2 ? "#f7f4b9" : item.ImmediatellyStatus == 3 ? "#f89797" : "")">
-                            @item.ImmediatellyStatusText
-                        </td>
-                        <td style="text-align:right; background-color:@(item.ClassificationStatus == 2 ? "#f7f4b9" : item.ClassificationStatus == 3 ? "#f89797" : "")">
-                            @item.ClassificationStatusText
-                        </td>
-
-
-
-                        @if (item.AttachmentStatus == true)
-                        {
-                            <td style="background-color:lightgreen;">
-                                <a href="~/upload/attachfile/@item.UserName_Reciever/@item.LetterAttachamentFile" style="color:blue;">
-                                    @item.AttachmentStatusText
-                                </a>
+                        <tr style="font-size:13px;" data-toggle="collapse" data-target="#accordion-@item.LetterID">
+                            <td style="width:60px; text-align:center;">@counter</td>
+                            <td style="text-align:right;">@item.LetterSubject</td>
+                            <td style="text-align:right;">@ConvertDateTime.ConvertMiladiToShamsi(item.LetterSentDate, "yyyy/MM/dd")</td>
+                            <td style="text-align:right;">@item.FirstName_Reciever @item.Family_Reciever</td>
+                            <td>@item.LetterNumber</td>
+                            <td style="text-align:right; background-color:@(item.ImmediatellyStatus == 2 ? "#f7f4b9" : item.ImmediatellyStatus == 3 ? "#f89797" : "")">
+                                @item.ImmediatellyStatusText
                             </td>
-                        }
-                        else
-                        {
-                            <td>ندارد</td>
-                        }
-
-
-                        <td style="text-align:right; background-color:@(item.ReplyStatus == true ? "lightgreen" : "")">
-                            @item.ReplyStatusText
-                        </td>
-                        @if (item.ReplyStatus == true)
-                        {
-                            <td style="text-align:right;">
-                                @ConvertDateTime.ConvertMiladiToShamsi(item.ReplyDate, "yyyy/MM/dd")
+                            <td style="text-align:right; background-color:@(item.ClassificationStatus == 2 ? "#f7f4b9" : item.ClassificationStatus == 3 ? "#f89797" : "")">
+                                @item.ClassificationStatusText
                             </td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
 
-                        @if (item.LetterType == 1)
-                        {
-                            <td style="font-size:11px; width:120px;">نامه</td>
-                        }
-                        else
-                        {
-                            <td style="background-color:#c39d9d; font-size:11px; width:120px;">
-                                پاسخ نامه
-                                @_context.lettersUW.Get(L => L.LetterID == item.MainLetterID).Select(n => n.LetterNumber).Single()
+
+
+                            @if (item.AttachmentStatus == true)
+                            {
+                                <td style="background-color:lightgreen;">
+                                    <a href="~/upload/attachfile/@item.UserName_Reciever/@item.LetterAttachamentFile" style="color:blue;">
+                                        @item.AttachmentStatusText
+                                    </a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>ندارد</td>
+                            }
+
+
+                            <td style="text-align:right; background-color:@(item.ReplyStatus == true ? "lightgreen" : "")">
+                                @item.ReplyStatusText
                             </td>
-                        }
+                            @if (item.ReplyStatus == true)
+                            {
+                                <td style="text-align:right;">
+                                    @ConvertDateTime.ConvertMiladiToShamsi(item.ReplyDate, "yyyy/MM/dd")
+                                </td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
 
-                        <td>
-                            <div class="row">
-                                <a asp-controller="Draft" asp-action="Delete"
+                            @if (item.LetterType == 1)
+                            {
+                                <td style="font-size:11px; width:120px;">نامه</td>
+                            }
+                            else
+                            {
+                                <td style="background-color:#c39d9d; font-size:11px; width:120px;">
+                                    پاسخ نامه
+                                    @_context.lettersUW.Get(L => L.LetterID == item.MainLetterID).Select(n => n.LetterNumber).Single()
+                                </td>
+                            }
+
+                            <td>
+                                <div class="row">
+                                    <a asp-controller="Draft" asp-action="Delete"
                                    asp-route-LetterID="@item.LetterID"
                                    data-toggle="modal" data-target="#modal-action"
                                    style="height:30px; width:75px; font-size:10px; margin-bottom:3px;"
                                    class="btn btn-outline-primary">
-                                    <i class="icon-reading"></i>
-                                    خواندن
-                                </a>
-                            </div>
+                                        <i class="icon-reading"></i>
+                                        خواندن
+                                    </a>
+                                </div>
 
-                        </td>
-                        <td class="hidden">
-                            @item.LetterID
-                        </td>
-                    </tr>
+                            </td>
+                            <td class="hidden">
+                                @item.LetterID
+                            </td>
+                        </tr>
+                        <tr style="background-color: #f7f4e5 !important;">
+                            <td colspan="20" class="hiddenRow">
+                                <div id="accordion-@item.LetterID" class="row collapse" style="margin-left: auto;  margin-right: auto;  width: 90%;">
+                                    <table class="table-striped-child-hover" style="color:blue">
+                                        <thead>
+                                            <tr style="background-color:#F2FFE9">
+                                                <th class="text-center">ردیف</th>
+                                                <th class="text-center">نام</th>
+                                                <th class="text-center"> نام خانوادگی </th>
+                                                <th class="text-center">سمت </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var itm in item.Users)
+                                            {
+                                                <tr>
+                                                    <td class="text-center" class="text-center">
+                                                        @itm.SentLetterdID
+                                                    </td>
+                                                    <td class="text-center" class="text-center">
+                                                        @itm.Users_Reciever.FirstName
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @itm.Users_Reciever.Family
+                                                    </td>
+                                                    <td class="text-center">
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
                         counter++;
                     }
 
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
+@*    </div>
+*@</div>

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using WebAutomationSystem.DataModelLayer.Entities;
+using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
 
@@ -19,12 +21,14 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly ILettersRepository _iletter;
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly IUnitOfWork _context;
+        private readonly ISentLettersRepository _sentLettersRepository;
 
-        public DraftController(ILettersRepository iletter, UserManager<ApplicationUsers> userManager, IUnitOfWork context)
+        public DraftController(ILettersRepository iletter, UserManager<ApplicationUsers> userManager, IUnitOfWork context, ISentLettersRepository sentLettersRepository)
         {
             _iletter = iletter;
             _userManager = userManager;
             _context = context;
+            _sentLettersRepository = sentLettersRepository; 
         }
 
         private void TreeViewCreator()
@@ -51,19 +55,24 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
 
 
             ViewBag.ReservedJobList =
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
             ViewBag.JobJson = JsonConvert.SerializeObject(node);
         }
 
         public IActionResult Index()
         {
+            CancellationToken cancellationToken = new CancellationToken();
             var model = _iletter.LettersList(_userManager.GetUserId(HttpContext.User));
+            foreach (var item in model)
+            {
+                item.Users = _sentLettersRepository.GetByLetterId(item.LetterID, cancellationToken);
+            }
             ViewBag.JobIdList = JsonConvert.SerializeObject(_context.jobsChartUW.Get().Select(j => j.JobsChartID).ToList());
             TreeViewCreator();
 
             ViewBag.userJobId = _context.userJobUW.Get
-                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IaHaveJob == true).Select(s => s.JobID).Single();
+                (u => u.UserID == _userManager.GetUserId(HttpContext.User) && u.IsHaveJob == true).Select(s => s.JobID).Single();
             return View(model);
         }
 

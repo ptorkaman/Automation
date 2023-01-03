@@ -27,15 +27,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             _context = context;
         }
 
-        public IActionResult Index(byte classificationradio = 0,
-                                     byte replyradio = 2,
-                                         byte attachmentradio = 2,
-                                             byte readradio = 2,
-                                                 byte searchTypeselected = 0,
-                                                     byte immediatelytype = 0,
-                                                         string inputsearch = "",
-                                                             string fromdate = "",
-                                                                 string todate = "")
+        public IActionResult Index(byte classificationradio = 0, byte replyradio = 2, byte attachmentradio = 2, byte readradio = 2, byte searchTypeselected = 0, byte immediatelytype = 0, string inputsearch = "", string fromdate = "", string todate = "")
         {
             //طبقه بندی
             switch (classificationradio)
@@ -117,13 +109,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
         [HttpGet]
-        public IActionResult Follow(int LetterID,
-                                        string LetterDate,
-                                             string LetterNumber,
-                                                string LetterSubject,
-                                                    string RecieverFullName,
-                                                        string ClassificationStatusText,
-                                                            string ImmediatellyStatusText)
+        public IActionResult Follow(int LetterID, string LetterDate, string LetterNumber, string LetterSubject, string RecieverFullName, string ClassificationStatusText, string ImmediatellyStatusText)
         {
             if (LetterID == 0)
             {

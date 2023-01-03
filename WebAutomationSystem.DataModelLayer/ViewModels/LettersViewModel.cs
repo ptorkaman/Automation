@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using WebAutomationSystem.DataModelLayer.Entities;
 
 namespace WebAutomationSystem.DataModelLayer.ViewModels
 {
@@ -26,7 +27,9 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         //گیرندگان   
         [Display(Name = "گیرندگان نامه")]
-        public List<int> Recievers { get; set; }
+        public List<string> Recievers { get; set; } = new List<string>();
+
+
 
         //گروه   
         [Display(Name = "گروه دریافت کننده نامه ")]
@@ -95,6 +98,7 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         public byte LetterType { get; set; }
         public int MainLetterID { get; set; }
+        public List<SentLetters> Users { get; set; }=new List<SentLetters>();
     }
 
     public class MyLetterViewModel
@@ -188,6 +192,9 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
 
         public byte LetterType { get; set; }
         public int MainLetterID { get; set; }
+
+        public List<string> Recievers { get; set; } = new List<string>();
+        public List<SentLetters> Users { get; set; }=new List<SentLetters>();
     }
 
     public class ReferLetterViewModel

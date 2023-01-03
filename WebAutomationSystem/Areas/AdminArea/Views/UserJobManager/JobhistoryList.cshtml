@@ -58,14 +58,14 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr style="font-size:13px; background-color:@(item.IaHaveJob == false ? "#ffebfb" : "lightgreen");">
+                        <tr style="font-size:13px; background-color:@(item.IsHaveJob == false ? "#ffebfb" : "lightgreen");">
                             <td style="width:60px; text-align:center;">@counter</td>
                             <td style="text-align:right;">@item.Jobs.JobsChartName</td>
                             <td>
                                 @ConvertDateTime.ConvertMiladiToShamsi(@item.StartJobDate, "yyyy/MM/dd")
                             </td>
 
-                            @if (item.IaHaveJob == false)
+                            @if (item.IsHaveJob == false)
                             {
                                 <td>
                                     @ConvertDateTime.ConvertMiladiToShamsi(@item.EndJobDate, "yyyy/MM/dd")
@@ -79,7 +79,7 @@
 
 
                             <td>
-                                @if (item.IaHaveJob == true)
+                                @if (item.IsHaveJob == true)
                                 {
                                     <span>دارد</span>
                                 }
@@ -90,7 +90,7 @@
                             </td>
 
                             <td>
-                                @if (item.IaHaveJob == true)
+                                @if (item.IsHaveJob == true)
                                 {
                                     <a asp-controller="UserJobManager" asp-action="DelJobFromUser"
                                        asp-route-UserJobId="@item.UserJobID"

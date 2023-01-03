@@ -104,7 +104,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
 
             ViewBag.ReservedJobList =
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
             return View();
         }

@@ -171,13 +171,12 @@
 
                             <td>
                                 <div class="row" style="text-align:center;">
-                                    <a asp-controller="Draft" asp-action="Delete"
-                                       asp-route-LetterID="@item.LetterID"
-                                       data-toggle="modal" data-target="#modal-action"
-                                       style="height:30px; width:50px; text-align:center; font-size:10px; margin-bottom:3px;"
+                                    <a asp-controller="ReferralLetters" asp-action="ReadLetter" target="_blank"
+                                   asp-route-LetterID="@item.LetterID"
+                                   style="height:30px;  font-size:10px; margin-bottom:3px;"
                                    class="btn btn-outline-primary">
                                         <i class="icon-reading"></i>
-                                        خواندن
+                                        <span style="text-align:center">خواندن</span>
                                     </a>
                                 </div>
 

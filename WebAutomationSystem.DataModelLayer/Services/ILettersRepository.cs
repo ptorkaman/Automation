@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using WebAutomationSystem.DataModelLayer.Entities;
+using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.ViewModels;
 
 namespace WebAutomationSystem.DataModelLayer.Services
 {
     public interface ILettersRepository
     {
+        Task<Letters> AddAsync(Letters entity, CancellationToken cancellationToken);
+
         List<LettersListViewModel> LettersList(string userId);
         List<JobsChartWithUserInfoViewModel> JobsChartWithUserInfo();
         void ExitLetterFromDraft(int LetterID, string UserId);
@@ -51,10 +57,10 @@ namespace WebAutomationSystem.DataModelLayer.Services
                                                                                     byte immediatelytype = 0,
                                                                                         string inputsearch = "");
 
-        MyLetterViewModel ReadLetter(int LetterID);
+        MyLetterViewModel ReadLetter(string userid,int LetterID);
         string GetUserJob(string UserID);
         int GetUserJobID(string UserID);
         string GetUserSignature(string UserID);
-        void UpdateLetterReadStatus(int LetterID);
+        void UpdateLetterReadStatus(string UserID,int LetterID);
     }
 }

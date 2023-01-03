@@ -41,7 +41,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return query;
         }
 
-        public async Task<TEntity> GetWithCondition(Expression<Func<TEntity, bool>> predicate,Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
+        public async Task<TEntity> GetWithCondition(Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>> include = null)
         {
             IQueryable<TEntity> query = _appDbContext.Set<TEntity>().AsNoTracking();
 
@@ -212,7 +212,7 @@ Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludable
                 //}
                 //else
                 //{
-                    _appDbContext.Remove(entity);
+                _appDbContext.Remove(entity);
                 //}
 
                 await _appDbContext.SaveChangesAsync(cancellationToken);
@@ -246,7 +246,7 @@ Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludable
                 //}
                 //else
                 //{
-                    _appDbContext.Remove(entity);
+                _appDbContext.Remove(entity);
                 //}
 
                 await _appDbContext.SaveChangesAsync(cancellationToken);
@@ -282,8 +282,8 @@ Expression<Func<TEntity, bool>> predicate, Func<IQueryable<TEntity>, IIncludable
                 //}
                 //else
                 //{
-                    _appDbContext.RemoveRange(entities);
-               // }
+                _appDbContext.RemoveRange(entities);
+                // }
 
                 await _appDbContext.SaveChangesAsync(cancellationToken);
 

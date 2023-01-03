@@ -26,7 +26,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             if (result.Count() > 0)
             {
                 currentJob.EndJobDate = DateTime.Now;
-                currentJob.IaHaveJob = false;
+                currentJob.IsHaveJob = false;
                 _context.UserJobs.Attach(currentJob);
                 _context.Entry(currentJob).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.SaveChanges();
@@ -43,7 +43,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             var query = (from userjob in _context.UserJobs
                          join user in _context.Users on userjob.UserID equals user.Id
                          join jobchart in _context.JobsCharts on userjob.JobID equals jobchart.JobsChartID
-                         where userjob.IaHaveJob == true
+                         where userjob.IsHaveJob == true
                          select new UserWithJobNameViewModel()
                          {
                              UserID = user.Id,

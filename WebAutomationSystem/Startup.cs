@@ -68,7 +68,10 @@ namespace WebAutomationSystem
             services.AddScoped<IBlobDescriptionRepository, BlobDescriptionRepository>();
             services.AddScoped<ISecretariatTypeRepository, SecretariatTypeRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
-
+            services.AddScoped<ISentLettersRepository, SentLettersRepository>();
+            services.AddScoped<IReferralLetterRepository, ReferralLetterRepository>();
+            services.AddScoped<IGroupUserRepository, GroupUserRepository>();
+            
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();

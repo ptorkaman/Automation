@@ -55,7 +55,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
 
 
             ViewBag.ReservedJobList = 
-               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IaHaveJob == true).Select(uj => uj.JobID).ToList());
+               JsonConvert.SerializeObject(_context.userJobUW.Get(uj => uj.IsHaveJob == true).Select(uj => uj.JobID).ToList());
 
 
             ViewBag.FullName = FirstName + " " + Family;
@@ -72,7 +72,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             {
                 UserJob UJ = new UserJob()
                 {
-                    IaHaveJob = true,
+                    IsHaveJob = true,
                     StartJobDate = DateTime.Now,
                     UserID = model.UserID,
                     JobID = model.JobID
@@ -93,7 +93,7 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                 return RedirectToAction("ErrorView", "Home");
             }
             var model = _context.userJobUW.Get(uj => uj.UserID == userId, null, "Jobs");
-            var checkForjob = model.Where(m => m.IaHaveJob == true).ToList();
+            var checkForjob = model.Where(m => m.IsHaveJob == true).ToList();
             if (checkForjob.Count() > 0)
             {
                 ViewBag.CheckJob = 1;

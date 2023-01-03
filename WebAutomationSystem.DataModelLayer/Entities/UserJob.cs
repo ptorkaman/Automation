@@ -14,7 +14,7 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public int JobID { get; set; }
         public DateTime StartJobDate { get; set; }
         public DateTime EndJobDate { get; set; }
-        public bool IaHaveJob { get; set; }
+        public bool IsHaveJob { get; set; }
 
         [ForeignKey("UserID")]
         public virtual ApplicationUsers Users { get; set; }

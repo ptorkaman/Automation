@@ -16,6 +16,17 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             _context = context;
         }
 
+        public List<UserFullNameViewModel> GetAll()
+        {
+            var query = (from U in _context.Users
+                         select new UserFullNameViewModel()
+                         {
+                             UserFullName = U.FirstName + " " + U.Family + " با کد پرسنلی : " + U.PersonalCode,
+                             UserId = U.Id
+                         }).ToList();
+            return query;
+        }
+
         public List<UserFullNameViewModel> GetUserForSearchInAutoCompelet(string term)
         {
             var query = (from U in _context.Users

@@ -7,6 +7,7 @@ namespace WebAutomationSystem.DataModelLayer.Services
 {
     public interface IUserRepository
     {
+        List<UserFullNameViewModel> GetAll();
         List<UserFullNameViewModel> GetUserForSearchInAutoCompelet(string term);
     }
 }

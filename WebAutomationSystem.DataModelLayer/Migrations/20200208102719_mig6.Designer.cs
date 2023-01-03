@@ -282,7 +282,7 @@ namespace WebAutomationSystem.DataModelLayer.Migrations
                     b.Property<DateTime>("EndJobDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IaHaveJob")
+                    b.Property<bool>("IsHaveJob")
                         .HasColumnType("bit");
 
                     b.Property<int>("JobID")

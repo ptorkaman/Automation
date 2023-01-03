@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +14,7 @@ using WebAutomationSystem.DataModelLayer.Entities;
 using WebAutomationSystem.DataModelLayer.Repository;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
+using static Stimulsoft.Report.StiRecentConnections;
 
 namespace WebAutomationSystem.Areas.UserArea.Controllers
 {
@@ -26,18 +28,20 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         private readonly IMapper _mapper;
         private readonly ISecretariatTypeRepository _secretariatTypeRepository;
         private readonly IGroupRepository _groupRepository;
-        public LetterManagementController(IUnitOfWork db,
-                                            UserManager<ApplicationUsers> userManager,
-                                                        IUploadFiles upload,
-                                                            IMapper mapper,
-                                                            ISecretariatTypeRepository secretariatTypeRepository, IGroupRepository groupRepository)   
+        private readonly IUserRepository _userRepository;
+        private readonly ILettersRepository _lettersRepository;
+        private readonly IGroupUserRepository _groupUserRepository;
+        public LetterManagementController(IUnitOfWork db, IUserRepository userRepository, ILettersRepository lettersRepository, UserManager<ApplicationUsers> userManager, IUploadFiles upload, IMapper mapper, ISecretariatTypeRepository secretariatTypeRepository, IGroupRepository groupRepository, IGroupUserRepository groupUserRepository)
         {
             _context = db;
             _userManager = userManager;
             _upload = upload;
             _mapper = mapper;
             _secretariatTypeRepository = secretariatTypeRepository;
-            _groupRepository= groupRepository;  
+            _groupRepository = groupRepository;
+            _userRepository = userRepository;
+            _lettersRepository = lettersRepository;
+            _groupUserRepository = groupUserRepository;
         }
 
 
@@ -54,43 +58,87 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
             ViewBag.LetterDate = LetterDate;
             ViewBag.type = _secretariatTypeRepository.GetAll();
             ViewBag.group = _groupRepository.GetAll();
+            ViewBag.users = _userRepository.GetAll();
 
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult CreateLetter(LettersViewModel model, string newfilePathName, string LetterNo, string LetterDate)
+        public async Task<IActionResult> CreateLetter(LettersViewModel model, string newfilePathName, string LetterNo, string LetterDate, CancellationToken cancellationToken)
         {
-            if (ModelState.IsValid)
+            using (var transaction = _context.BeginTransaction())
             {
-                //insert
-                if (model.ReplyStatus == 1)
+                try
                 {
-                    if(model.ReplyDate!=null)
-                    model.ReplyDate = ConvertDateTime.ConvertShamsiToMiladi(model.ReplyDate).ToString();
+                    //insert
+                    if (model.ReplyStatus == 1)
+                    {
+                        if (model.ReplyDate != null)
+                            model.ReplyDate = ConvertDateTime.ConvertShamsiToMiladi(model.ReplyDate).ToString();
+                    }
+                    if (model.AttachmentStatus == 1)
+                    {
+                        model.LetterAttachamentFile = newfilePathName;
+                    }
+                    model.UserID = _userManager.GetUserId(HttpContext.User);
+                    model.LetterCreateDate = DateTime.Now;
+                    var letter = await _lettersRepository.AddAsync(_mapper.Map<Letters>(model), cancellationToken);
+                    foreach (var item in model.Recievers)
+                    {                  
+                        SentLetters SL = new SentLetters
+                        {
+                            LetterID = letter.LetterID,
+                            ReadType = false,
+                            SentLetterDate = DateTime.Now,
+                            userId_sender = _userManager.GetUserId(HttpContext.User),
+                            userId_reciever = item
+                        };
+                        _context.sentLettersUW.Create(SL);
+                    }
+                    if (model.GroupId != null)
+                    {
+                        var grouplist = _groupUserRepository.GetByGroupId(model.GroupId.Value);
+                        foreach (var group in grouplist)
+                        {
+                            SentLetters SL = new SentLetters
+                            {
+                                LetterID = letter.LetterID,
+                                ReadType = false,
+                                SentLetterDate = DateTime.Now,
+                                userId_sender = _userManager.GetUserId(HttpContext.User),
+                                userId_reciever = group.UserId
+
+                            };
+                            _context.sentLettersUW.Create(SL);
+                        }
+                        
+                    }
+                    _context.save();
+                    transaction.Commit();
+
+                    if (model.Recievers.Count == 0 &&  model.GroupId == null)
+                        return RedirectToAction("Index", "Draft");
+                    else
+                        return RedirectToAction("Index", "SentLetter");
+
+
+
                 }
-                if (model.AttachmentStatus == 1)
+                catch (Exception ex)
                 {
-                    model.LetterAttachamentFile = newfilePathName;
+                    transaction.RollBack();
+                    ViewBag.LetterType = model.LetterType;
+                    ViewBag.MainLetterID = model.MainLetterID;
+                    ViewBag.LetterNo = LetterNo;
+                    ViewBag.LetterDate = LetterDate;
+                    if (model.LetterType == 2)
+                    {
+                        ViewBag.msg = "پاسخ نامه با شماره " + LetterNo + " و تاریخ " + LetterDate;
+                    }
+                    return View(model);
                 }
-                model.UserID = _userManager.GetUserId(HttpContext.User);
-                model.LetterCreateDate = DateTime.Now;
-                _context.lettersUW.Create(_mapper.Map<Letters>(model));
-                _context.save();
-
-                return RedirectToAction("Index", "Draft");
             }
-
-            ViewBag.LetterType =model.LetterType;
-            ViewBag.MainLetterID = model.MainLetterID;
-            ViewBag.LetterNo = LetterNo;
-            ViewBag.LetterDate = LetterDate;
-            if (model.LetterType == 2)
-            {
-                ViewBag.msg = "پاسخ نامه با شماره " + LetterNo + " و تاریخ " + LetterDate;
-            }
-            return View(model);
         }
 
         [HttpGet]
@@ -138,9 +186,9 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
 
-        
 
-                    [HttpPost]
+
+        [HttpPost]
         public ActionResult GetLetterBySecretariatTypeId(int id)
         {
             using (var transaction = _context.BeginTransaction())
