@@ -32,11 +32,11 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IBlobDescriptionRepository _blobDescriptionRepository;
         private readonly IUserRepository _userRepository;
-
+        private readonly IBlobStreamRepository _blobStreamRepository;
         //یکی از کلاسهای آیدنتیتی جهت کار با کاربران سیستم می باشد
         private readonly UserManager<ApplicationUsers> _userManager;
 
-        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper, IBlobRepository blobRepository, IWebHostEnvironment webHostEnvironment, IBlobDescriptionRepository blobDescriptionRepository, IUserRepository userRepository)
+        public UserManagerController(IUploadFiles upload, IUnitOfWork uow, UserManager<ApplicationUsers> userManager, IMapper mapper, IBlobRepository blobRepository, IWebHostEnvironment webHostEnvironment, IBlobDescriptionRepository blobDescriptionRepository, IUserRepository userRepository, IBlobStreamRepository blobStreamRepository) 
         {
             _webHostEnvironment = webHostEnvironment;
             _upload = upload;
@@ -45,7 +45,8 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             _mapper = mapper;
             _blobRepository = blobRepository;
             _blobDescriptionRepository = blobDescriptionRepository;
-            _userRepository = userRepository;   
+            _userRepository = userRepository;
+            _blobStreamRepository = blobStreamRepository;
         }
 
         public async Task<IActionResult> Index()
@@ -53,8 +54,8 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             var model = _context.userManagerUW.Get();
             foreach (var item in model)
             {
-                if(item.BlobDescriptionId!=null)
-                item.BlobDescription = await _blobDescriptionRepository.GetByIncludeId(item.BlobDescriptionId);
+                if (item.BlobDescriptionId != null)
+                    item.BlobDescription = await _blobDescriptionRepository.GetByIncludeId(item.BlobDescriptionId);
                 if (item.BlobDescriptionSignatureId != null)
                     item.BlobDescription = await _blobDescriptionRepository.GetByIncludeId(item.BlobDescriptionSignatureId);
             }
@@ -90,10 +91,10 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                     }
                     #region save file
                     var upload = model.Files;
-                    
-                    model.BlobDescriptionId= SaveImageFile(upload, null);
+
+                    model.BlobDescriptionId = SaveImageFile(upload, null, model.BlobDescriptionSignatureId);
                     upload = model.SignFiles;
-                    model.BlobDescriptionSignatureId= SaveImageFile(upload, null);
+                    model.BlobDescriptionSignatureId = SaveImageFile(upload, null, model.BlobDescriptionSignatureId);
 
                     #endregion
                     model.BirthDayDateMilladi = ConvertDateTime.ConvertShamsiToMiladi(birthdayDateuser);
@@ -134,11 +135,11 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                         }
                         return RedirectToAction("Index");
                     }
-                 
 
-                    
+
+
                 }
-                catch (Exception ex)    
+                catch (Exception ex)
                 {
                     //throw;
                     return RedirectToAction("ErrorView", "Home");
@@ -146,48 +147,97 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
             }
             return View(model);
         }
-        
+
         public IActionResult UploadImageFile(IEnumerable<IFormFile> filearray, string path)
         {
             string filename = _upload.UploadFileFunc(filearray, path);
-           var blobDescriptionid= SaveImageFile(filearray, path);
-            return Json(new { status = "success", imagename = filename, blobDescriptionId= blobDescriptionid });
+            var blobDescriptionid = SaveImageFile(filearray, path, null);
+            return Json(new { status = "success", imagename = filename, blobDescriptionId = blobDescriptionid });
         }
-        public long? SaveImageFile(IEnumerable<IFormFile> filearray, string path)
+        public long? SaveImageFile(IEnumerable<IFormFile> filearray, string path, long? blobDescriptionId)
         {
-            #region save blob
-            CancellationToken cancellationToken = new CancellationToken();
-            var upload = filearray;
-            if (upload != null && upload.Any())
+            if (blobDescriptionId == null)
             {
-                var check = _blobRepository.CheckFileExtension(upload, cancellationToken);
-                if (check)
+                #region save blob
+                CancellationToken cancellationToken = new CancellationToken();
+                var upload = filearray;
+                if (upload != null && upload.Any())
                 {
-                    var user = _userManager.GetUserAsync(HttpContext.User);
-                    var result = _blobRepository.SaveFile(upload.ToList(), user.Id, cancellationToken);
-                    return result;
-                    //return Json(new { status = "success", imagename = result.Blob.BlobStream.File });
+                    var check = _blobRepository.CheckFileExtension(upload, cancellationToken);
+                    if (check)
+                    {
+                        var user = _userManager.GetUserAsync(HttpContext.User);
+                        var result = _blobRepository.SaveFile(upload.ToList(), user.Id, cancellationToken,null);
+                        return result;
+                    }
+                    else
+                    {
+                        TempData["Error"] = "فرمت فایل وارد شده صحیح نمیباشد ";
+                        return null;
+                    }
                 }
-                else
-                {
-                    TempData["Error"] = "فرمت فایل وارد شده صحیح نمیباشد ";
-                    return null;
-                }
+                return null;
+
+                #endregion
             }
-            return null;
+            else
+            {
+                #region update blob
+                CancellationToken cancellationToken = new CancellationToken();
+                var upload = filearray;
+                if (upload != null && upload.Any())
+                {
+                    var check = _blobRepository.CheckFileExtension(upload, cancellationToken);
+                    if (check)
+                    {
+                        var user = _userManager.GetUserAsync(HttpContext.User);
+                        var blobs = _blobRepository.GetByBlobDescriptionId(blobDescriptionId.Value);
+                        foreach (var item in blobs)
+                        {
+                            item.IsDeleted = true;
+                            _context.blobUW.Update(item);
+                        }
+                        var result = _blobRepository.SaveFile(upload.ToList(), user.Id, cancellationToken, blobDescriptionId);
+                        return blobDescriptionId;
+                    }
+                    else
+                    {
+                        TempData["Error"] = "فرمت فایل وارد شده صحیح نمیباشد ";
+                        return null;
+                    }
+                }
+                return null;
 
-            #endregion
+                #endregion
+            }
+
         }
-
         [HttpGet]
-        public IActionResult EditUser(string userId)
+        public  IActionResult EditUser(string userId)
         {
             if (userId == null)
             {
                 return RedirectToAction("ErrorView", "Home");
             }
             var user = _context.userManagerUW.GetById(userId);
+
+            if (user != null && user.BlobDescriptionId != null)
+            {
+                user.BlobDescription = _blobDescriptionRepository.GetByIdAsync(user.BlobDescriptionId.Value).Result;
+                user.BlobDescription.Blobs = _blobRepository.GetByBlobDescriptionId(user.BlobDescriptionId.Value);
+                user.BlobDescription.Blobs.FirstOrDefault().BlobStream = _blobStreamRepository.GetByBlobId(user.BlobDescription.Blobs.FirstOrDefault().Id);
+
+            }
+
+            if (user != null && user.BlobDescriptionSignatureId != null)
+            {
+                user.BlobDescriptionSignature = _blobDescriptionRepository.GetByIdAsync(user.BlobDescriptionSignatureId.Value).Result;
+                user.BlobDescriptionSignature.Blobs = _blobRepository.GetByBlobDescriptionId(user.BlobDescriptionSignatureId.Value);
+                user.BlobDescriptionSignature.Blobs.FirstOrDefault().BlobStream = _blobStreamRepository.GetByBlobId(user.BlobDescriptionSignature.Blobs.FirstOrDefault().Id);
+            }
+
             var mapUser = _mapper.Map<UserViewModel>(user);
+
             return View(mapUser);
         }
 
@@ -200,6 +250,22 @@ namespace WebAutomationSystem.Areas.AdminArea.Controllers
                 ModelState.AddModelError("BirthDayDateMilladi", "لطفا تاریخ تولد را وارد نمایید");
                 return View(model);
             }
+            #region save file
+            var upload = model.Files;
+            if (model.BlobDescriptionId != null)
+            {
+                model.BlobDescriptionId = SaveImageFile(upload, null, model.BlobDescriptionId);
+            }
+            else
+                model.BlobDescriptionId = SaveImageFile(upload, null, model.BlobDescriptionId);
+
+            upload = model.SignFiles;
+            if (model.BlobDescriptionSignatureId != null)
+                model.BlobDescriptionSignatureId = SaveImageFile(upload, null, model.BlobDescriptionSignatureId);
+            else
+                model.BlobDescriptionSignatureId = SaveImageFile(upload, null, model.BlobDescriptionSignatureId);
+
+            #endregion
             model.ImagePath = newImagePathName;
             model.SignaturePath = newSignaturePathName;
             if (ModelState.IsValid)

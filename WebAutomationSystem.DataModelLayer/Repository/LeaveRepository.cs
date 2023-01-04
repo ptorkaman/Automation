@@ -93,12 +93,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
 
             return t.Hours + " ساعت و " + t.Minutes + " دقیقه ";
         }
-        public List<LeaveListViewModel> LeaveList(string userId_request,
-                                                    int leaveType,
-                                                        int leaveAccept,
-                                                            DateTime fromdate,
-                                                                DateTime todate,
-                                                                    string confirmname = "")
+        public List<LeaveListViewModel> LeaveList(string userId_request, int leaveType, int leaveAccept, DateTime fromdate, DateTime todate, string confirmname = "")
         {
             var query = (from L in _context.Leaves
                          join U in _context.Users on L.UserID_Confirm equals U.Id

@@ -21,5 +21,8 @@ namespace WebAutomationSystem.DataModelLayer.Entities
         public virtual ApplicationUsers Users_Reciever { get; set; }
         [ForeignKey("LetterID")]
         public virtual Letters Letter { get; set; }
+
+        public bool IsHiddenReciver { get; set; }//رونوشت یا گیرنده مخفی
+        public bool IsCopyReciver { get; set; }//رونوشت
     }
 }

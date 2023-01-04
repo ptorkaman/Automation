@@ -27,7 +27,7 @@ using WebAutomationSystem.DataModelLayer.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f7fb458e728c18a9438dcc37c91829a3b926ad2d", @"/Views/Shared/_Modal.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc2646711b3d929bc2a9ca88067395ec98d1fdbc", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"10705b5654e17ff1cccf8b35f7e1569a21073469", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__Modal : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WebAutomationSystem.CommonLayer.PublicClass.BootstrapModel>
     #nullable disable

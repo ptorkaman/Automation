@@ -193,6 +193,14 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "DNTCaptcha.Core": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "DNTPersianUtils.Core": {
+              "target": "Package",
+              "version": "[5.4.1, )"
+            },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[8.1.0, )"

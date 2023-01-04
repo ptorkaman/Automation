@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "CreateLetter";
 }
+
 <style>
     .LabelClass {
         font-weight: bold;
@@ -42,7 +43,6 @@
         background-color: #e4dddd;
     }
 </style>
-
 <div class="content">
 
     <div class="panel panel-heading" style="box-shadow:3px 1px 1px 0 #cbcbcb; border-radius:px;">
@@ -174,7 +174,7 @@
                     <div class="col-md-2 col-xs-12" style="height:45px;">
                         <label class="col-md-6 col-xs-4">
                             دارد
-                            <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1"  />
+                            <input asp-for="AttachmentStatus" id="yesattach" class="attachclass" type="radio" value="1" />
                         </label>
                         <label class="col-md-6 col-xs-4">
                             ندارد
@@ -215,22 +215,63 @@
 
                 <!--reciever-->
                 <div class="row">
-                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>                   
-                    <select multiple class="form-control select2 " asp-for="Recievers" asp-items="@(new SelectList(ViewBag.users, "UserId", "UserFullName"))">                        
+                    <label asp-for="Recievers" class="control-label col-md-1 col-xs-12 LabelClass"></label>
+                    <select multiple class="form-control select2  " asp-for="Recievers" id="id_select2_example">
+                        <option></option>
+                        @foreach (var item in ViewBag.users)
+                        {
+                            var data = "data:image/jpg;base64," + Convert.ToBase64String(item.BlobStream.File);
+                            <option value="@item.UserId" data-img_src=@data>
+                                @($"{item.UserFullName}  ")
+
+                            </option>
+                        }
                     </select>
-                    <span asp-validation-for="Recievers" class="text-danger"></span>
-                </div>
-                <!--group-->
-                <div class="row">
-                    <label asp-for="GroupId" class="control-label col-md-2 col-xs-12 LabelClass"></label>
-                    <div class="col-md-9 col-xs-12">
-                        <select class="form-control select2" asp-items="@(new SelectList(ViewBag.group, "Id", "Title"))" name="GroupId">
-                            <option></option>
-                        </select>
-                        <span asp-validation-for="GroupId" class="text-danger"></span>
-                    </div>
                 </div>
 
+                <!--CopyRecievers-->
+                <div class="row">
+                    <label asp-for="CopyRecievers" class="control-label col-md-2 col-xs-12 LabelClass"></label>
+                    <select multiple class="form-control select2  " asp-for="CopyRecievers" id="id_select3_example">
+                        <option></option>
+                        @foreach (var item in ViewBag.users)
+                        {
+                            var data = "data:image/jpg;base64," + Convert.ToBase64String(item.BlobStream.File);
+                            <option value="@item.UserId" data-img_src=@data>
+                                @($"{item.UserFullName}  ")
+
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <!--HiddenRecievers-->
+                <div class="row">
+                    <label asp-for="HiddenRecievers" class="control-label col-md-2 col-xs-12 LabelClass"></label>
+                    <select multiple class="form-control select2  " asp-for="HiddenRecievers" id="id_select4_example">
+                        <option></option>
+                        @foreach (var item in ViewBag.users)
+                        {
+                            var data = "data:image/jpg;base64," + Convert.ToBase64String(item.BlobStream.File);
+                            <option value="@item.UserId" data-img_src=@data>
+                                @($"{item.UserFullName}  ")
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <!--group-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <label asp-for="GroupId" class="control-label col-md-6 col-xs-12 LabelClass"></label>
+                        <select class="form-control select2" class="col-md-12 col-xs-12" asp-items="@(new SelectList(ViewBag.group, "Id", "Title"))" name="GroupId">
+                            <option></option>
+                        </select>
+                    </div>    
+                    @*<div class="col-md-6">
+                        <button type="button" class="btn btn-info" title="تعریف گروه جدید" style="margin-top: 30px;border-radius: 5px !important;float: left;">تعریف گروه جدید<span class="fa fa-plus"></span></button>
+                    </div>*@
+                </div>
             </div>
 
             <div style="text-align:center; width:100%; background-color:#cbcbcb; height:1px; margin-bottom:15px;" class="col-xs-12"></div>
@@ -277,7 +318,28 @@
 
 @section UserScripts{
     <script src="~/js/modal/modal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.js"></script>
+    <script type="text/javascript">
+        function custom_template(obj) {
+            var data = $(obj.element).data();
+            var text = $(obj.element).text();
+            if (data && data['img_src']) {
+                img_src = data['img_src'];
+                template = $("<div class=\'form-inline'><img src=\"" + img_src + "\" style=\"width:20px;height:20px;\"/><p style=\"font-weight: 100;font-size:12pt;text-align:right;display:inline;font-family: 'IRANSansWeb';\">" + text + "</p></div>");
+                return template;
+            }
+        }
+        var options = {
+            'templateSelection': custom_template,
+            'templateResult': custom_template,
+        }
+        $('#id_select2_example').select2(options);
+        $('#id_select3_example').select2(options);
+        $('#id_select4_example').select2(options);
+        $('.select2-container--default .select2-selection--single').css({ 'height': '220px' });
 
+    </script>
     @* کنترل وضعیت پاسخ *@
     <script>
         $(".checkreply").on('change', function () {

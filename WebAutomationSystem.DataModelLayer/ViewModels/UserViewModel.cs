@@ -134,6 +134,10 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
     {
         public string UserId { get; set; }
         public string UserFullName { get; set; }
+        public long? BlobDescriptionId { get;  set; }
+        public BlobDescription BlobDescription { get;  set; }
+        public Blob Blob { get;  set; }
+        public BlobStream BlobStream { get;  set; }
     }
 
     public class UserWithJobNameViewModel

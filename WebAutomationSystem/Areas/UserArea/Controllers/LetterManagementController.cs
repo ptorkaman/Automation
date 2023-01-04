@@ -96,23 +96,51 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                         };
                         _context.sentLettersUW.Create(SL);
                     }
-                    if (model.GroupId != null)
+                    foreach (var item in model.CopyRecievers)
                     {
-                        var grouplist = _groupUserRepository.GetByGroupId(model.GroupId.Value);
-                        foreach (var group in grouplist)
+                        SentLetters SL = new SentLetters
                         {
-                            SentLetters SL = new SentLetters
+                            LetterID = letter.LetterID,
+                            ReadType = false,
+                            SentLetterDate = DateTime.Now,
+                            userId_sender = _userManager.GetUserId(HttpContext.User),
+                            userId_reciever = item,
+                            IsCopyReciver = true
+                        };
+                        _context.sentLettersUW.Create(SL);
+                    }
+                    foreach (var item in model.HiddenRecievers)
+                    {
+                        SentLetters SL = new SentLetters
+                        {
+                            LetterID = letter.LetterID,
+                            ReadType = false,
+                            SentLetterDate = DateTime.Now,
+                            userId_sender = _userManager.GetUserId(HttpContext.User),
+                            userId_reciever = item,
+                            IsHiddenReciver=true
+                        };
+                        _context.sentLettersUW.Create(SL);
+                    }
+                    if (model.GroupIds.Count>0)
+                    {
+                        foreach (var item in model.GroupIds)
+                        {
+                            var grouplist = _groupUserRepository.GetByGroupId(item);
+                            foreach (var group in grouplist)
                             {
-                                LetterID = letter.LetterID,
-                                ReadType = false,
-                                SentLetterDate = DateTime.Now,
-                                userId_sender = _userManager.GetUserId(HttpContext.User),
-                                userId_reciever = group.UserId
+                                SentLetters SL = new SentLetters
+                                {
+                                    LetterID = letter.LetterID,
+                                    ReadType = false,
+                                    SentLetterDate = DateTime.Now,
+                                    userId_sender = _userManager.GetUserId(HttpContext.User),
+                                    userId_reciever = group.UserId
 
-                            };
-                            _context.sentLettersUW.Create(SL);
-                        }
-                        
+                                };
+                                _context.sentLettersUW.Create(SL);
+                            }
+                        }                       
                     }
                     _context.save();
                     transaction.Commit();
@@ -121,9 +149,6 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
                         return RedirectToAction("Index", "Draft");
                     else
                         return RedirectToAction("Index", "SentLetter");
-
-
-
                 }
                 catch (Exception ex)
                 {

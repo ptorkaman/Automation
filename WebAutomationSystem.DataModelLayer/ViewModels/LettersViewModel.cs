@@ -29,11 +29,19 @@ namespace WebAutomationSystem.DataModelLayer.ViewModels
         [Display(Name = "گیرندگان نامه")]
         public List<string> Recievers { get; set; } = new List<string>();
 
+        //گیرندگان رونوشت   
+        [Display(Name = "گیرندگان رونوشت نامه")]
+        public List<string> CopyRecievers { get; set; } = new List<string>();
+        
 
+        //گیرندگان مخفی   
+        [Display(Name = "گیرندگان مخفی نامه")]
+        public List<string> HiddenRecievers { get; set; } = new List<string>();
 
         //گروه   
         [Display(Name = "گروه دریافت کننده نامه ")]
         public int? GroupId { get; set; }
+        public List<int> GroupIds { get; set; } = new List<int>();
 
         //فوریت نامه
         [Display(Name = "فوریت")]

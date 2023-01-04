@@ -29,11 +29,7 @@ namespace WebAutomationSystem.Areas.UserArea.Controllers
         }
 
 
-        public IActionResult Index(int leaveType = 0,
-                                  int leaveAccept = 0,
-                                        string fromdate = "",
-                                            string todate = "",
-                                                string confirmname = "")
+        public IActionResult Index(int leaveType = 0, int leaveAccept = 0, string fromdate = "", string todate = "", string confirmname = "")
         {
             //leaveType
             if (leaveType == 0)

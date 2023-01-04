@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DNTCaptcha.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using WebAutomationSystem.DataModelLayer.Entities;
 using WebAutomationSystem.DataModelLayer.Services;
 using WebAutomationSystem.DataModelLayer.ViewModels;
@@ -15,14 +17,16 @@ namespace WebAutomationSystem.Controllers
         private readonly SignInManager<ApplicationUsers> _signInManager;
         private readonly UserManager<ApplicationUsers> _userManager;
         private readonly ILettersRepository _iltter;
+        private readonly IDNTCaptchaValidatorService _validatorService;
+        private readonly DNTCaptchaOptions _captchaOptions;
 
-        public AccountController(SignInManager<ApplicationUsers> signInManager, 
-                                    UserManager<ApplicationUsers> userManager,
-                                        ILettersRepository iletter)
+        public AccountController(SignInManager<ApplicationUsers> signInManager, IDNTCaptchaValidatorService validatorService, UserManager<ApplicationUsers> userManager, ILettersRepository iletter, IOptions<DNTCaptchaOptions> options)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _iltter = iletter;
+            _validatorService = validatorService;
+            _captchaOptions = options == null ? throw new ArgumentNullException(nameof(options)) : options.Value;
         }
 
         [HttpGet]
@@ -54,6 +58,11 @@ namespace WebAutomationSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!_validatorService.HasRequestValidCaptchaEntry(Language.Persian, DisplayMode.NumberToWord))
+                {
+                    ModelState.AddModelError(_captchaOptions.CaptchaComponent.CaptchaInputName, "لطفا متن را به صورت عدد وارد کنید.");
+                    return View(model);
+                }
                 var user = await _userManager.FindByNameAsync(model.UserName);
 
                 if (user == null)
@@ -99,7 +108,7 @@ namespace WebAutomationSystem.Controllers
                         return View(model);
                     }
                 }
-           
+
             }
 
             return View(model);

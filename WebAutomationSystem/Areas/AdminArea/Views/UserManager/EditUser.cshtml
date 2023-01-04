@@ -150,25 +150,65 @@
                         <div class="col-md-6">
                             <div class="form-horizontal">
 
-                                <label for="ImagePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
+                                @*<label for="ImagePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
                                         border:1px solid #cbcbcb;">
                                     انتخاب تصویر
                                     <i class="icon-file-picture"></i>
-                                </label>
-                                <input asp-for="ImagePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
-                                <span id="spnimageuser" style="color:black; font-size:12px;"></span>
+                                </label>*@
+                                <input accept=".jpg, .png, .tif, .tiff, .jpeg" type='file' id="imgInp" asp-for="Files" />
+
+
+
+                                @* <input asp-for="ImagePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnimageuser" style="color:black; font-size:12px;"></span>*@
 
                                 <!--نام جدید تصویر-->
-                                <input id="newImagePathName" name="newImagePathName" value="@Model.ImagePath" hidden />
+                                <input id="newImagePathName" name="newImagePathName" hidden />
 
-                                <input type="button" value="آپلود و نمایش تصویر" id="btnupload" onclick="UploadImage()" class="btn"
-                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />
+                                @*<input type="button" value="آپلود و نمایش تصویر" id="btnupload" onclick="UploadImage()" class="btn"
+                                style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />*@
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <img id="imguserimage" src="~/upload/userimage/@Model.ImagePath"
-                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                         
+                            @if (Model.BlobDescription != null && Model.BlobDescription?.Blobs != null)
+                            {
+                                foreach (var file in Model.BlobDescription.Blobs)
+                                {
+                                    <div class="avatar-item">
+                                        @{
+                                            var data = "data:image/jpg;base64," + Convert.ToBase64String(file.BlobStream.File);
+                                           
+                                                <img src=@data height="110" width="130" id="blah" />
+                                           
+                                                <div class="avatar-badge" title="" data-toggle="tooltip" data-original-title="دانلود">
+                                                    <a href='@Url.Action("Download", "File")?Id=@file.Id' target="_blank">
+                                                        <i class="fas fa-cloud-download-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div style="padding-top: 5px;position: absolute;">  @file.Title   </div>
+                                                <div style="margin-right:80px" class="avatar-badge" title="" data-toggle="tooltip" data-original-title="حذف">
+                                                    <a href="" data-confirm="حذف پیوست|آیا از حذف این پیوست اطمینان دارید؟"
+                                               data-confirm-text-yes="حذف"
+                                               data-confirm-text-cancel="انصراف"
+                                               data-confirm-yes="confirmDelete(@file.Id)" id="delete_" @file.Id>
+                                                        <i class="fas fa-trash-alt ico-red"></i>
+                                                    </a>
+                                                </div>
+                                            <input asp-for="BlobDescriptionId" class="hidden" />
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <img id="blah" src="~/upload/userimage/defaultuserImage1.jpg" alt="your image" height="110" width="130" style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                            }
+                           @* <img id="blah" src="~/upload/userimage/defaultuserImage1.jpg" alt="your image" height="110" width="130" style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />*@
+
+                            @*<img id="imguserimage" src="~/upload/userimage/defaultuserImage1.jpg"
+                            style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />*@
 
                             <div id="divmessage" class="text-center hidden"></div>
                         </div>
@@ -182,23 +222,60 @@
                         <div class="col-md-6">
                             <div class="form-horizontal">
 
-                                <label for="SignaturePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
+                               @* <label for="SignaturePath" class="btn" style="width:145px; height:30px; margin-bottom:5px; border-radius:3px;
                                         border:1px solid #cbcbcb;">
                                     انتخاب امضا
                                     <i class="icon-file-picture"></i>
-                                </label>
-                                <input asp-for="SignaturePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
-                                <span id="spnsignatureuser" style="color:black;"></span>
+                                </label>*@
+                                <input accept=".jpg, .png, .tif, .tiff, .jpeg" type='file' id="SigInp" asp-for="SignFiles" />
+
+                                @*   <input asp-for="SignaturePath" type="file" accept=".jpg, .png, .tif, .tiff, .jpeg" style="visibility:hidden" />
+                                <span id="spnsignatureuser" style="color:black;"></span>*@
                                 <!--نام جدید تصویر-->
-                                <input id="newSignaturePathName" name="newSignaturePathName" value="@Model.SignaturePath" hidden />
-                                <input type="button" value="آپلود و نمایش امضا" onclick="UploadSignature()" id="btnuploadsignature" class="btn"
-                                       style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />
+                                <input id="newSignaturePathName" name="newSignaturePathName" hidden />
+                                @*<input type="button" value="آپلود و نمایش امضا" onclick="UploadSignature()" id="btnuploadsignature" class="btn"
+                                style="height:30px; border-radius:3px; border:1px solid #cbcbcb; width:145px; margin-bottom:10px;" />*@
                             </div>
                         </div>
 
                         <div class="col-md-6">
-                            <img id="imgusersignature" src="~/upload/signatureimage/@Model.SignaturePath"
-                                 style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                      
+                            @if (Model.BlobDescriptionSignature != null && Model.BlobDescriptionSignature?.Blobs != null)
+                            {
+                                foreach (var file in Model.BlobDescriptionSignature.Blobs)
+                                {
+                                    <div class="avatar-item">
+                                        @{
+                                            var data = "data:image/jpg;base64," + Convert.ToBase64String(file.BlobStream.File);
+
+                                            <img src=@data height="110" width="130" id="imgusersignature" />
+                                           
+                                                <div class="avatar-badge" title="" data-toggle="tooltip" data-original-title="دانلود">
+                                                    <a href='@Url.Action("Download", "File")?Id=@file.Id' target="_blank">
+                                                        <i class="fas fa-cloud-download-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div style="padding-top: 5px;position: absolute;">  @file.Title   </div>
+                                                <div style="margin-right:80px" class="avatar-badge" title="" data-toggle="tooltip" data-original-title="حذف">
+                                                    <a href="" data-confirm="حذف پیوست|آیا از حذف این پیوست اطمینان دارید؟"
+                                               data-confirm-text-yes="حذف"
+                                               data-confirm-text-cancel="انصراف"
+                                               data-confirm-yes="confirmDelete(@file.Id)" id="delete_" @file.Id>
+                                                        <i class="fas fa-trash-alt ico-red"></i>
+                                                    </a>
+                                                </div>
+                                            <input asp-for="BlobDescriptionSignatureId" class="hidden" />
+
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                            <img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg" alt="your signature" height="110" width="130" style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />
+                            }
+                            @*<img id="imgusersignature" src="~/upload/signatureimage/signatureDefault.jpg"
+                            style="height:130px; width:110px; margin:5px auto; border:1px solid #cbcbcb; background-size:100%; width:100%;" />*@
 
                             <div id="divmessage1" class="text-center hidden"></div>
                         </div>
@@ -220,6 +297,20 @@
 
 @section AdminScripts{
     <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+
+        SigInp.onchange = evt => {
+            const [file] = SigInp.files
+            if (file) {
+                imgusersignature.src = URL.createObjectURL(file)
+            }
+        }
+
         $("#ImagePath").change(function () {
             var filename = this.files[0].name;
             $("#spnimageuser").html(filename);
@@ -241,7 +332,7 @@
             var files = file.files;
 
             for (var i = 0; i < files.length; i++) {
-                data.append('filearray',files[i]);
+                data.append('filearray', files[i]);
             }
             data.append('path', "upload\\userimage\\");
 
@@ -264,7 +355,7 @@
                 }
 
             }).fail(function (result) {
-                   if (result.status != "success") {
+                if (result.status != "success") {
                     $("#divmessage").css("color", "red");
                     $("#divmessage").redmoveClass("hidden");
                     $("#divmessage").text("در حین آپلود اشکالی بوجود آمد.");
@@ -281,7 +372,7 @@
             var files = file.files;
 
             for (var i = 0; i < files.length; i++) {
-                data.append('filearray',files[i]);
+                data.append('filearray', files[i]);
             }
 
             data.append('path', "upload\\signatureimage\\");
@@ -289,7 +380,7 @@
             $.ajax({
                 type: "post",
                 url: '@Url.Action("UploadImageFile","UserManager", new { area = "AdminArea"})',
-                data:  data,
+                data: data,
                 contentType: false,
                 processData: false
 
@@ -305,7 +396,7 @@
                 }
 
             }).fail(function (result) {
-                   if (result.status != "success") {
+                if (result.status != "success") {
                     $("#divmessage1").css("color", "red");
                     $("#divmessage1").redmoveClass("hidden");
                     $("#divmessage1").text("در حین آپلود اشکالی بوجود آمد.");
@@ -316,12 +407,12 @@
     </script>
 
     <script>
-    $("#UserName").on('keyup', function (event) {
-        var pattern = /^[a-zA-Z0-9]*$/;
-        if (!pattern.test(event.key)) {
-            $('#UserName').val("");
-        }
-    });
+        $("#UserName").on('keyup', function (event) {
+            var pattern = /^[a-zA-Z0-9]*$/;
+            if (!pattern.test(event.key)) {
+                $('#UserName').val("");
+            }
+        });
 
     </script>
 }

@@ -21,7 +21,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
         public BlobRepository(ApplicationDbContext context, UserManager<ApplicationUsers> userManager)
         {
             _context = context;
-            _userManager = userManager; 
+            _userManager = userManager;
         }
 
         public bool CheckFileExtension(IEnumerable<IFormFile> upload, CancellationToken cancellationToken)
@@ -41,6 +41,11 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return temp;
         }
 
+        public List<Blob> GetByBlobDescriptionId(long blobDescriptionId)
+        {
+            return _context.Blobs.Where(c => c.BlobDescriptionId == blobDescriptionId && c.IsDeleted == false).AsNoTracking().ToList();
+        }
+
         public List<UserFullNameViewModel> GetUserForSearchInAutoCompelet(string term)
         {
             var query = (from U in _context.Users
@@ -52,7 +57,7 @@ namespace WebAutomationSystem.DataModelLayer.Repository
             return query;
         }
 
-        public long? SaveFile(List<IFormFile> upload, int userid, CancellationToken cancellationToken)
+        public long? SaveFile(List<IFormFile> upload, int userid, CancellationToken cancellationToken, long? blobDescriptionId)
         {
             if (upload != null && upload.Any())
             {
@@ -60,10 +65,16 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                 {
                     BlobDescription blobDescription = new BlobDescription();
 
-                    blobDescription.CreatedById = userid;
-                    _context.BlobDescriptions.AddAsync(blobDescription, cancellationToken);
-                    _context.SaveChanges();
-                    BlobStream blobStream= new BlobStream();
+                    if (blobDescriptionId == null)
+                    {
+                        blobDescription.CreatedById = userid;
+                        _context.BlobDescriptions.AddAsync(blobDescription, cancellationToken);
+                        _context.SaveChanges();
+                    }
+                    else
+                        blobDescription.Id = blobDescriptionId.Value;
+
+                    BlobStream blobStream = new BlobStream();
                     foreach (var file in upload)
                     {
                         Blob blob;
@@ -86,8 +97,8 @@ namespace WebAutomationSystem.DataModelLayer.Repository
                             };
                         }
                         _context.Blobs.AddAsync(blob, cancellationToken);
-                        _context.SaveChanges(); 
-                         blobStream = new BlobStream()
+                        _context.SaveChanges();
+                        blobStream = new BlobStream()
                         {
                             File = fileBytes,
                             BlobId = blob.Id,

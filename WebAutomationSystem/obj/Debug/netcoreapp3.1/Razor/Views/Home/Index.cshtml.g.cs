@@ -27,7 +27,7 @@ using WebAutomationSystem.DataModelLayer.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b1ca3072414130c40ba0c74e08d8ed0106ee9002", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc2646711b3d929bc2a9ca88067395ec98d1fdbc", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"10705b5654e17ff1cccf8b35f7e1569a21073469", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WebAutomationSystem.DataModelLayer.ViewModels.LoginViewModel>
     #nullable disable

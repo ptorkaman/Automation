@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
+using DNTCaptcha.Core;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,24 @@ namespace WebAutomationSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Captcha
+            services.AddDNTCaptcha(options =>
+            {
+                options.UseMemoryCacheStorageProvider()
+                .AbsoluteExpiration(minutes: 7)
+                .ShowThousandsSeparators(false)
+                .WithEncryptionKey("324r2#RFDWEFR@#Rfewfgtewfr2123")
+                .InputNames(
+                    new DNTCaptchaComponent
+                    {
+                        CaptchaHiddenInputName = "MHCaptchaText",
+                        CaptchaHiddenTokenName = "MHCaptchaToken",
+                        CaptchaInputName = "MHCaptchaInputText"
+                    })
+                .Identifier("MHCaptcha");
+            });
+
+
             //DataBaseService
             services.AddDbContext<ApplicationDbContext>(option =>
             option.UseSqlServer(Configuration.GetConnectionString("AutomationConnectionString"),
@@ -71,7 +91,8 @@ namespace WebAutomationSystem
             services.AddScoped<ISentLettersRepository, SentLettersRepository>();
             services.AddScoped<IReferralLetterRepository, ReferralLetterRepository>();
             services.AddScoped<IGroupUserRepository, GroupUserRepository>();
-            
+            services.AddScoped<IBlobStreamRepository, BlobStreamRepository>();
+
 
             services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
